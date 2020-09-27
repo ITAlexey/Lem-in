@@ -11,6 +11,7 @@
 /* ************************************************************************** */
 
 #include "ft_printf.h"
+#include "libft.h"
 
 static void		put_space_or_zero(char *arg, t_flag *flag, int times)
 {

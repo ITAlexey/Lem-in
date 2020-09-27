@@ -12,8 +12,6 @@
 
 #ifndef FT_PRINTF_H
 # define FT_PRINTF_H
-# include "libft.h"
-# include <limits.h>
 # include <stdarg.h>
 # define PERCENT 37
 # define PLUS 43

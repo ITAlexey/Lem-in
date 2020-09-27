@@ -11,11 +11,12 @@
 /* ************************************************************************** */
 
 #include "ft_printf.h"
+#include "stdlib.h"
 
 static int		record_flag(short *value)
 {
-	*value = TRUE;
-	return (TRUE);
+	*value = 1;
+	return (*value);
 }
 
 static int		is_matched_to_flag(char ch, t_flag *flag)
@@ -31,16 +32,16 @@ static int		is_matched_to_flag(char ch, t_flag *flag)
 	else if (ch == HASH)
 		return (record_flag(&(flag->hash)));
 	else
-		return (FALSE);
+		return (0);
 }
 
 static void		init(t_flag *tmp)
 {
-	tmp->pos = FALSE;
-	tmp->neg = FALSE;
-	tmp->hash = FALSE;
-	tmp->zero = FALSE;
-	tmp->space = FALSE;
+	tmp->pos = 0;
+	tmp->neg = 0;
+	tmp->hash = 0;
+	tmp->zero = 0;
+	tmp->space = 0;
 }
 
 t_flag			*get_flags(char const **format)

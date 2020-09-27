@@ -1,23 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lstdelone.c                                     :+:      :+:    :+:   */
+/*   ft_lstpushback.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dshala <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/09/11 18:27:00 by dshala            #+#    #+#             */
-/*   Updated: 2019/09/19 12:57:18 by dshala           ###   ########.fr       */
+/*   Created: 2020/09/11 19:41:49 by dshala            #+#    #+#             */
+/*   Updated: 2020/09/19 12:57:26 by dshala           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "lists.h"
 
-void	ft_lstdelone(t_list **alst, void (*del)(void *, size_t))
+void	*ft_lstpushback(t_list *head, t_list *node)
 {
-	if (alst && del && *alst != NULL)
+	t_list	*cur;
+
+	if (head != NULL && node != NULL)
 	{
-		del((*alst)->content, (*alst)->content_size);
-		free(*alst);
-		*alst = NULL;
+		cur = head;
+		while (cur->next)
+			cur = cur->next;
+		cur->next = node;
+		return (node);
 	}
+	return (NULL);
 }

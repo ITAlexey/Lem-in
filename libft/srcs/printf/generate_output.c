@@ -11,6 +11,7 @@
 /* ************************************************************************** */
 
 #include "ft_printf.h"
+#include "libft.h"
 #define NULLSTR "(null)"
 
 static char	*parse_type_s(char *str)

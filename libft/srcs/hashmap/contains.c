@@ -1,39 +1,38 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lstnew.c                                        :+:      :+:    :+:   */
+/*   containc.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dshala <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/09/11 16:18:48 by dshala            #+#    #+#             */
-/*   Updated: 2019/09/27 14:09:48 by dshala           ###   ########.fr       */
+/*   Created: 2020/08/15 13:10:00 by dshala            #+#    #+#             */
+/*   Updated: 2020/08/15 15:07:37 by dshala           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "lists.h"
+#include "hashmap.h"
 #include "libft.h"
 
-t_list		*ft_lstnew(void const *src, size_t size)
+short		is_elem_contained(t_hashmap *data, char const *key)
 {
-	t_list		*tmp;
+	int		hash_code;
+	int		place;
+	t_list	*current;
 
-	if (!(tmp = (t_list*)malloc(sizeof(t_list))))
-		return (NULL);
-	if (!src)
+	if (data != NULL && key != NULL)
 	{
-		tmp->content = NULL;
-		tmp->content_size = 0;
-	}
-	else
-	{
-		if (!(tmp->content = malloc(size)))
+		hash_code = get_hashcode(key);
+		place = hash_code % data->size;
+		current = &data->arr[place];
+		if (current->content_size != 0)
 		{
-			free(tmp);
-			return (NULL);
+			while (current)
+			{
+				if (!ft_strcmp(((t_item*)current->content)->key, key))
+					return (1);
+				current = current->next;
+			}
 		}
-		ft_memcpy(tmp->content, src, size);
-		tmp->content_size = size;
 	}
-	tmp->next = NULL;
-	return (tmp);
+	return (0);
 }

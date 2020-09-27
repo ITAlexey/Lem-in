@@ -10,6 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "libft.h"
 #include "ft_printf.h"
 
 int			get_numeric_value(const char **format, int (*fun)(int), int symbol)

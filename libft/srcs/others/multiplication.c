@@ -46,7 +46,7 @@ char		*multiplication(char *a, char *b, unsigned len_a, unsigned len_b)
 	char		*tmp;
 	unsigned	len;
 
-	if (*a != ZERO && *b != ZERO)
+	if (*a != '0' && *b != '0')
 	{
 		len = len_a + len_b;
 		result = ft_strnew(len + 1);
@@ -64,5 +64,5 @@ char		*multiplication(char *a, char *b, unsigned len_a, unsigned len_b)
 	}
 	ft_strdel(&a);
 	ft_strdel(&b);
-	return (char_to_string(ZERO));
+	return (char_to_string('0'));
 }

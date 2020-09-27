@@ -3,9 +3,9 @@
 /*                                                        :::      ::::::::   */
 /*   libft.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: deladia <marvin@42.fr>                     +#+  +:+       +#+        */
+/*   By: dshala <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/04/19 14:07:53 by deladia           #+#    #+#             */
+/*   Created: 2019/04/19 14:07:53 by dshala            #+#    #+#             */
 /*   Updated: 2019/10/03 15:51:53 by dshala           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
@@ -15,9 +15,9 @@
 
 # include <unistd.h>
 # include <stdlib.h>
+# include <limits.h>
 # include <string.h>
 # include <fcntl.h>
-# include "ft_printf.h"
 # define ABC(c) ((c) < 0 ? -(c) : (c))
 # define MAX(a, b) ((a) > (b) ? (a) : (b))
 # define MIN(a, b) ((a) <= (b) ? (a) : (b))
@@ -25,13 +25,6 @@
 # define TRUE 1
 # define FALSE 0
 # define BUFF_SIZE 17
-
-typedef struct		s_list
-{
-	void			*content;
-	size_t			content_size;
-	struct s_list	*next;
-}					t_list;
 
 char				*add_prefix(char *str, char *pattern);
 char				*add_suffix(char *str, char *pattern);
@@ -46,12 +39,6 @@ int					ft_isprint(int c);
 char				*ft_itoa(int n);
 char				*ft_itoa_base(long long nbr, unsigned int base);
 void				ft_free2darray(void **array);
-void				ft_lstadd(t_list **alst, t_list *new);
-void				ft_lstdel(t_list **alst, void (*del)(void *, size_t));
-void				ft_lstdelone(t_list **alst, void (*del)(void *, size_t));
-void				ft_lstiter(t_list *lst, void (*f)(t_list *elem));
-t_list				*ft_lstmap(t_list *lst, t_list *(*f)(t_list *elem));
-t_list				*ft_lstnew(void const *content, size_t content_size);
 void				*ft_memalloc(size_t size);
 void				*ft_memccpy(void *dest, const void *src, int c, size_t n);
 void				*ft_memchr(const void *s, int c, size_t n);

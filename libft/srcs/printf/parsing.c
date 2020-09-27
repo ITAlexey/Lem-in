@@ -11,6 +11,7 @@
 /* ************************************************************************** */
 
 #include "ft_printf.h"
+#include "libft.h"
 #define TYPE_PATTERN "cspdiouxXf"
 
 static int			get_nbr_of_percentages(char const **format)

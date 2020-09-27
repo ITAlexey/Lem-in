@@ -1,23 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lstdelone.c                                     :+:      :+:    :+:   */
+/*   create_item.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dshala <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/09/11 18:27:00 by dshala            #+#    #+#             */
-/*   Updated: 2019/09/19 12:57:18 by dshala           ###   ########.fr       */
+/*   Created: 2020/08/15 13:10:00 by dshala            #+#    #+#             */
+/*   Updated: 2020/08/15 15:07:37 by dshala           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "lists.h"
+#include "hashmap.h"
+#include "libft.h"
 
-void	ft_lstdelone(t_list **alst, void (*del)(void *, size_t))
+t_item		*create_item(char const *key, t_value *value)
 {
-	if (alst && del && *alst != NULL)
-	{
-		del((*alst)->content, (*alst)->content_size);
-		free(*alst);
-		*alst = NULL;
-	}
+	t_item	*item;
+
+	if (key == NULL || value == NULL)
+		return (NULL);
+	item = (t_item*)malloc(sizeof(t_item));
+	ISNULL(item);
+	item->hash_code = get_hashcode(key);
+	item->key = ft_strdup(key);
+	ISNULL(item->key);
+	ft_memcpy(&item->value, (void*)value, sizeof(t_value));
+	return (item);
 }

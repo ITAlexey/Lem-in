@@ -11,6 +11,7 @@
 /* ************************************************************************** */
 
 #include "ft_printf.h"
+#include "libft.h"
 
 static int	case_of_nine(char **int_part, char **fract_part, int prn)
 {
