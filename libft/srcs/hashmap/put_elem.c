@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   put.c                                              :+:      :+:    :+:   */
+/*   put_elem.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dshala <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -13,53 +13,53 @@
 #include "hashmap.h"
 #include "libft.h"
 
-static t_list	*append_item(t_list *lst, t_table *item)
+static t_list	*append_table(t_list *lst, t_table *table)
 {
-	lst->content_size = sizeof(*item);
-	lst->content = item;
+	lst->content_size = sizeof(*table);
+	lst->content = table;
 	return (lst);
 }
 
-static t_list	*init_newlst(t_table *item)
+static t_list	*init_newlst(t_table *table)
 {
 	t_list	*lst;
 
 	lst = (t_list*)ft_memalloc(sizeof(t_list));
 	ISNULL(lst);
-	return (append_item(lst, item));
+	return (append_table(lst, table));
 }
 
-static void		*define_case(t_hashmap *data, t_table *item)
+static void		*define_case(t_hashmap *data, t_table *table)
 {
 	int		idx;
 
-	idx = item->hash_code % data->size;
+	idx = table->hash_code % data->size;
 	if (data->arr[idx].content_size == 0)
 	{
-		ISNULL(append_item(&data->arr[idx], item));
+		ISNULL(append_table(&data->arr[idx], table));
 		data->occupied_cells++;
 	}
-	else if (!ft_strcmp(item->key, ((t_table*)data->arr[idx].content)->key))
+	else if (!ft_strcmp(table->key, ((t_table*)data->arr[idx].content)->key))
 	{
 		remove_table((t_table*)data->arr[idx].content);
-		data->arr[idx].content = item;
+		data->arr[idx].content = table;
 	}
 	else
 	{
-		ISNULL(ft_lstpushback(&data->arr[idx], init_newlst(item)));
+		ISNULL(ft_lstpushback(&data->arr[idx], init_newlst(table)));
 		data->occupied_cells++;
 	}
 	data->load_factor = data->occupied_cells / (float)data->size;
-	return ((void*)item);
+	return ((void*)table);
 }
 
-void			*put_elem(t_hashmap **data, t_table *item)
+void			*put_elem(t_hashmap **data, t_table *table)
 {
-	if (item != NULL && *data != NULL)
+	if (table != NULL && *data != NULL)
 	{
 		if ((*data)->load_factor > MAX_LOADING)
 			ISNULL(resize_hashmap(data));
-		return (define_case(*data, item));
+		return (define_case(*data, table));
 	}
 	return (NULL);
 }

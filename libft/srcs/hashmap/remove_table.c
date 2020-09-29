@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get.c                                              :+:      :+:    :+:   */
+/*   remove_table.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dshala <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -13,26 +13,11 @@
 #include "hashmap.h"
 #include "libft.h"
 
-t_value	*get_elem(t_hashmap *data, char const *key)
+void	remove_table(t_table *table)
 {
-	unsigned int	hash_code;
-	int				place;
-	t_list			*current;
-
-	if (data != NULL && key != NULL)
+	if (table != NULL)
 	{
-		hash_code = get_hashcode(key);
-		place = hash_code % data->size;
-		current = &data->arr[place];
-		if (current->content_size != 0)
-		{
-			while (current != NULL)
-			{
-				if (!ft_strcmp(((t_table*)current->content)->key, key))
-					return (&((t_table*)current->content)->value);
-				current = current->next;
-			}
-		}
+		ft_memdel((void**)&table->key);
+		ft_memdel((void**)&table);
 	}
-	return (NULL);
 }

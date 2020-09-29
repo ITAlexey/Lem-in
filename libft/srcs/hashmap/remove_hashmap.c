@@ -21,7 +21,7 @@ static void	clear_lsts(t_list *lst)
 	{
 		to_delete = lst;
 		lst = lst->next;
-		remove_item((t_item*)to_delete->content);
+		remove_table((t_table*)to_delete->content);
 		ft_memdel((void**)&to_delete);
 	}
 }
@@ -37,7 +37,7 @@ void		remove_hashmap(t_hashmap *data)
 		{
 			if (data->arr[idx].next != NULL)
 				clear_lsts(data->arr[idx].next);
-			remove_item((t_item*)data->arr[idx].content);
+			remove_table((t_table*)data->arr[idx].content);
 		}
 		idx++;
 	}

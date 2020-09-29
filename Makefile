@@ -8,15 +8,18 @@ LIB_DIR := libft/
 
 LIBINC := $(LIB_DIR)includes
 
-VPATH = srcs
-
 O_DIR := objects
+
+SRC   := main \
+		parse_input
 
 OBJS  := $(addsuffix .o, $(addprefix $(O_DIR)/, $(SRC)))
 
 CFLAGS := -Wall -Wextra -Werror
 
 CC    := gcc
+
+VPATH = srcs:srcs/validation
 
 all: folder $(LIB) $(NAME)
 
@@ -27,7 +30,7 @@ folder:
 	@mkdir -p $(O_DIR)
 
 $(NAME): $(OBJS)
-	$(CC) $(OBJS) $(LIB_DIR)$(LIB) -o $@
+	#$(CC) $(OBJS) $(LIB_DIR)$(LIB) -o $@
 
 $(O_DIR)/%.o: %.c $(INC) $(LIBINC)
 	$(CC) $(CFLAGS) -g -o $@ -c $< -I$(INC) -I$(LIBINC)

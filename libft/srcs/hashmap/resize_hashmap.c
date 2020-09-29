@@ -13,16 +13,30 @@
 #include "hashmap.h"
 #include "libft.h"
 
+static void	lstcpy(t_list *dest, t_list *src)
+{
+	dest->content_size = src->content_size;
+	dest->content = src->content;
+	dest->next = src->next;
+}
+
 static void	put_on_new_place(t_hashmap **newdata, t_list *lst, short counter)
 {
-	int	place;
+	int		place;
+	t_list	*cpy;
 
-	place = ((t_item*)lst->content)->hash_code % (*newdata)->size;
+	place = ((t_table*)lst->content)->hash_code % (*newdata)->size;
 	if ((*newdata)->arr[place].content_size == 0)
 	{
-		ft_memcpy(&(*newdata)->arr[place], lst, sizeof(t_list));
+		lstcpy(&(*newdata)->arr[place], lst);
 		if (counter != 0)
 			ft_memdel((void**)&lst);
+	}
+	else if (counter == 0)
+	{
+		cpy = (t_list*)ft_memalloc(sizeof(t_list));
+		lstcpy(cpy, lst);
+		ft_lstpushback(&(*newdata)->arr[place], cpy);
 	}
 	else
 		ft_lstpushback(&(*newdata)->arr[place], lst);

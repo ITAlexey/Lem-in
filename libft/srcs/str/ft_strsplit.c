@@ -44,8 +44,9 @@ char				**ft_strsplit(char const *str, char c)
 	if (str == NULL)
 		return (NULL);
 	words = ft_count_words(str, c);
-	if (!(splitted_str = (char**)ft_memalloc(sizeof(char*) * words + 1)))
+	if (!(splitted_str = (char**)ft_memalloc(sizeof(char*) * (words + 1))))
 		return (NULL);
+	splitted_str[words] = NULL;
 	while (*str != '\0' && i < words)
 	{
 		str += counter(str, c, 1);
@@ -55,6 +56,5 @@ char				**ft_strsplit(char const *str, char c)
 		str += letters;
 		i++;
 	}
-	splitted_str[i] = NULL;
 	return (splitted_str);
 }

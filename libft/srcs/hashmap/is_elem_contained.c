@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   create_item.c                                      :+:      :+:    :+:   */
+/*   is_elem_contained.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dshala <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -13,17 +13,26 @@
 #include "hashmap.h"
 #include "libft.h"
 
-t_item		*create_item(char const *key, t_value *value)
+short		is_elem_contained(t_hashmap *data, char const *key)
 {
-	t_item	*item;
+	int		hash_code;
+	int		place;
+	t_list	*current;
 
-	if (key == NULL || value == NULL)
-		return (NULL);
-	item = (t_item*)malloc(sizeof(t_item));
-	ISNULL(item);
-	item->hash_code = get_hashcode(key);
-	item->key = ft_strdup(key);
-	ISNULL(item->key);
-	ft_memcpy(&item->value, (void*)value, sizeof(t_value));
-	return (item);
+	if (data != NULL && key != NULL)
+	{
+		hash_code = get_hashcode(key);
+		place = hash_code % data->size;
+		current = &data->arr[place];
+		if (current->content_size != 0)
+		{
+			while (current)
+			{
+				if (!ft_strcmp(((t_table*)current->content)->key, key))
+					return (1);
+				current = current->next;
+			}
+		}
+	}
+	return (0);
 }

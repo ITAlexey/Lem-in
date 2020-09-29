@@ -28,7 +28,7 @@ short		is_elem_contained(t_hashmap *data, char const *key)
 		{
 			while (current)
 			{
-				if (!ft_strcmp(((t_item*)current->content)->key, key))
+				if (!ft_strcmp(((t_table*)current->content)->key, key))
 					return (1);
 				current = current->next;
 			}

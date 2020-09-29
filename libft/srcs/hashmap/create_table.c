@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get.c                                              :+:      :+:    :+:   */
+/*   create_table.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dshala <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -13,26 +13,17 @@
 #include "hashmap.h"
 #include "libft.h"
 
-t_value	*get_elem(t_hashmap *data, char const *key)
+t_table		*create_table(char const *key, t_value *value)
 {
-	unsigned int	hash_code;
-	int				place;
-	t_list			*current;
+	t_table	*table;
 
-	if (data != NULL && key != NULL)
-	{
-		hash_code = get_hashcode(key);
-		place = hash_code % data->size;
-		current = &data->arr[place];
-		if (current->content_size != 0)
-		{
-			while (current != NULL)
-			{
-				if (!ft_strcmp(((t_table*)current->content)->key, key))
-					return (&((t_table*)current->content)->value);
-				current = current->next;
-			}
-		}
-	}
-	return (NULL);
+	if (key == NULL || value == NULL)
+		return (NULL);
+	table = (t_table*)malloc(sizeof(t_table));
+	ISNULL(table);
+	table->hash_code = get_hashcode(key);
+	table->key = ft_strdup(key);
+	ISNULL(table->key);
+	ft_memcpy(&table->value, (void*)value, sizeof(t_value));
+	return (table);
 }
