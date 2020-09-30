@@ -18,8 +18,9 @@ short 		ft_ispos_str_of_digits(char const *str)
 
 void 		get_nbr_of_ants(t_farm *data)
 {
-	if (get_next_line(data->fd, &data->line) >= 0
+	if (get_next_line(data->fd, &data->line)
 		&& ft_ispos_str_of_digits(data->line)
+		&& ft_strlen(data->line) > 0
 		&& ft_strlen(data->line) < 11)
 		data->ants = ft_atoi(data->line);
 	else
@@ -42,6 +43,9 @@ void 		record_room(t_hashmap *room_type, char **room_data, int *size)
 
 	value = (t_value*)ft_memalloc(sizeof(t_value));
 	IF_FAIL(value);
+	value->x = ft_atoi(room_data[1]);
+	value->x = ft_atoi(room_data[2]);
+	value->links_nbr = 0;
 	if (*size == 0)
 	{
 		room_type = init_hashmap(TABLE_SIZE);
@@ -89,15 +93,32 @@ t_table		*is_room_exist(t_typeroom types, char *key)
 	return (NULL);
 }
 
-void 		record_link(t_table *table, char *link_room)
+t_list		*ft_lstcreate(void *src, size_t size)
 {
-	//table->value.links;
+	t_list	*new_lst;
+
+	new_lst = (t_list*)ft_memalloc(sizeof(t_list));
+	IF_FAIL(new_lst);
+	new_lst->content_size = size;
+	new_lst->content = src;
+	new_lst->next = NULL;
+	return (new_lst);
+}
+
+void 		record_link(t_table *main_table, t_table *bounded_table)
+{
+	if (main_table->value.links_nbr == 0)
+		main_table->value.links = ft_lstcreate(bounded_table, sizeof(t_list));
+	else
+		ft_lstpushback(main_table->value.links, ft_lstcreate(bounded_table, sizeof(t_list)));
+	main_table->value.links_nbr++;
 }
 
 void 		define_link(t_farm *data)
 {
 	char 		**data_link;
-	t_table		*table;
+	t_table		*basic;
+	t_table		*bounded;
 
 	if (!data->room_type.start_size || !data->room_type.end_size)
 		data->is_err = !data->room_type.end_size ? ERR_END : ERR_START;
@@ -105,11 +126,11 @@ void 		define_link(t_farm *data)
 	{
 		data_link = ft_strsplit(data->line, '-');
 		IF_FAIL(data_link);
-		if ((table = is_room_exist(data->room_type, data_link[0])) != NULL
-			&& is_room_exist(data->room_type, data_link[1]))
+		if ((basic = is_room_exist(data->room_type, data_link[0])) != NULL
+			&& (bounded = is_room_exist(data->room_type, data_link[1])) != NULL)
 		{
 			data->links_nbr++;
-			record_link(table, data_link[1]);
+			record_link(basic, bounded);
 		}
 		else
 			data->is_err = ERR_LINK;
@@ -127,7 +148,7 @@ void 		define_command(t_farm *data, short *start, short *end)
 		data->is_err = ERR_FRT;
 }
 
-static void 	init_error_list(char *err_lst[])
+void 	init_error_list(char *err_lst[])
 {
 	err_lst[0] = "Invalid number of ants.";
 	err_lst[1] = "Multiple start or end commands.";
@@ -135,7 +156,7 @@ static void 	init_error_list(char *err_lst[])
 	err_lst[3] = "Invalid format of room name or coordinates.";
 	err_lst[4] = "Absent destination rooms.";
 	err_lst[5] = "Absent origin rooms.";
-	err_lst[6] = " Name of room has not been found.";
+	err_lst[6] = "Name of room has not been found.";
 	//err_lst[7] = "";
 
 }
@@ -149,9 +170,11 @@ void 		parse_input(t_farm *data)
 	end_msg = 0;
 	init_error_list(data->err_lst);
 	get_nbr_of_ants(data);
-	while (data->is_err < 0 && get_next_line(data->fd, &data->line) >= 0)
+	while (data->is_err < 0 && get_next_line(data->fd, &data->line))
 	{
-		if (*(data->line) == '#')
+		if (!ft_strlen(data->line))
+			data->is_err = ERR_FRT;
+		else if (*(data->line) == '#')
 			define_comment(data, &start_msg, &end_msg);
 		else
 			define_command(data, &start_msg, &end_msg);

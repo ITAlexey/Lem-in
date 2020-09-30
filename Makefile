@@ -1,25 +1,28 @@
-NAME  := lem-in
+CFLAGS := -Wall -Wextra -Werror
 
-INC   := includes/
+CC    := gcc
+
+VPATH = srcs:srcs/validation:tests
 
 LIB   := libft.a
 
 LIB_DIR := libft/
 
+INC   := includes/
+
 LIBINC := $(LIB_DIR)includes
+
+TEST_INC := tests/
+
+NAME  := lem-in
 
 O_DIR := objects
 
-SRC   := main \
-		parse_input
+SRC   := test_lemin \
+		test_validation \
+		parse_input \
 
 OBJS  := $(addsuffix .o, $(addprefix $(O_DIR)/, $(SRC)))
-
-CFLAGS := -Wall -Wextra -Werror
-
-CC    := gcc
-
-VPATH = srcs:srcs/validation
 
 all: folder $(LIB) $(NAME)
 
@@ -30,10 +33,10 @@ folder:
 	@mkdir -p $(O_DIR)
 
 $(NAME): $(OBJS)
-	#$(CC) $(OBJS) $(LIB_DIR)$(LIB) -o $@
+	@$(CC) $(OBJS) $(LIB_DIR)$(LIB) -o $@
 
-$(O_DIR)/%.o: %.c $(INC) $(LIBINC)
-	$(CC) $(CFLAGS) -g -o $@ -c $< -I$(INC) -I$(LIBINC)
+$(O_DIR)/%.o: %.c $(INC) $(LIBINC) $(TEST_INC)
+	@$(CC) $(CFLAGS) -g -o $@ -c $< -I$(INC) -I$(LIBINC) -I$(TEST_INC)
 
 clean:
 	@$(MAKE) clean -sC $(LIB_DIR)
@@ -45,4 +48,4 @@ fclean: clean
 
 re: fclean all
 
-.PHONY: all, folder, re, clean, fclean
+.PHONY: all, folder, re, clean, fclean, tests
