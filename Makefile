@@ -2,7 +2,7 @@ CFLAGS := -Wall -Wextra -Werror
 
 CC    := gcc
 
-VPATH = srcs:srcs/validation:tests
+VPATH = srcs:tests:tests/validation
 
 LIB   := libft.a
 
@@ -20,6 +20,8 @@ O_DIR := objects
 
 SRC   := test_lemin \
 		test_validation \
+		test_comments \
+		test_ants \
 		parse_input \
 
 OBJS  := $(addsuffix .o, $(addprefix $(O_DIR)/, $(SRC)))
@@ -36,7 +38,7 @@ $(NAME): $(OBJS)
 	@$(CC) $(OBJS) $(LIB_DIR)$(LIB) -o $@
 
 $(O_DIR)/%.o: %.c $(INC) $(LIBINC) $(TEST_INC)
-	@$(CC) $(CFLAGS) -g -o $@ -c $< -I$(INC) -I$(LIBINC) -I$(TEST_INC)
+	$(CC) $(CFLAGS) -g -o $@ -c $< -I$(INC) -I$(LIBINC) -I$(TEST_INC)
 
 clean:
 	@$(MAKE) clean -sC $(LIB_DIR)

@@ -46,6 +46,7 @@ typedef struct 	s_farm
 void 			parse_input(t_farm *data);
 void			get_nbr_of_ants(t_farm *data);
 void 			define_comment(t_farm *data, short *start, short *end);
+void 			define_command(t_farm *data, short *start, short *end);
 void 			define_room(t_farm *data, short *start, short *end);
 
 #endif
