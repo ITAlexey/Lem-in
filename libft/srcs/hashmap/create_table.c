@@ -24,6 +24,8 @@ t_table		*create_table(char const *key, t_value *value)
 	table->hash_code = get_hashcode(key);
 	table->key = ft_strdup(key);
 	ISNULL(table->key);
-	ft_memcpy(&table->value, (void*)value, sizeof(t_value));
+	table->value.x = value->x;
+	table->value.y = value->y;
+	table->value.links_nbr = value->links_nbr;
 	return (table);
 }

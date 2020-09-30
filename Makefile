@@ -1,4 +1,4 @@
-CFLAGS := -Wall -Wextra -Werror
+CFLAGS := -Wall -Wextra
 
 CC    := gcc
 
@@ -20,6 +20,7 @@ O_DIR := objects
 
 SRC   := test_lemin \
 		test_validation \
+		test_rooms \
 		test_comments \
 		test_ants \
 		parse_input \
@@ -38,7 +39,7 @@ $(NAME): $(OBJS)
 	@$(CC) $(OBJS) $(LIB_DIR)$(LIB) -o $@
 
 $(O_DIR)/%.o: %.c $(INC) $(LIBINC) $(TEST_INC)
-	$(CC) $(CFLAGS) -g -o $@ -c $< -I$(INC) -I$(LIBINC) -I$(TEST_INC)
+	@$(CC) $(CFLAGS) -g -o $@ -c $< -I$(INC) -I$(LIBINC) -I$(TEST_INC)
 
 clean:
 	@$(MAKE) clean -sC $(LIB_DIR)

@@ -37,32 +37,30 @@ void 		define_comment(t_farm *data, short *start, short *end)
 	data->is_err = *start > 1 || *end > 1 ? ERR_CMD : -1;
 }
 
-void 		record_room(t_hashmap *room_type, char **room_data, int *size)
+void 		record_room(t_hashmap **room_type, char **room_data, int *size)
 {
-	t_value	*value;
+	t_value	value;
 
-	value = (t_value*)ft_memalloc(sizeof(t_value));
-	IF_FAIL(value);
-	value->x = ft_atoi(room_data[1]);
-	value->x = ft_atoi(room_data[2]);
-	value->links_nbr = 0;
+	value.x = ft_atoi(room_data[1]);
+	value.y = ft_atoi(room_data[2]);
+	value.links_nbr = 0;
 	if (*size == 0)
 	{
-		room_type = init_hashmap(TABLE_SIZE);
-		IF_FAIL(room_type);
+		*room_type = init_hashmap(TABLE_SIZE);
+		IF_FAIL(*room_type);
 	}
 	(*size)++;
-	IF_FAIL(put_elem(&room_type, create_table(room_data[0], value)));
+	IF_FAIL(put_elem(room_type, create_table(room_data[0], &value)));
 }
 
-void 		define_type(t_farm *data, char **room_data, short *start, short *end)
+void 		define_type(t_typeroom *type, char **room_data, short *start, short *end)
 {
 	if (*start && *end)
-		record_room(data->room_type.end , room_data, &data->room_type.end_size);
+		record_room(&type->end, room_data, &type->end_size);
 	else if (*start)
-		record_room(data->room_type.start , room_data, &data->room_type.start_size);
+		record_room(&type->start, room_data, &type->start_size);
 	else
-		record_room(data->room_type.plain , room_data, &data->room_type.plain_size);
+		record_room(&type->plain, room_data, &type->plain_size);
 }
 
 void 		define_room(t_farm *data, short *start, short *end)
@@ -74,7 +72,9 @@ void 		define_room(t_farm *data, short *start, short *end)
 	if (*(data_room[0]) != 'L'
 		&& ft_ispos_str_of_digits(data_room[1])
 		&& ft_ispos_str_of_digits(data_room[2]))
-		define_type(data, data_room, start, end);
+	{
+		define_type(&data->room_type, data_room, start, end);
+	}
 	else
 		data->is_err = ERR_ROOM;
 	ft_free2darray((void**)data_room);

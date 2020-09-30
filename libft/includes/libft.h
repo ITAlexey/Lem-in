@@ -21,7 +21,7 @@
 # define ABC(c) ((c) < 0 ? -(c) : (c))
 # define MAX(a, b) ((a) > (b) ? (a) : (b))
 # define MIN(a, b) ((a) <= (b) ? (a) : (b))
-# define IF_FAIL(exp) if ((exp)) exit(EXIT_FAILURE)
+# define IF_FAIL(exp) if ((exp) == NULL) exit(EXIT_FAILURE)
 # define ISNULL(pointer) if ((pointer) == NULL) return (NULL)
 # define TRUE 1
 # define FALSE 0

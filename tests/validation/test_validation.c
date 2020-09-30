@@ -10,8 +10,8 @@ void 		__CHECK_VALIDATION__(void)
 
 	data.is_err = -1;
 	bzero((void*)g_path, SIZE);
-	strncpy(g_path, ABSg_PATH, BIAS);
-	__ANTS__(&data);
-	__COMMENTS__(&data);
-	//__ROOMS__(&data);
+	strncpy(g_path, ABS_PATH, BIAS);
+	//__ANTS__(&data);
+	//__COMMENTS__(&data);
+	__ROOMS__(&data);
 }
