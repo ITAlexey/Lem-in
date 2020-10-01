@@ -31,7 +31,7 @@ typedef struct 	s_farm
 	t_typeroom	room_type;
 }				t_farm;
 
-void 			parse_input(t_farm *data);
+int 			parse_input(t_farm *data);
 void 			define_command(t_farm *data, short *start, short *end);
 void 			define_link(t_farm *data);
 

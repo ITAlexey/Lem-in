@@ -24,5 +24,6 @@ void 	__COMMENTS__(t_farm *data);
 void 	__ANTS__(t_farm *data);
 void 	__ROOMS__(t_farm *data);
 void 	__LINKS__(t_farm *data);
+void	__FULL_FILES__(t_farm *data);
 
 #endif

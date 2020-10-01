@@ -31,18 +31,10 @@
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Makefile" beforeDir="false" afterPath="$PROJECT_DIR$/Makefile" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/includes/ant_farm.h" beforeDir="false" afterPath="$PROJECT_DIR$/includes/ant_farm.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/libft/includes/hashmap.h" beforeDir="false" afterPath="$PROJECT_DIR$/libft/includes/hashmap.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/libft/includes/libft.h" beforeDir="false" afterPath="$PROJECT_DIR$/libft/includes/libft.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/libft/includes/lists.h" beforeDir="false" afterPath="$PROJECT_DIR$/libft/includes/lists.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/libft/srcs/hashmap/contains.c" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/libft/srcs/hashmap/create_table.c" beforeDir="false" afterPath="$PROJECT_DIR$/libft/srcs/hashmap/create_table.c" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/libft/srcs/hashmap/get.c" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/libft/srcs/hashmap/put.c" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/libft/srcs/hashmap/remove.c" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/libft/srcs/hashmap/remove_table.c" beforeDir="false" afterPath="$PROJECT_DIR$/libft/srcs/hashmap/remove_table.c" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/srcs/main.c" beforeDir="false" afterPath="$PROJECT_DIR$/srcs/main.c" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lem-in" beforeDir="false" afterPath="$PROJECT_DIR$/lem-in" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/srcs/parse_input.c" beforeDir="false" afterPath="$PROJECT_DIR$/srcs/parse_input.c" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tests/validation/test_links.c" beforeDir="false" afterPath="$PROJECT_DIR$/tests/validation/test_links.c" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/tests.h" beforeDir="false" afterPath="$PROJECT_DIR$/tests/tests.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/validation/test_validation.c" beforeDir="false" afterPath="$PROJECT_DIR$/tests/validation/test_validation.c" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -91,7 +83,7 @@
       <option name="presentableId" value="Default" />
       <updated>1600761260082</updated>
       <workItem from="1600761261841" duration="4667000" />
-      <workItem from="1601280594894" duration="89349000" />
+      <workItem from="1601280594894" duration="92935000" />
     </task>
     <servers />
   </component>
@@ -119,6 +111,10 @@
       <screen x="0" y="27" width="1366" height="700" />
     </state>
     <state x="289" y="27" width="778" height="700" key="com.intellij.openapi.editor.actions.MultiplePasteAction$ClipboardContentChooser/0.27.1366.700@0.27.1366.700" timestamp="1601365850672" />
+    <state x="100" y="125" width="1166" height="502" key="dock-window-1" timestamp="1601553286698">
+      <screen x="0" y="27" width="1366" height="700" />
+    </state>
+    <state x="100" y="125" width="1166" height="502" key="dock-window-1/0.27.1366.700@0.27.1366.700" timestamp="1601553286698" />
     <state x="0" y="27" width="618" height="700" key="find.popup" timestamp="1601452822591">
       <screen x="0" y="27" width="1366" height="700" />
     </state>

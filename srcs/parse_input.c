@@ -41,7 +41,7 @@ static void	init_farm(t_farm *data)
 	data->err_lst[7] = "Empty lines are forbidden.";
 }
 
-void 		parse_input(t_farm *data)
+int 		parse_input(t_farm *data)
 {
 	short 	start_msg;
 	short 	end_msg;
@@ -60,11 +60,5 @@ void 		parse_input(t_farm *data)
 			define_command(data, &start_msg, &end_msg);
 		ft_strdel(&data->line);
 	}
-	if (data->is_err >= 0)
-	{
-		ft_printf("ERROR: %s\n", data->err_lst[data->is_err]);
-		exit(EXIT_FAILURE);
-	}
-	else
-		ft_printf("SUCCESS\n");
+	return (data->is_err);
 }

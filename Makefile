@@ -24,6 +24,7 @@ SRC   := test_lemin \
 		test_comments \
 		test_ants \
 		test_links \
+		test_full_files \
 		define_link \
 		define_command \
 		parse_input \

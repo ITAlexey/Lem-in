@@ -15,4 +15,5 @@ void 		__CHECK_VALIDATION__(void)
 	__COMMENTS__(&data);
 	__ROOMS__(&data);
 	__LINKS__(&data);
+	__FULL_FILES__(&data);
 }
