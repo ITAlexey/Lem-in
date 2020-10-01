@@ -23,6 +23,7 @@ SRC   := test_lemin \
 		test_rooms \
 		test_comments \
 		test_ants \
+		test_links \
 		parse_input \
 
 OBJS  := $(addsuffix .o, $(addprefix $(O_DIR)/, $(SRC)))

@@ -156,8 +156,8 @@ void 	init_error_list(char *err_lst[])
 	err_lst[3] = "Invalid format of room name or coordinates.";
 	err_lst[4] = "Absent destination rooms.";
 	err_lst[5] = "Absent origin rooms.";
-	err_lst[6] = "Name of room has not been found.";
-	//err_lst[7] = "";
+	err_lst[6] = "Non-existent room name.";
+	err_lst[7] = "Empty lines are forbidden.";
 
 }
 
@@ -173,7 +173,7 @@ void 		parse_input(t_farm *data)
 	while (data->is_err < 0 && get_next_line(data->fd, &data->line))
 	{
 		if (!ft_strlen(data->line))
-			data->is_err = ERR_FRT;
+			data->is_err = ERR_NL;
 		else if (*(data->line) == '#')
 			define_comment(data, &start_msg, &end_msg);
 		else

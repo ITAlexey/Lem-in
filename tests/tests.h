@@ -17,23 +17,12 @@
 
 char 	g_path[SIZE];
 
-typedef struct	s_testroom
-{
-	char 		*path;
-	char 		*test_name;
-	short 		err_code;
-	short 		finded_rooms;
-	// plain start end
-	char 		*room_names[6];
-
-
-}				t_testroom;
-
 void 	success(void);
 void 	fail(void);
 void 	__CHECK_VALIDATION__(void);
 void 	__COMMENTS__(t_farm *data);
 void 	__ANTS__(t_farm *data);
 void 	__ROOMS__(t_farm *data);
+void 	__LINKS__(t_farm *data);
 
 #endif

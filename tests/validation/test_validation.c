@@ -14,4 +14,5 @@ void 		__CHECK_VALIDATION__(void)
 	__ANTS__(&data);
 	__COMMENTS__(&data);
 	__ROOMS__(&data);
+	__LINKS__(&data);
 }
