@@ -82,6 +82,7 @@ char				*ft_strnstr(const char *str, const char *to_find,
 char				*ft_strrchr(const char *s, int c);
 char				**ft_strsplit(char const *str, char c);
 char				*ft_strstr(const char *str, const char *to_find);
+short				ft_ispositive_nbr(char const *str);
 char				*ft_strsub(char const *s, unsigned int start, size_t len);
 char				*ft_strtrim(char const *s);
 int					ft_tolower(int c);

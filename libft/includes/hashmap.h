@@ -29,8 +29,8 @@ typedef struct		s_value
 {
 	int				x;
 	int				y;
-	int				links_nbr;
-	t_list*			links;
+	int				connections;
+	t_list			*links;
 }					t_value;
 
 typedef struct		s_table

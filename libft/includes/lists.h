@@ -31,5 +31,6 @@ void				*ft_lstpushback(t_list *head, t_list *node);
 void				ft_lstremove(t_list **lst, void *to_find,
 									short (*predic)(void *, void *));
 int					ft_lstcount(t_list *lst);
+t_list				*ft_lstcreate(void *content, size_t content_size);
 
 #endif

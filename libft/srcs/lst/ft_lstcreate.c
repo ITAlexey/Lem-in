@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get.c                                              :+:      :+:    :+:   */
+/*   ft_lstcreate.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dshala <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -10,29 +10,17 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "hashmap.h"
+#include "lists.h"
 #include "libft.h"
 
-t_value	*get_elem(t_hashmap *data, char const *key)
+t_list		*ft_lstcreate(void *src, size_t size)
 {
-	unsigned int	hash_code;
-	int				place;
-	t_list			*current;
+	t_list	*new_lst;
 
-	if (data != NULL && key != NULL)
-	{
-		hash_code = get_hashcode(key);
-		place = hash_code % data->size;
-		current = &data->arr[place];
-		if (current->content_size != 0)
-		{
-			while (current != NULL)
-			{
-				if (!ft_strcmp(((t_table*)current->content)->key, key))
-					return (&((t_table*)current->content)->value);
-				current = current->next;
-			}
-		}
-	}
-	return (NULL);
+	new_lst = (t_list*)ft_memalloc(sizeof(t_list));
+	IF_FAIL(new_lst);
+	new_lst->content_size = size;
+	new_lst->content = src;
+	new_lst->next = NULL;
+	return (new_lst);
 }

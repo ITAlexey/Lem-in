@@ -2,7 +2,7 @@ CFLAGS := -Wall -Wextra
 
 CC    := gcc
 
-VPATH = srcs:tests:tests/validation
+VPATH = srcs:srcs/validation:tests:tests/validation
 
 LIB   := libft.a
 
@@ -24,6 +24,8 @@ SRC   := test_lemin \
 		test_comments \
 		test_ants \
 		test_links \
+		define_link \
+		define_command \
 		parse_input \
 
 OBJS  := $(addsuffix .o, $(addprefix $(O_DIR)/, $(SRC)))

@@ -56,7 +56,7 @@ static void __test_one_link__(t_farm *data, char *test_name, char *path)
 	{
 		if ((node = get_table(data->room_type.start, "0")) != NULL)
 		{
-			if (node->value.links_nbr == 1 && ft_strequ(((t_table*)node->value.links->content)->key, "1"))
+			if (node->value.connections == 1 && ft_strequ(((t_table*)node->value.links->content)->key, "1"))
 				success();
 			else
 				fail();

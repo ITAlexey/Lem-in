@@ -10,7 +10,6 @@ int 	main(void)
 
 	if ((data.fd = open(INPUT, O_RDONLY)) > 0)
 	{
-		data.is_err = -1;
 		parse_input(&data);
 		close(data.fd);
 	}

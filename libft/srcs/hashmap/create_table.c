@@ -26,6 +26,7 @@ t_table		*create_table(char const *key, t_value *value)
 	ISNULL(table->key);
 	table->value.x = value->x;
 	table->value.y = value->y;
-	table->value.links_nbr = value->links_nbr;
+	table->value.connections = value->connections;
+	table->value.links = NULL;
 	return (table);
 }
