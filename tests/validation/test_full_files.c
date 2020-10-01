@@ -114,5 +114,4 @@ void		__FULL_FILES__(t_farm *data)
 	__test_valid_1__(data, 1, "valid_input/valid_1");
 	__test_valid_2__(data, 2, "valid_input/valid_2");
 	__test_valid_3__(data, 3, "valid_input/valid_3");
-
 }

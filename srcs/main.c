@@ -10,7 +10,11 @@ int 	main(void)
 
 	if ((data.fd = open(INPUT, O_RDONLY)) > 0)
 	{
-		parse_input(&data);
+		if (parse_input(&data) != -1)
+		{
+			ft_printf("ERROR: %s\n", data->err_lst[data->is_err]);
+			exit(EXIT_FAILURE);
+		}
 		close(data.fd);
 	}
 	else
