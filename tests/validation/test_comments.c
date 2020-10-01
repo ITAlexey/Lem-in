@@ -13,7 +13,7 @@ static void 		__test_comment__(t_farm *data, char *test_name, int err_code, char
 	end = 0;
 	printf("Test: %-35s", test_name);
 	data->fd = open(path, O_RDONLY);
-	while (data->is_err < 0 && get_next_line(data->fd, &data->line))
+	while (get_next_line(data->fd, &data->line))
 	{
 		define_comment(data, &start, &end);
 		ft_strdel(&data->line);
