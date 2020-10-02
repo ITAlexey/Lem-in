@@ -13,16 +13,14 @@ static void	__test_inv_link__(t_farm *data, char *test_name, char *path, int err
 	end = 0;
 	printf("Test: %-35s", test_name);
 	data->fd = open(ft_strcat(g_path, path), O_RDONLY);
-	data->room_type.start_size = 0;
-	data->room_type.end_size = 0;
-	data->room_type.plain_size = 0;
-	data->links_nbr = 0;
+	init_farm(data);
 	while (get_next_line(data->fd, &data->line))
 	{
 		define_command(data, &start, &end);
 		ft_strdel(&data->line);
 	}
 	data->is_err == err_code ? success() : fail();
+	remove_hashmap(data->rooms);
 	data->is_err = -1;
 	close(data->fd);
 	bzero((void*)(g_path + BIAS), SIZE - BIAS);
@@ -38,10 +36,7 @@ static void __test_one_link__(t_farm *data, char *test_name, char *path)
 	end = 0;
 	printf("Test: %-35s", test_name);
 	data->fd = open(ft_strcat(g_path, path), O_RDONLY);
-	data->room_type.start_size = 0;
-	data->room_type.end_size = 0;
-	data->room_type.plain_size = 0;
-	data->links_nbr = 0;
+	init_farm(data);
 	while (get_next_line(data->fd, &data->line))
 	{
 		if (!ft_strlen(data->line))
@@ -54,18 +49,21 @@ static void __test_one_link__(t_farm *data, char *test_name, char *path)
 	}
 	if (data->is_err < 0)
 	{
-		if ((node = get_table(data->room_type.start, "0")) != NULL)
+		if ((node = get_table(data->rooms, "0")) != NULL)
 		{
 			if (node->value.connections == 1 && ft_strequ(((t_table*)node->value.links->content)->key, "1"))
+			{
 				success();
+				ft_strdel(&data->start_room);
+				ft_strdel(&data->end_room);
+			}
 			else
 				fail();
 		}
-		remove_hashmap(data->room_type.start);
-		remove_hashmap(data->room_type.end);
 	}
 	else
 		fail();
+	remove_hashmap(data->rooms);
 	data->is_err = -1;
 	close(data->fd);
 	bzero((void*)(g_path + BIAS), SIZE - BIAS);
@@ -82,10 +80,7 @@ static void __test_several_links__(t_farm *data, char *test_name, char *path)
 	end = 0;
 	printf("Test: %-35s", test_name);
 	data->fd = open(ft_strcat(g_path, path), O_RDONLY);
-	data->room_type.start_size = 0;
-	data->room_type.end_size = 0;
-	data->room_type.plain_size = 0;
-	data->links_nbr = 0;
+	init_farm(data);
 	while (get_next_line(data->fd, &data->line))
 	{
 		if (!ft_strlen(data->line))
@@ -98,21 +93,24 @@ static void __test_several_links__(t_farm *data, char *test_name, char *path)
 	}
 	if (data->is_err < 0)
 	{
-		if ((node_1 = get_table(data->room_type.start, "1")) != NULL
-			&& (node_2 = get_table(data->room_type.start, "2")) != NULL)
+		if ((node_1 = get_table(data->rooms, "1")) != NULL
+			&& (node_2 = get_table(data->rooms, "2")) != NULL)
 		{
 			if (ft_strequ(((t_table*)node_1->value.links->content)->key, "2")
 				&& ft_strequ(((t_table*)node_2->value.links->content)->key, "3")
 				&& ft_strequ(((t_table*)node_2->value.links->next->content)->key, "4"))
+			{
 				success();
+				ft_strdel(&data->start_room);
+				ft_strdel(&data->end_room);
+			}
 			else
 				fail();
 		}
-		remove_hashmap(data->room_type.start);
-		remove_hashmap(data->room_type.end);
 	}
 	else
 		fail();
+	remove_hashmap(data->rooms);
 	data->is_err = -1;
 	close(data->fd);
 	bzero((void*)(g_path + BIAS), SIZE - BIAS);
@@ -127,10 +125,7 @@ static void	__test_non_existent_name__(t_farm *data, char *test_name, char *path
 	end = 0;
 	printf("Test: %-35s", test_name);
 	data->fd = open(ft_strcat(g_path, path), O_RDONLY);
-	data->room_type.start_size = 0;
-	data->room_type.end_size = 0;
-	data->room_type.plain_size = 0;
-	data->links_nbr = 0;
+	init_farm(data);
 	while (get_next_line(data->fd, &data->line))
 	{
 		if (!ft_strlen(data->line))
@@ -142,8 +137,9 @@ static void	__test_non_existent_name__(t_farm *data, char *test_name, char *path
 		ft_strdel(&data->line);
 	}
 	data->is_err == err_code ? success() : fail();
-	remove_hashmap(data->room_type.start);
-	remove_hashmap(data->room_type.end);
+	ft_strdel(&data->start_room);
+	ft_strdel(&data->end_room);
+	remove_hashmap(data->rooms);
 	data->is_err = -1;
 	close(data->fd);
 	bzero((void*)(g_path + BIAS), SIZE - BIAS);

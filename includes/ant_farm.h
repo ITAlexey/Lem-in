@@ -10,16 +10,6 @@
 # include "ft_printf.h"
 # define INPUT "input.txt"
 
-typedef struct	s_typeroom
-{
-	t_hashmap	*start;
-	t_hashmap	*end;
-	t_hashmap	*plain;
-	int 		start_size;
-	int 		end_size;
-	int 		plain_size;
-}				t_typeroom;
-
 typedef struct 	s_farm
 {
 	int		 	fd;
@@ -28,7 +18,9 @@ typedef struct 	s_farm
 	short 		is_err;
 	int 		links_nbr;
 	char 		*err_lst[ERRORS];
-	t_typeroom	room_type;
+	t_hashmap	*rooms;
+	char 		*start_room;
+	char 		*end_room;
 }				t_farm;
 
 int 			parse_input(t_farm *data);

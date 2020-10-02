@@ -25,7 +25,7 @@ static void __test_inv_room__(t_farm *data, char *test_name, int err_code, char 
 	bzero((void*)g_path + BIAS, SIZE - BIAS);
 }
 
-static void __test_one_room__(t_farm *data, char *test_name, char *path, char const *key, t_hashmap **type)
+static void __test_one_room__(t_farm *data, char *test_name, char *path, char const *key, char *flag)
 {
 	short start;
 	short end;
@@ -35,10 +35,7 @@ static void __test_one_room__(t_farm *data, char *test_name, char *path, char co
 	end = 0;
 	printf("Test: %-35s", test_name);
 	data->fd = open(ft_strcat(g_path, path), O_RDONLY);
-	data->links_nbr = 0;
-	data->room_type.start_size = 0;
-	data->room_type.plain_size = 0;
-	data->room_type.end_size = 0;
+	init_farm(data);
 	while (get_next_line(data->fd, &data->line))
 	{
 		if (*(data->line) == '#')
@@ -47,14 +44,16 @@ static void __test_one_room__(t_farm *data, char *test_name, char *path, char co
 			define_command(data, &start, &end);
 		ft_strdel(&data->line);
 	}
-	if ((found = get_table(*type, key)) != NULL)
+	if ((found = get_table(data->rooms, key)) != NULL)
 	{
-		remove_elem(*type, key);
-		if (get_table(*type, key) == NULL)
-			success();
+		if (flag == NULL)
+			data->start_room == NULL ? success() : fail();
 		else
-			fail();
-		remove_hashmap(*type);
+		{
+			ft_strequ(data->start_room, flag) ? success() : fail();
+			ft_strdel(&data->start_room);
+		}
+		remove_hashmap(data->rooms);
 	}
 	else
 		fail();
@@ -63,21 +62,18 @@ static void __test_one_room__(t_farm *data, char *test_name, char *path, char co
 	bzero((void *)g_path + BIAS, SIZE - BIAS);
 }
 
-static void	__test_several_rooms__(t_farm *data, char *test_name, char *path, char *keys[], t_hashmap **type)
+static void	__test_several_rooms__(t_farm *data, char *test_name, char *path, char *keys[], char *flag)
 {
 	short start;
 	short end;
-	t_table *plain_1;
-	t_table *plain_2;
+	t_table *room_1;
+	t_table *room_2;
 
 	start = 0;
 	end = 0;
 	printf("Test: %-35s", test_name);
 	data->fd = open(ft_strcat(g_path, path), O_RDONLY);
-	data->links_nbr = 0;
-	data->room_type.start_size = 0;
-	data->room_type.plain_size = 0;
-	data->room_type.end_size = 0;
+	init_farm(data);
 	while (get_next_line(data->fd, &data->line))
 	{
 		if (*(data->line) == '#')
@@ -87,19 +83,21 @@ static void	__test_several_rooms__(t_farm *data, char *test_name, char *path, ch
 		ft_strdel(&data->line);
 	}
 	if (data->is_err < 0
-		&& (plain_1 = get_table(*type, keys[0])) != NULL
-		&& (plain_2 = get_table(*type, keys[1])) != NULL)
+		&& (room_1 = get_table(data->rooms, keys[0])) != NULL
+		&& (room_2 = get_table(data->rooms, keys[1])) != NULL
+		&& ft_strequ(room_1->key, keys[0]) && ft_strequ(room_2->key, keys[1]))
 	{
-		remove_elem(*type, keys[0]);
-		remove_elem(*type, keys[1]);
-		if (!get_table(*type, keys[0]) && !get_table(*type, keys[1]))
-			success();
+		if (flag == NULL)
+			data->start_room == NULL ? success() : fail();
 		else
-			fail();
-		remove_hashmap(*type);
+		{
+			ft_strequ(data->start_room, flag) ? success() : fail();
+			ft_strdel(&data->start_room);
+		}
 	}
 	else
 		fail();
+	remove_hashmap(data->rooms);
 	data->is_err = -1;
 	close(data->fd);
 	bzero((void *)g_path + BIAS, SIZE - BIAS);
@@ -112,18 +110,15 @@ static void __test_all_rooms__(t_farm *data, char *test_name, char *path, char *
 	t_table *plain_1;
 	t_table *plain_2;
 	t_table *start_1;
-	t_table *start_2;
+	t_table *plain_3;
 	t_table *end_1;
-	t_table *end_2;
+	t_table *plain_4;
 
 	start = 0;
 	end = 0;
 	printf("Test: %-35s", test_name);
 	data->fd = open(ft_strcat(g_path, path), O_RDONLY);
-	data->links_nbr = 0;
-	data->room_type.start_size = 0;
-	data->room_type.plain_size = 0;
-	data->room_type.end_size = 0;
+	init_farm(data);
 	while (get_next_line(data->fd, &data->line))
 	{
 		if (*(data->line) == '#')
@@ -133,34 +128,26 @@ static void __test_all_rooms__(t_farm *data, char *test_name, char *path, char *
 		ft_strdel(&data->line);
 	}
 	if (data->is_err < 0
-		&& (plain_1 = get_table(data->room_type.plain, keys[0])) != NULL
-		&& (plain_2 = get_table(data->room_type.plain, keys[1])) != NULL
-		&& (start_1 = get_table(data->room_type.start, keys[2])) != NULL
-		&& (start_2 = get_table(data->room_type.start, keys[3])) != NULL
-		&& (end_1 = get_table(data->room_type.end, keys[4])) != NULL
-		&& (end_2 = get_table(data->room_type.end, keys[5])) != NULL)
+		&& (plain_1 = get_table(data->rooms, keys[0])) != NULL
+		&& (plain_2 = get_table(data->rooms, keys[1])) != NULL
+		&& (start_1 = get_table(data->rooms, keys[2])) != NULL
+		&& (plain_3 = get_table(data->rooms, keys[3])) != NULL
+		&& (end_1 = get_table(data->rooms, keys[4])) != NULL
+		&& (plain_4 = get_table(data->rooms, keys[5])) != NULL)
 	{
-		remove_elem(data->room_type.plain, keys[0]);
-		remove_elem(data->room_type.plain, keys[1]);
-		remove_elem(data->room_type.start, keys[2]);
-		remove_elem(data->room_type.start, keys[3]);
-		remove_elem(data->room_type.end, keys[4]);
-		remove_elem(data->room_type.end, keys[5]);
-		if (!get_table(data->room_type.plain, keys[0])
-			&& !get_table(data->room_type.plain, keys[1])
-			&& !get_table(data->room_type.start, keys[2])
-			&& !get_table(data->room_type.start, keys[3])
-			&& !get_table(data->room_type.end, keys[4])
-			&& !get_table(data->room_type.end, keys[5]))
+		if (ft_strequ(data->start_room, start_1->key)
+			   && ft_strequ(data->end_room, end_1->key))
+		{
+			ft_strdel(&data->start_room);
+			ft_strdel(&data->end_room);
 			success();
+		}
 		else
 			fail();
-		remove_hashmap(data->room_type.plain);
-		remove_hashmap(data->room_type.start);
-		remove_hashmap(data->room_type.end);
 	}
 	else
 		fail();
+	remove_hashmap(data->rooms);
 	data->is_err = -1;
 	close(data->fd);
 	bzero((void *)g_path + BIAS, SIZE - BIAS);
@@ -175,10 +162,10 @@ void 	__ROOMS__(t_farm *data)
 	printf("\nCheck rooms:\n");
 	__test_inv_room__(data, "Invalid coordinates", 3, ft_strcat(g_path,"room/wrong_coor"));
 	__test_inv_room__(data, "Name that start with L", 3, ft_strcat(g_path,"room/invalid_name"));
-	__test_one_room__(data, "Record one plain room","room/one_plain", "plain", &data->room_type.plain);
-	__test_one_room__(data, "Record one start room", "room/one_start", "start", &data->room_type.start);
+	__test_one_room__(data, "Record one plain room","room/one_plain", "plain", NULL);
+	__test_one_room__(data, "Record one start room", "room/one_start", "start", "start");
 
-	__test_several_rooms__(data, "Record several plain room", "room/several_plain", plains, &data->room_type.plain);
-	__test_several_rooms__(data, "Record several start rooms", "room/several_start", starts, &data->room_type.start);
+	__test_several_rooms__(data, "Record several plain room", "room/several_plain", plains, NULL);
+	__test_several_rooms__(data, "Record several start rooms", "room/several_start", starts, "start1");
 	__test_all_rooms__(data, "Record all rooms", "room/all_rooms", all);
 }

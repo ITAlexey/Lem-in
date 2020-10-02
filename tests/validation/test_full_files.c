@@ -7,8 +7,7 @@
 static void	__test_valid_1__(t_farm *data, int nbr_file, char *path)
 {
 	t_table *start;
-	t_table *end_1;
-	t_table *end_2;
+	t_table *end;
 
 	printf("Test: Valid file number %-17d", nbr_file);
 	data->fd = open(ft_strcat(g_path, path), O_RDONLY);
@@ -16,20 +15,23 @@ static void	__test_valid_1__(t_farm *data, int nbr_file, char *path)
 	{
 		if (data->ants == 3
 		&& data->links_nbr == 3
-		&& (start = get_table(data->room_type.start, "0"))
+		&& ft_strequ(data->start_room, "0")
+		&& ft_strequ(data->end_room, "1")
+		&& (start = get_table(data->rooms, "0"))
 		&& start->value.connections == 1
-		&& (end_1 = get_table(data->room_type.end, "2"))
-		&& end_1->value.connections == 1
-		&& (end_2 = get_table(data->room_type.end, "3"))
-		&& end_2->value.connections == 1)
+		&& (end = get_table(data->rooms, "1"))
+		&& end->value.connections == 0
+		&& (end = get_table(data->rooms, "3"))
+		&& end->value.connections == 1)
 			success();
 		else
 			fail();
-		remove_hashmap(data->room_type.start);
-		remove_hashmap(data->room_type.end);
 	}
 	else
 		fail();
+	remove_hashmap(data->rooms);
+	ft_strdel(&data->start_room);
+	ft_strdel(&data->end_room);
 	close(data->fd);
 	bzero((void*)(g_path + BIAS), SIZE - BIAS);
 }
@@ -37,9 +39,7 @@ static void	__test_valid_1__(t_farm *data, int nbr_file, char *path)
 static void	__test_valid_2__(t_farm *data, int nbr_file, char *path)
 {
 	t_table *start;
-	t_table *end_1;
-	t_table *end_2;
-	t_table *end_3;
+	t_table *end;
 
 	printf("Test: Valid file number %-17d", nbr_file);
 	data->fd = open(ft_strcat(g_path, path), O_RDONLY);
@@ -47,23 +47,25 @@ static void	__test_valid_2__(t_farm *data, int nbr_file, char *path)
 	{
 		if (data->ants == 2
 			&& data->links_nbr == 5
-			&& (start = get_table(data->room_type.start, "0"))
+			&& ft_strequ(data->start_room, "0")
+			&& ft_strequ(data->end_room, "4")
+			&& (start = get_table(data->rooms, "0"))
 			&& start->value.connections == 2
-			&& (end_1 = get_table(data->room_type.end, "2"))
-			&& end_1->value.connections == 1
-			&& (end_2 = get_table(data->room_type.end, "3"))
-			&& end_2->value.connections == 1
-			&& (end_3 = get_table(data->room_type.end, "4"))
-			&& end_3->value.connections == 1)
+			&& (end = get_table(data->rooms, "2"))
+			&& end->value.connections == 1
+			&& (end = get_table(data->rooms, "3"))
+			&& end->value.connections == 1
+			&& (end = get_table(data->rooms, "4"))
+			&& end->value.connections == 1)
 			success();
 		else
 			fail();
-		remove_hashmap(data->room_type.start);
-		remove_hashmap(data->room_type.end);
-		remove_hashmap(data->room_type.plain);
 	}
 	else
 		fail();
+	remove_hashmap(data->rooms);
+	ft_strdel(&data->start_room);
+	ft_strdel(&data->end_room);
 	close(data->fd);
 	bzero((void*)(g_path + BIAS), SIZE - BIAS);
 }
@@ -71,11 +73,7 @@ static void	__test_valid_2__(t_farm *data, int nbr_file, char *path)
 static void	__test_valid_3__(t_farm *data, int nbr_file, char *path)
 {
 	t_table *start;
-	t_table *end_1;
-	t_table *end_2;
-	t_table *end_3;
-	t_table *end_4;
-	t_table *plain;
+	t_table *end;
 
 	printf("Test: Valid file number %-17d", nbr_file);
 	data->fd = open(ft_strcat(g_path, path), O_RDONLY);
@@ -83,27 +81,29 @@ static void	__test_valid_3__(t_farm *data, int nbr_file, char *path)
 	{
 		if (data->ants == 4
 			&& data->links_nbr == 9
-			&& (start = get_table(data->room_type.start, "start"))
+			&& ft_strequ(data->start_room, "start")
+			&& ft_strequ(data->end_room, "end")
+			&& (start = get_table(data->rooms, "start"))
 			&& start->value.connections == 1
-			&& (plain = get_table(data->room_type.plain, "3"))
-			&& plain->value.connections == 2
-			&& (end_1 = get_table(data->room_type.end, "2"))
-			&& end_1->value.connections == 2
-			&& (end_2 = get_table(data->room_type.end, "1"))
-			&& end_2->value.connections == 2
-			&& (end_3 = get_table(data->room_type.end, "6"))
-			&& end_3->value.connections == 1
-			&& (end_4 = get_table(data->room_type.end, "end"))
-			&& end_4->value.connections == 1)
+			&& (end = get_table(data->rooms, "3"))
+			&& end->value.connections == 2
+			&& (end = get_table(data->rooms, "2"))
+			&& end->value.connections == 2
+			&& (end = get_table(data->rooms, "1"))
+			&& end->value.connections == 2
+			&& (end = get_table(data->rooms, "6"))
+			&& end->value.connections == 1
+			&& (end = get_table(data->rooms, "end"))
+			&& end->value.connections == 1)
 			success();
 		else
 			fail();
-		remove_hashmap(data->room_type.start);
-		remove_hashmap(data->room_type.end);
-		remove_hashmap(data->room_type.plain);
 	}
 	else
 		fail();
+	remove_hashmap(data->rooms);
+	ft_strdel(&data->start_room);
+	ft_strdel(&data->end_room);
 	close(data->fd);
 	bzero((void*)(g_path + BIAS), SIZE - BIAS);
 }

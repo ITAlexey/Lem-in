@@ -4,30 +4,18 @@
 
 #include "ant_farm.h"
 
-static void 	record_room(t_hashmap **room_type, char **room_data, int *size)
+void 	record_room(t_farm *data, char **room_data, short *start, short *end)
 {
 	t_value	value;
 
 	value.x = ft_atoi(room_data[1]);
 	value.y = ft_atoi(room_data[2]);
 	value.connections = 0;
-	if (*size == 0)
-	{
-		*room_type = init_hashmap(TABLE_SIZE);
-		IF_FAIL(*room_type);
-	}
-	(*size)++;
-	IF_FAIL(put_elem(room_type, create_table(room_data[0], &value)));
-}
-
-static void 	define_type(t_typeroom *type, char **room_data, short *start, short *end)
-{
-	if (*start && *end)
-		record_room(&type->end, room_data, &type->end_size);
-	else if (*start)
-		record_room(&type->start, room_data, &type->start_size);
-	else
-		record_room(&type->plain, room_data, &type->plain_size);
+	if (*start && !data->start_room)
+		data->start_room = ft_strdup(room_data[0]);
+	else if (*end && !data->end_room)
+		data->end_room = ft_strdup(room_data[0]);
+	IF_FAIL(put_elem(&data->rooms, create_table(room_data[0], &value)));
 }
 
 static void 	define_room(t_farm *data, short *start, short *end)
@@ -39,7 +27,7 @@ static void 	define_room(t_farm *data, short *start, short *end)
 	if (*(data_room[0]) != 'L'
 		&& ft_ispositive_nbr(data_room[1])
 		&& ft_ispositive_nbr(data_room[2]))
-		define_type(&data->room_type, data_room, start, end);
+		record_room(data, data_room, start, end);
 	else
 		data->is_err = ERR_ROOM;
 	ft_free2darray((void**)data_room);

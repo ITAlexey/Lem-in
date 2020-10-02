@@ -26,11 +26,14 @@ void define_comment(t_farm *data, short *start, short *end)
 	data->is_err = *start > 1 || *end > 1 ? ERR_CMD : -1;
 }
 
-static void	init_farm(t_farm *data)
+void	init_farm(t_farm *data)
 {
 	data->links_nbr = 0;
-	ft_bzero(&data->room_type, sizeof(t_typeroom));
+	data->start_room = NULL;
+	data->end_room = NULL;
 	data->is_err = -1;
+	data->rooms = init_hashmap(TABLE_SIZE);
+	IF_FAIL(data->rooms);
 	data->err_lst[0] = "Invalid number of ants.";
 	data->err_lst[1] = "Multiple start or end commands.";
 	data->err_lst[2] = "Invalid format line.";
