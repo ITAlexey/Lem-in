@@ -28,7 +28,8 @@ void define_comment(t_farm *data, short *start, short *end)
 
 void	init_farm(t_farm *data)
 {
-	data->links_nbr = 0;
+	data->nbr_edges = 0;
+	data->nbr_rooms = 0;
 	data->start_room = NULL;
 	data->end_room = NULL;
 	data->is_err = -1;

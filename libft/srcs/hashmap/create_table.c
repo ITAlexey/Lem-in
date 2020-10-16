@@ -13,7 +13,7 @@
 #include "hashmap.h"
 #include "libft.h"
 
-t_table		*create_table(char const *key, t_value *value)
+t_table		*create_table(char const *key, void *value, size_t value_size)
 {
 	t_table	*table;
 
@@ -24,9 +24,8 @@ t_table		*create_table(char const *key, t_value *value)
 	table->hash_code = get_hashcode(key);
 	table->key = ft_strdup(key);
 	ISNULL(table->key);
-	table->value.x = value->x;
-	table->value.y = value->y;
-	table->value.connections = value->connections;
-	table->value.links = NULL;
+	table->value = ft_memalloc(value_size);
+	ISNULL(table->value);
+	ft_memcpy(table->value, value, value_size);
 	return (table);
 }

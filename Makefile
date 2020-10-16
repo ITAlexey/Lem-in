@@ -18,14 +18,15 @@ NAME  := lem-in
 
 O_DIR := objects
 
-SRC   := test_lemin \
+SRC   := define_link \
+		define_command \
+		parse_input \
+		main \
+		#test_lemin \
 		test_validation \
 		test_rooms \
 		test_comments \
 		test_ants \
-		define_link \
-		define_command \
-		parse_input \
 		test_links \
 		test_full_files \
 

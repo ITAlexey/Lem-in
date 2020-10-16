@@ -13,7 +13,7 @@
 #include "hashmap.h"
 #include "libft.h"
 
-t_value	*get_elem(t_hashmap *data, char const *key)
+void	*get_elem(t_hashmap *data, char const *key)
 {
 	unsigned int	hash_code;
 	int				place;
@@ -29,7 +29,7 @@ t_value	*get_elem(t_hashmap *data, char const *key)
 			while (current != NULL)
 			{
 				if (!ft_strcmp(((t_table*)current->content)->key, key))
-					return (&((t_table*)current->content)->value);
+					return (((t_table*)current->content)->value);
 				current = current->next;
 			}
 		}

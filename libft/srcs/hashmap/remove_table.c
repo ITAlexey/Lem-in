@@ -13,24 +13,12 @@
 #include "hashmap.h"
 #include "libft.h"
 
-static void	clear_lsts(t_list *head)
-{
-	t_list	*to_delete;
-
-	while (head)
-	{
-		to_delete = head;
-		head = head->next;
-		ft_memdel((void**)&to_delete);
-	}
-}
-
 void		remove_table(t_table *table)
 {
 	if (table != NULL)
 	{
 		ft_memdel((void**)&table->key);
-		clear_lsts(table->value.links);
+		ft_memdel(&table->value);
 		ft_memdel((void**)&table);
 	}
 }

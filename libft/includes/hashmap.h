@@ -25,27 +25,19 @@ typedef struct		s_hashmap
 	t_list			*arr;
 }					t_hashmap;
 
-typedef struct		s_value
-{
-	int				x;
-	int				y;
-	int				connections;
-	t_list			*links;
-}					t_value;
-
 typedef struct		s_table
 {
 	unsigned int	hash_code;
 	char const		*key;
-	t_value			value;
+	void 			*value;
 }					t_table;
 
 t_hashmap			*init_hashmap(int table_size);
-t_table				*create_table(char const *key, t_value *value);
+t_table				*create_table(char const *key, void *value, size_t value_size);
 void				remove_table(t_table *table);
 unsigned int		get_hashcode(const char *str);
 void				*put_elem(t_hashmap **data, t_table *table);
-t_value				*get_elem(t_hashmap *data, char const *key);
+void				*get_elem(t_hashmap *data, char const *key);
 short				is_elem_contained(t_hashmap *data, char const *key);
 void				remove_elem(t_hashmap *data, char const *key);
 void				remove_hashmap(t_hashmap *data);

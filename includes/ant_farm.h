@@ -8,7 +8,28 @@
 # include "error_types.h"
 # include "libft.h"
 # include "ft_printf.h"
+# include <stdbool.h>
 # define INPUT "input.txt"
+
+typedef struct		s_queue
+{
+	void 			*content;
+	struct s_queue	*next;
+	struct s_queue	*prev;
+}					t_queue;
+
+typedef struct	s_room
+{
+	int 		x;
+	int 		y;
+	short 		id;
+	bool		is_visited;
+	t_list		*neighbors;
+	short 		nbr_arcs;
+	short 		capacity;
+	short 		flow;
+
+}				t_room;
 
 typedef struct 	s_farm
 {
@@ -16,7 +37,8 @@ typedef struct 	s_farm
 	char 		*line;
 	int 		ants;
 	short 		is_err;
-	int 		links_nbr;
+	int 		nbr_edges;
+	int 		nbr_rooms;
 	char 		*err_lst[ERRORS];
 	t_hashmap	*rooms;
 	char 		*start_room;
