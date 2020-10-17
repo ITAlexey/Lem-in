@@ -29,11 +29,12 @@ typedef struct		s_table
 {
 	unsigned int	hash_code;
 	char const		*key;
-	void 			*value;
+	void			*value;
 }					t_table;
 
 t_hashmap			*init_hashmap(int table_size);
-t_table				*create_table(char const *key, void *value, size_t value_size);
+t_table				*create_table(char const *key, void *value,
+						size_t value_size);
 void				remove_table(t_table *table);
 unsigned int		get_hashcode(const char *str);
 void				*put_elem(t_hashmap **data, t_table *table);

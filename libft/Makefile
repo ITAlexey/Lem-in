@@ -22,6 +22,8 @@ PRINTF  := $(shell find srcs/printf/ -type f | cut -d "/" -f 3)
 OTHERS  := $(shell find srcs/others/ -type f | cut -d "/" -f 3)
 PUT     := $(shell find srcs/put/ -type f | cut -d "/" -f 3)
 HASHMAP := $(shell find srcs/hashmap/ -type f | cut -d "/" -f 3)
+QUEUE   := $(shell find srcs/hashmap/ -type f | cut -d "/" -f 3)
+
 
 LIB_OBJ  = $(addprefix $(OBJ_DIR)/,$(BOOL:%.c=%.o))
 LIB_OBJ += $(addprefix $(OBJ_DIR)/,$(CONV:%.c=%.o))
@@ -32,6 +34,7 @@ LIB_OBJ += $(addprefix $(OBJ_DIR)/,$(OTHERS:%.c=%.o))
 LIB_OBJ += $(addprefix $(OBJ_DIR)/,$(PUT:%.c=%.o))
 LIB_OBJ += $(addprefix $(OBJ_DIR)/,$(PRINTF:%.c=%.o))
 LIB_OBJ += $(addprefix $(OBJ_DIR)/,$(HASHMAP:%.c=%.o))
+LIB_OBJ += $(addprefix $(OBJ_DIR)/,$(QUEUE:%.c=%.o))
 
 VPATH = srcs/bool:srcs/conv:srcs/lst:srcs/mem:srcs/str:srcs/printf:srcs/others:srcs/put:srcs/hashmap
 

@@ -25,7 +25,7 @@ typedef struct	s_room
 	short 		id;
 	bool		is_visited;
 	t_list		*neighbors;
-	short 		nbr_arcs;
+	short 		nbr_arcs; //not sure about this field
 	short 		capacity;
 	short 		flow;
 
@@ -43,6 +43,7 @@ typedef struct 	s_farm
 	t_hashmap	*rooms;
 	char 		*start_room;
 	char 		*end_room;
+	char 		**adj_matrix;
 }				t_farm;
 
 int 			parse_input(t_farm *data);

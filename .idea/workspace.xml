@@ -29,15 +29,8 @@
   <component name="ChangeListManager">
     <list default="true" id="bf8090c8-d868-4bed-a984-044a79c944de" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Makefile" beforeDir="false" afterPath="$PROJECT_DIR$/Makefile" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/includes/ant_farm.h" beforeDir="false" afterPath="$PROJECT_DIR$/includes/ant_farm.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/libft/includes/hashmap.h" beforeDir="false" afterPath="$PROJECT_DIR$/libft/includes/hashmap.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/libft/srcs/hashmap/create_table.c" beforeDir="false" afterPath="$PROJECT_DIR$/libft/srcs/hashmap/create_table.c" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/libft/srcs/hashmap/get_elem.c" beforeDir="false" afterPath="$PROJECT_DIR$/libft/srcs/hashmap/get_elem.c" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/libft/srcs/hashmap/remove_table.c" beforeDir="false" afterPath="$PROJECT_DIR$/libft/srcs/hashmap/remove_table.c" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/srcs/main.c" beforeDir="false" afterPath="$PROJECT_DIR$/srcs/main.c" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/srcs/parse_input.c" beforeDir="false" afterPath="$PROJECT_DIR$/srcs/parse_input.c" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/srcs/validation/define_command.c" beforeDir="false" afterPath="$PROJECT_DIR$/srcs/validation/define_command.c" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lem-in" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/srcs/validation/define_link.c" beforeDir="false" afterPath="$PROJECT_DIR$/srcs/validation/define_link.c" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -64,7 +57,7 @@
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="cf.first.check.clang-format" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../ain-lem" />
   </component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
@@ -92,7 +85,7 @@
       <workItem from="1602249754885" duration="633000" />
       <workItem from="1602318310645" duration="66000" />
       <workItem from="1602586528782" duration="2237000" />
-      <workItem from="1602847935338" duration="6922000" />
+      <workItem from="1602847935338" duration="15507000" />
     </task>
     <servers />
   </component>
@@ -112,10 +105,10 @@
     <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="WindowStateProjectService">
-    <state x="466" y="134" width="424" height="484" key="FileChooserDialogImpl" timestamp="1602832794291">
+    <state x="466" y="134" width="424" height="484" key="FileChooserDialogImpl" timestamp="1602917724115">
       <screen x="0" y="27" width="1366" height="700" />
     </state>
-    <state x="466" y="134" width="424" height="484" key="FileChooserDialogImpl/0.27.1366.700@0.27.1366.700" timestamp="1602832794291" />
+    <state x="466" y="134" width="424" height="484" key="FileChooserDialogImpl/0.27.1366.700@0.27.1366.700" timestamp="1602917724115" />
     <state x="289" y="27" width="778" height="700" key="com.intellij.openapi.editor.actions.MultiplePasteAction$ClipboardContentChooser" timestamp="1601365850672">
       <screen x="0" y="27" width="1366" height="700" />
     </state>
