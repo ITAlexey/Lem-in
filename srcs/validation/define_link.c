@@ -4,14 +4,31 @@
 
 #include "ant_farm.h"
 
+static t_connection	*init_connection(char const *id)
+{
+	t_connection *link;
+
+	link = (t_connection*)malloc(sizeof(t_connection));
+	ISNULL(link);
+	link->room_name = id;
+	link->capacity = 1;
+	link->flow = 0;
+	return (link);
+}
+
 static void 		link_rooms(t_table *src, t_table *dest)
 {
+	t_connection	*link;
+
+	link = init_connection(dest->key);
+	IF_FAIL(link);
 	if (((t_room*)src->value)->nbr_arcs == 0)
-		((t_room*)src->value)->neighbors = ft_lstcreate(dest, sizeof(t_list));
+		((t_room*)src->value)->neighbors = ft_lstcreate(link, 0);
 	else
-		ft_lstpushback(((t_room*)src->value)->neighbors, ft_lstcreate(dest, sizeof(t_list)));
+		ft_lstpushback(((t_room*)src->value)->neighbors, ft_lstcreate(link, 0));
 	((t_room*)src->value)->nbr_arcs++;
 }
+
 
 void 		define_link(t_farm *data)
 {
@@ -26,7 +43,8 @@ void 		define_link(t_farm *data)
 		data_link = ft_strsplit(data->line, '-');
 		IF_FAIL(data_link);
 		if ((left = get_table(data->rooms, data_link[0])) != NULL
-			&& (right = get_table(data->rooms, data_link[1])) != NULL)
+			&& (right = get_table(data->rooms, data_link[1])) != NULL
+			&& ft_strcmp(left->key, right->key))
 		{
 			data->nbr_edges++;
 			link_rooms(left, right);

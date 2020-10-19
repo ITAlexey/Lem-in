@@ -8,28 +8,25 @@
 # include "error_types.h"
 # include "libft.h"
 # include "ft_printf.h"
+# include "queue.h"
 # include <stdbool.h>
 # define INPUT "input.txt"
 
-typedef struct		s_queue
+typedef struct		s_room
 {
-	void 			*content;
-	struct s_queue	*next;
-	struct s_queue	*prev;
-}					t_queue;
+	int 			x;
+	int 			y;
+	bool			is_visited;
+	t_list			*neighbors;
+	short 			nbr_arcs;
+}					t_room;
 
-typedef struct	s_room
+typedef struct		s_connection
 {
-	int 		x;
-	int 		y;
-	short 		id;
-	bool		is_visited;
-	t_list		*neighbors;
-	short 		nbr_arcs; //not sure about this field
-	short 		capacity;
-	short 		flow;
-
-}				t_room;
+	const char 		*room_name;
+	short 			capacity;
+	short 			flow;
+}					t_connection;
 
 typedef struct 	s_farm
 {
@@ -43,7 +40,6 @@ typedef struct 	s_farm
 	t_hashmap	*rooms;
 	char 		*start_room;
 	char 		*end_room;
-	char 		**adj_matrix;
 }				t_farm;
 
 int 			parse_input(t_farm *data);

@@ -18,7 +18,7 @@ t_list		*ft_lstcreate(void *src, size_t size)
 	t_list	*new_lst;
 
 	new_lst = (t_list*)ft_memalloc(sizeof(t_list));
-	IF_FAIL(new_lst);
+	ISNULL(new_lst);
 	new_lst->content_size = size;
 	new_lst->content = src;
 	new_lst->next = NULL;
