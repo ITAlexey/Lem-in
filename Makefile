@@ -2,7 +2,7 @@ CFLAGS := -Wall -Wextra
 
 CC    := gcc
 
-VPATH = srcs:srcs/validation:tests:tests/validation
+VPATH = srcs:srcs/validation:tests:tests/validation:srcs/algorithm
 
 LIB   := libft.a
 
@@ -22,6 +22,7 @@ SRC   := define_link \
 		define_command \
 		parse_input \
 		main \
+		bfs \
 		#test_lemin \
 		test_validation \
 		test_rooms \

@@ -11,7 +11,7 @@ void	get_nbr_of_ants(t_farm *data)
 		&& *(data->line) != '0')
 		data->ants = ft_atoi(data->line);
 	else
-		data->is_err = ERR_ANT;
+		data->err = ERR_ANT;
 }
 
 void define_comment(t_farm *data, short *start, short *end)
@@ -20,7 +20,7 @@ void define_comment(t_farm *data, short *start, short *end)
 		(*start)++;
 	else if (!ft_strcmp("##end", data->line))
 		(*end)++;
-	data->is_err = *start > 1 || *end > 1 ? ERR_CMD : -1;
+	data->err = *start > 1 || *end > 1 ? ERR_CMD : -1;
 }
 
 void	init_farm(t_farm *data)
@@ -29,7 +29,7 @@ void	init_farm(t_farm *data)
 	data->nbr_rooms = 0;
 	data->start_room = NULL;
 	data->end_room = NULL;
-	data->is_err = -1;
+	data->err = -1;
 	data->rooms = init_hashmap(TABLE_SIZE);
 	IF_FAIL(data->rooms);
 	data->err_lst[0] = "Invalid number of ants.";
@@ -40,6 +40,7 @@ void	init_farm(t_farm *data)
 	data->err_lst[5] = "Absent origin rooms.";
 	data->err_lst[6] = "Non-existent room name.";
 	data->err_lst[7] = "Empty lines are forbidden.";
+	data->err_lst[8] = "Paths are not exist.";
 }
 
 int 		parse_input(t_farm *data)
@@ -52,10 +53,10 @@ int 		parse_input(t_farm *data)
 	start_msg = 0;
 	end_msg = 0;
 	init_farm(data);
-	while (data->is_err < 0 && get_next_line(data->fd, &data->line))
+	while (data->err < 0 && get_next_line(data->fd, &data->line))
 	{
 		if (!ft_strlen(data->line))
-			data->is_err = ERR_NL;
+			data->err = ERR_NL;
 		else if (*(data->line) == '#')
 			define_comment(data, &start_msg, &end_msg);
 		else if (is_ant_line)
@@ -67,5 +68,5 @@ int 		parse_input(t_farm *data)
 			define_command(data, &start_msg, &end_msg);
 		ft_strdel(&data->line);
 	}
-	return (data->is_err);
+	return (data->err);
 }

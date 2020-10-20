@@ -37,7 +37,7 @@ void 		define_link(t_farm *data)
 	t_table		*left;
 
 	if (!data->start_room || !data->end_room)
-		data->is_err = !data->end_room ? ERR_END : ERR_START;
+		data->err = !data->end_room ? ERR_END : ERR_START;
 	else
 	{
 		data_link = ft_strsplit(data->line, '-');
@@ -51,7 +51,7 @@ void 		define_link(t_farm *data)
 			link_rooms(right, left);
 		}
 		else
-			data->is_err = ERR_LINK;
+			data->err = ERR_LINK;
 		ft_free2darray((void**)data_link);
 	}
 }

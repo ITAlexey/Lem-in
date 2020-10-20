@@ -5,33 +5,32 @@
 #include "ant_farm.h"
 #include <stdio.h>
 
-void 	iterate_and_print(t_list *lst)
+void 	print_path(t_hashmap *rooms, t_room *end)
 {
-	t_connection	*c;
+	t_room *tmp;
 
-	while (lst)
+	tmp = end;
+	printf("%s", "4");
+	while (tmp->member != NULL)
 	{
-		c = (t_connection*)lst->content;
-		printf("name: %s, capacity: %d, flow %d\n", c->room_name, c->capacity, c->flow);
-		lst = lst->next;
+		printf("<-%s", tmp->member);
+		tmp = get_elem(rooms, tmp->member);
 	}
+	printf("\n");
 }
 
-void 	print_links(t_farm d)
+short 	find_paths(t_farm *data)
 {
-	t_room *start;
+	t_room	*start;
 	t_room	*end;
-	t_room	*first;
 
-	end = (t_room*)get_elem(d.rooms, d.end_room);
-	start = (t_room*)get_elem(d.rooms, d.start_room);
-	first = (t_room*)get_elem(d.rooms, "1");
-	printf("START LINKS:\n");
-	iterate_and_print(start->neighbors);
-	printf("END LINKS:\n");
-	iterate_and_print(end->neighbors);
-	printf("FIRST ROOM:\n");
-	iterate_and_print(first->neighbors);
+	start = get_elem(data->rooms, data->start_room);
+	end = get_elem(data->rooms, data->end_room);
+	data->max_nbr_paths = MIN(start->nbr_arcs, end->nbr_arcs);
+	data->err = data->max_nbr_paths != 0 ? data->err : ERR_PATH;
+	if (data->err != -1 || bfs(data) == NULL)
+		data->err = ERR_PATH;
+	return (data->err);
 }
 
 int 	main(void)
@@ -40,9 +39,10 @@ int 	main(void)
 
 	if ((data.fd = open(INPUT, O_RDONLY)) > 0)
 	{
-		if (parse_input(&data) != -1)
+		if (parse_input(&data) != -1
+			|| find_paths(&data) != -1)
 		{
-			ft_printf("ERROR: %s\n", data.err_lst[data.is_err]);
+			ft_printf("ERROR: %s\n", data.err_lst[data.err]);
 			exit(EXIT_FAILURE);
 		}
 		close(data.fd);
@@ -52,7 +52,7 @@ int 	main(void)
 		ft_printf("ERROR.");
 		exit(EXIT_FAILURE);
 	}
-	print_links(data);
+	print_path(data.rooms, (t_room*)get_elem(data.rooms, data.end_room));
 	return (0);
 }
 

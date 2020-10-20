@@ -19,6 +19,7 @@ typedef struct		s_room
 	bool			is_visited;
 	t_list			*neighbors;
 	short 			nbr_arcs;
+	char 			*member;
 }					t_room;
 
 typedef struct		s_connection
@@ -33,17 +34,19 @@ typedef struct 	s_farm
 	int		 	fd;
 	char 		*line;
 	int 		ants;
-	short 		is_err;
+	short 		err;
 	int 		nbr_edges;
 	int 		nbr_rooms;
 	char 		*err_lst[ERRORS];
 	t_hashmap	*rooms;
 	char 		*start_room;
 	char 		*end_room;
+	int 		max_nbr_paths;
 }				t_farm;
 
 int 			parse_input(t_farm *data);
 void 			define_command(t_farm *data, short *start, short *end);
 void 			define_link(t_farm *data);
+char 			*bfs(t_farm *data);
 
 #endif

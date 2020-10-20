@@ -4,38 +4,44 @@
 
 #include "ant_farm.h"
 
-void 	add_neighbors(t_queue *q, t_list *neighbors)
+void 	add_neighbors(t_queue *q, t_hashmap *rooms, t_table *room_data)
 {
-	t_list	*tmp;
-	t_room	*neighbor;
+	t_list			*tmp;
+	t_connection	*link;
+	t_table			*current;
 
-	tmp = neighbors;
+	tmp = ((t_room*)room_data->value)->neighbors;
 	while (tmp)
 	{
-		neighbor = (t_room*)((t_table*)tmp->content)->value;
-		if (!neighbor->is_visited)
+		link = (t_connection*)tmp->content;
+		current = get_table(rooms, link->room_name);
+		if (!((t_room*)current->value)->is_visited)
 		{
-			neighbor->is_visited = true;
-			enqueue(q, tmp->content);
+			((t_room*)current->value)->member = room_data->key;
+			((t_room*)current->value)->is_visited = true;
+			enqueue(q, current);
 		}
 		tmp = tmp->next;
 	}
 }
 
-bool 	bfs(t_farm *data, char *start_room)
+char		*bfs(t_farm *data)
 {
 	t_queue		*q;
 	t_table		*current;
-	bool 		ret;
+	t_table		*start;
+	t_room		*end;
 
-	ret = false;
 	q = init_queue();
-	enqueue(q, (void*)get_table(data->rooms, start_room));
+	start = get_table(data->rooms, data->start_room);
+	((t_room*)start->value)->is_visited = true;
+	enqueue(q, start);
 	while (!is_empty(q))
 	{
-		current = (t_table*)dequeue(q);
-		add_neighbors(q, ((t_room*)current->value)->neighbors);
+		current = dequeue(q);
+		add_neighbors(q, data->rooms, current);
 	}
 	remove_queue(q);
-	return (ret);
+	end = get_elem(data->rooms, data->end_room);
+	return (end->member);
 }

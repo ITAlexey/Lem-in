@@ -10,6 +10,7 @@ void 	fill_room(t_room *room, int x, int y)
 	room->y = y;
 	room->is_visited = false;
 	room->nbr_arcs = 0;
+	room->member = NULL;
 }
 
 void 	record_room(t_farm *data, char **room_data, short *start, short *end)
@@ -41,7 +42,7 @@ static void 	define_room(t_farm *data, short *start, short *end)
 		record_room(data, data_room, start, end);
 	}
 	else
-		data->is_err = ERR_ROOM;
+		data->err = ERR_ROOM;
 	ft_free2darray((void**)data_room);
 }
 
@@ -52,5 +53,5 @@ void 		define_command(t_farm *data, short *start, short *end)
 	else if (ft_count_words(data->line, '-') == 2)
 		define_link(data);
 	else
-		data->is_err = ERR_FRT;
+		data->err = ERR_FRT;
 }
