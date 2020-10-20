@@ -8,7 +8,6 @@ void 	fill_room(t_room *room, int x, int y)
 {
 	room->x = x;
 	room->y = y;
-	room->is_visited = false;
 	room->nbr_arcs = 0;
 	room->member = NULL;
 }
@@ -24,8 +23,7 @@ void 	record_room(t_farm *data, char **room_data, short *start, short *end)
 		data->start_room = ft_strdup(room_data[0]);
 	else if (*end && !data->end_room)
 		data->end_room = ft_strdup(room_data[0]);
-	IF_FAIL(put_elem(&data->rooms,
-	 		create_table(room_data[0], (void*)room, sizeof(t_room))));
+	IF_FAIL(put_elem(&data->rooms, room_data[0], (void*)room, sizeof(t_room)));
 }
 
 static void 	define_room(t_farm *data, short *start, short *end)

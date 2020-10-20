@@ -53,13 +53,20 @@ static void		*define_case(t_hashmap *data, t_table *table)
 	return ((void*)table);
 }
 
-void			*put_elem(t_hashmap **data, t_table *table)
+void			*put_elem(t_hashmap **data, char const *key,
+					void *value, size_t size)
 {
-	if (table != NULL && *data != NULL)
+	t_table	*new_table;
+
+	if (*data != NULL)
 	{
-		if ((*data)->load_factor > MAX_LOADING)
-			ISNULL(resize_hashmap(data));
-		return (define_case(*data, table));
+		new_table = create_table(key, value, size);
+		if (new_table != NULL)
+		{
+			if ((*data)->load_factor > MAX_LOADING)
+				ISNULL(resize_hashmap(data));
+			return (define_case(*data, new_table));
+		}
 	}
 	return (NULL);
 }

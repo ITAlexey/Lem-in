@@ -39,8 +39,8 @@ int 	main(void)
 
 	if ((data.fd = open(INPUT, O_RDONLY)) > 0)
 	{
-		if (parse_input(&data) != -1
-			|| find_paths(&data) != -1)
+		if (parse_input(&data) >= 0
+			|| find_paths(&data) >= 0)
 		{
 			ft_printf("ERROR: %s\n", data.err_lst[data.err]);
 			exit(EXIT_FAILURE);

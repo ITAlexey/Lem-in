@@ -16,7 +16,6 @@ typedef struct		s_room
 {
 	int 			x;
 	int 			y;
-	bool			is_visited;
 	t_list			*neighbors;
 	short 			nbr_arcs;
 	char 			*member;
@@ -25,7 +24,6 @@ typedef struct		s_room
 typedef struct		s_connection
 {
 	const char 		*room_name;
-	short 			capacity;
 	short 			flow;
 }					t_connection;
 

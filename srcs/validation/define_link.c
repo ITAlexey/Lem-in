@@ -11,8 +11,7 @@ static t_connection	*init_connection(char const *id)
 	link = (t_connection*)malloc(sizeof(t_connection));
 	ISNULL(link);
 	link->room_name = id;
-	link->capacity = 1;
-	link->flow = 0;
+	link->flow = 1;
 	return (link);
 }
 
