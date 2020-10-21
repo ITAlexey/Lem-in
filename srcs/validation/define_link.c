@@ -24,7 +24,7 @@ static void 		link_rooms(t_table *src, t_table *dest)
 	if (((t_room*)src->value)->nbr_arcs == 0)
 		((t_room*)src->value)->neighbors = ft_lstcreate(link, 0);
 	else
-		ft_lstpushback(((t_room*)src->value)->neighbors, ft_lstcreate(link, 0));
+		ft_lstadd(&((t_room*)src->value)->neighbors, ft_lstcreate(link, 0));
 	((t_room*)src->value)->nbr_arcs++;
 }
 

@@ -28,13 +28,14 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="bf8090c8-d868-4bed-a984-044a79c944de" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/libft/srcs/lst/ft_lstfind.c" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/includes/ant_farm.h" beforeDir="false" afterPath="$PROJECT_DIR$/includes/ant_farm.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/input.txt" beforeDir="false" afterPath="$PROJECT_DIR$/input.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/libft/includes/hashmap.h" beforeDir="false" afterPath="$PROJECT_DIR$/libft/includes/hashmap.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/libft/srcs/hashmap/put_elem.c" beforeDir="false" afterPath="$PROJECT_DIR$/libft/srcs/hashmap/put_elem.c" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/srcs/algorithm/bfs.c" beforeDir="false" afterPath="$PROJECT_DIR$/srcs/algorithm/bfs.c" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/libft/includes/lists.h" beforeDir="false" afterPath="$PROJECT_DIR$/libft/includes/lists.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/libft/srcs/lst/ft_lstcount.c" beforeDir="false" afterPath="$PROJECT_DIR$/libft/srcs/lst/ft_lstcount.c" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/libft/srcs/lst/ft_lstremove.c" beforeDir="false" afterPath="$PROJECT_DIR$/libft/srcs/lst/ft_lstremove.c" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/srcs/main.c" beforeDir="false" afterPath="$PROJECT_DIR$/srcs/main.c" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/srcs/validation/define_command.c" beforeDir="false" afterPath="$PROJECT_DIR$/srcs/validation/define_command.c" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/srcs/validation/define_link.c" beforeDir="false" afterPath="$PROJECT_DIR$/srcs/validation/define_link.c" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -90,7 +91,7 @@
       <workItem from="1602318310645" duration="66000" />
       <workItem from="1602586528782" duration="2237000" />
       <workItem from="1602847935338" duration="22075000" />
-      <workItem from="1603002898810" duration="24443000" />
+      <workItem from="1603002898810" duration="40061000" />
     </task>
     <servers />
   </component>

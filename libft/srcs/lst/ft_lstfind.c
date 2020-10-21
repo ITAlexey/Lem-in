@@ -1,28 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lstcount.c                                      :+:      :+:    :+:   */
+/*   ft_lstfind.h                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dshala <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/09/11 19:01:14 by dshala            #+#    #+#             */
-/*   Updated: 2019/09/19 12:56:43 by dshala           ###   ########.fr       */
+/*   Created: 2019/04/19 14:07:53 by dshala            #+#    #+#             */
+/*   Updated: 2019/10/03 15:51:53 by dshala           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "lists.h"
 
-size_t	ft_lstcount(t_list *lst)
+t_list		*ft_lstfind(t_list *head, void *to_find,
+				short (*predic)(void *, void *))
 {
-	size_t	counter;
-	t_list	*cur;
+	t_list	*tmp;
 
-	counter = 0;
-	cur = lst;
-	while (cur != NULL)
+	tmp = head;
+	while (tmp)
 	{
-		counter++;
-		cur = cur->next;
+		if (predic(tmp->content, to_find))
+			return (tmp);
+		tmp = tmp->next;
 	}
-	return (counter);
+	return (NULL);
 }

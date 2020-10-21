@@ -28,9 +28,11 @@ void				ft_lstiter(t_list *lst, void (*f)(t_list *elem));
 t_list				*ft_lstmap(t_list *lst, t_list *(*f)(t_list *elem));
 t_list				*ft_lstnew(void const *content, size_t content_size);
 void				*ft_lstpushback(t_list *head, t_list *node);
-void				ft_lstremove(t_list **lst, void *to_find,
-									short (*predic)(void *, void *));
-int					ft_lstcount(t_list *lst);
+void				ft_lstremove(t_list **head, void *to_find,
+						short (*predic)(void *, void *));
+size_t				ft_lstcount(t_list *lst);
 t_list				*ft_lstcreate(void *content, size_t content_size);
+t_list				*ft_lstfind(t_list *head, void *to_find,
+						short (*predic)(void *, void *));
 
 #endif
