@@ -34,7 +34,6 @@ void 	redirection(t_hashmap *rooms, t_table *end)
 		ft_lstremove(&next_room->neighbors, (void*)parent_name, is_equal);
 		next_room->nbr_arcs--;
 	}
-
 }
 
 void 	print_path(t_hashmap *rooms, t_room *end)
@@ -66,7 +65,40 @@ short 	find_paths(t_farm *data)
 	return (data->err);
 }
 
-//void 	print_neighbors(t_hashmap *rooms)
+void 	print_list(t_list *lst, char name[])
+{
+	t_connection *tmp;
+	t_list		*cur;
+
+	cur = lst;
+	printf("%s  :", name);
+	while (cur)
+	{
+		tmp = cur->content;
+		printf("[%s %d]", tmp->room_name, tmp->flow);
+		if (cur->next)
+			printf(" -> ");
+		cur = cur->next;
+	}
+	printf("\n\n");
+}
+
+void 	print_neighbors(t_hashmap *rooms)
+{
+	t_table *h;
+	t_table *a;
+	t_table *d;
+	t_table *e;
+
+	h = get_table(rooms, "H");
+	a = get_table(rooms, "A");
+	d = get_table(rooms, "D");
+	e = get_table(rooms, "E");
+	print_list(((t_room*)h->value)->neighbors, "H");
+	print_list(((t_room*)a->value)->neighbors, "A");
+	print_list(((t_room*)d->value)->neighbors, "D");
+	print_list(((t_room*)e->value)->neighbors, "E");
+}
 
 int 	main(void)
 {
@@ -89,7 +121,7 @@ int 	main(void)
 	}
 	redirection(data.rooms, get_table(data.rooms, data.end_room));
 	print_path(data.rooms, (t_room*)get_elem(data.rooms, data.end_room));
-	//print_neighbors(data.rooms);
+	print_neighbors(data.rooms);
 	return (0);
 }
 
