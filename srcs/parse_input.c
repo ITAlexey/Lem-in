@@ -26,21 +26,12 @@ void define_comment(t_farm *data, short *start, short *end)
 void	init_farm(t_farm *data)
 {
 	data->nbr_edges = 0;
-	data->nbr_rooms = 0;
 	data->start_room = NULL;
 	data->end_room = NULL;
 	data->err = -1;
+	data->paths.found = 0;
 	data->rooms = init_hashmap(TABLE_SIZE);
 	IF_FAIL(data->rooms);
-	data->err_lst[0] = "Invalid number of ants.";
-	data->err_lst[1] = "Multiple start or end commands.";
-	data->err_lst[2] = "Invalid format line.";
-	data->err_lst[3] = "Invalid format of room name or coordinates.";
-	data->err_lst[4] = "Absent destination rooms.";
-	data->err_lst[5] = "Absent origin rooms.";
-	data->err_lst[6] = "Non-existent room name.";
-	data->err_lst[7] = "Empty lines are forbidden.";
-	data->err_lst[8] = "Paths are not exist.";
 }
 
 int 		parse_input(t_farm *data)
@@ -68,5 +59,5 @@ int 		parse_input(t_farm *data)
 			define_command(data, &start_msg, &end_msg);
 		ft_strdel(&data->line);
 	}
-	return (data->err);
+	return (data->err < 0);
 }

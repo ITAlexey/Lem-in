@@ -4,20 +4,20 @@
 
 #include "ant_farm.h"
 
-static t_connection	*init_connection(char const *id)
+static t_link	*init_connection(char const *id)
 {
 	t_connection *link;
 
-	link = (t_connection*)malloc(sizeof(t_connection));
+	link = (t_link*)malloc(sizeof(t_link));
 	ISNULL(link);
 	link->room_name = id;
-	link->flow = 1;
+	link->is_lock = false;
 	return (link);
 }
 
 static void 		link_rooms(t_table *src, t_table *dest)
 {
-	t_connection	*link;
+	t_link	*link;
 
 	link = init_connection(dest->key);
 	IF_FAIL(link);

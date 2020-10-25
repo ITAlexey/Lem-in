@@ -44,6 +44,7 @@ short				is_elem_contained(t_hashmap *data, char const *key);
 void				remove_elem(t_hashmap *data, char const *key);
 void				remove_hashmap(t_hashmap *data);
 void				*resize_hashmap(t_hashmap **data);
+void				iterate_hashmap(t_hashmap *data, void (*fun)(t_list *));
 t_table				*get_table(t_hashmap *data, char const *key);
 
 #endif

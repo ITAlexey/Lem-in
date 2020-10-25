@@ -5,123 +5,48 @@
 #include "ant_farm.h"
 #include <stdio.h>
 
-short 	is_equal(void *a, void *b)
+bool 	find_path(t_farm *data, t_table *src, t_table *sink)
 {
-	char			*str;
-	t_connection	*link;
-
-	link = (t_connection*)a;
-	str = (char*)b;
-	return ((short)ft_strequ(str, link->room_name));
-}
-
-void 	redirection(t_hashmap *rooms, t_table *end)
-{
-	t_list			*link;
-	t_table			*tmp;
-	t_room			*next_room;
-	char 			*parent_name;
-
-	tmp = end;
-	next_room = tmp->value;
-	while (next_room->member)
+	if (!data->route.paths)
+		bfs();
+	else
 	{
-		parent_name = (char*)tmp->key;
-		link = ft_lstfind(next_room->neighbors, (void*)next_room->member, is_equal);
-		((t_connection*)link->content)->flow = -1;
-		tmp = get_table(rooms, next_room->member);
-		next_room = tmp->value;
-		ft_lstremove(&next_room->neighbors, (void*)parent_name, is_equal);
-		next_room->nbr_arcs--;
+		prepare_paths(data, &data->route);
+		bfs();
 	}
+	return (false);
 }
 
-void 	print_path(t_hashmap *rooms, t_room *end)
+int 	count_max_paths(t_farm *data)
 {
-	t_room *tmp;
+	t_room	*src;
+	t_room	*sink
 
-	tmp = end;
-	printf("%s", "H");
-	while (tmp->member != NULL)
-	{
-		printf("<-%s", tmp->member);
-		tmp = get_elem(rooms, tmp->member);
-	}
-	printf("\n");
-
-}
-
-short 	find_paths(t_farm *data)
-{
-	t_room	*start;
-	t_room	*end;
-
-	start = get_elem(data->rooms, data->start_room);
-	end = get_elem(data->rooms, data->end_room);
-	data->max_nbr_paths = MIN(start->nbr_arcs, end->nbr_arcs);
-	data->err = data->max_nbr_paths != 0 ? data->err : ERR_PATH;
-	if (data->err != -1 || bfs(data) == NULL)
-		data->err = ERR_PATH;
-	return (data->err);
-}
-
-void 	print_list(t_list *lst, char name[])
-{
-	t_connection *tmp;
-	t_list		*cur;
-
-	cur = lst;
-	printf("%s  :", name);
-	while (cur)
-	{
-		tmp = cur->content;
-		printf("[%s %d]", tmp->room_name, tmp->flow);
-		if (cur->next)
-			printf(" -> ");
-		cur = cur->next;
-	}
-	printf("\n\n");
-}
-
-void 	print_neighbors(t_hashmap *rooms)
-{
-	t_table *h;
-	t_table *a;
-	t_table *d;
-	t_table *e;
-
-	h = get_table(rooms, "H");
-	a = get_table(rooms, "A");
-	d = get_table(rooms, "D");
-	e = get_table(rooms, "E");
-	print_list(((t_room*)h->value)->neighbors, "H");
-	print_list(((t_room*)a->value)->neighbors, "A");
-	print_list(((t_room*)d->value)->neighbors, "D");
-	print_list(((t_room*)e->value)->neighbors, "E");
+	src = ((t_room*)data->src->value)->nbr_arcs;
+	sink = ((t_room*)data->sink->value)->nbr_arcs;
+	data->paths.max = MIN(src, sink);
+	data->err = data->paths.max != 0 ? data->err : ERR_PATH;
+	return (data->paths.max);
 }
 
 int 	main(void)
 {
 	t_farm		data;
+	int 		optimal_flow;
+	int 		res;
 
-	if ((data.fd = open(INPUT, O_RDONLY)) > 0)
+	optimal_flow = INT_MAX;
+	data.fd = open(INPUT, O_RDONLY);
+	if (!parse_input(&data) || !count_max_paths(&data))
+		throw_error(data);
+	while (find_path(&data, data.src, data.sink))
 	{
-		if (parse_input(&data) >= 0
-			|| find_paths(&data) >= 0)
-		{
-			ft_printf("ERROR: %s\n", data.err_lst[data.err]);
-			exit(EXIT_FAILURE);
-		}
-		close(data.fd);
+		 if (optimal_flow < current_network)
+			 break ;
+		 optimal_flow = current_network;
 	}
-	else
-	{
-		ft_printf("ERROR.");
-		exit(EXIT_FAILURE);
-	}
-	redirection(data.rooms, get_table(data.rooms, data.end_room));
-	print_path(data.rooms, (t_room*)get_elem(data.rooms, data.end_room));
-	print_neighbors(data.rooms);
+	move_ants();
+	close(data.fd);
 	return (0);
 }
 
