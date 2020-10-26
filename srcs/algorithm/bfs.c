@@ -15,7 +15,7 @@ static inline t_table	*analyse_room(t_table* main, t_table *neighbor)
 }
 
 void 	add_neighbors(t_queue *q, t_hashmap *rooms,
-		t_table *room_data, t_hashmap *visited_rooms)
+		t_table *room_data, t_hashmap *visited)
 {
 	t_list		*tmp;
 	t_link		*link;
@@ -27,40 +27,51 @@ void 	add_neighbors(t_queue *q, t_hashmap *rooms,
 	while (tmp)
 	{
 		link = tmp->content;
-		cur = get_table(rooms, link->room_name);
-		if (!link->is_lock && !is_elem_contained(visited_rooms, cur->key))
+		cur = link->linked;
+		if (!link->is_lock && !is_elem_contained(visited, cur->key))
 		{
-			((t_room*)cur->value)->member = (char*)room_data->key;
-			IF_FAIL(put_elem(&visited_rooms, cur->key, cur->value, sizeof(t_room)));
+			((t_room*)cur->value)->member = room_data;
+			IF_FAIL(put_elem(&visited, cur->key, cur->value, sizeof(t_room)));
 			enqueue(q, analyse_room(room_data, cur));
 		}
 		tmp = tmp->next;
 	}
 }
 
-t_list		*bfs(t_farm *data, t_table *src, t_table *sink)
+t_bfs		*init_bfs(t_table *src)
 {
-	t_queue		*q;
-	t_table		*cur;
-	bool		path_exist;
-	t_hashmap	*visited_rooms;
+	t_bfs	*search;
 
-	path_exist = false;
-	q = init_queue();
-	visited_rooms = init_hashmap(TABLE_SIZE);
-	IF_FAIL(put_elem(&visited_rooms, src->key, src->value, sizeof(t_room)));
-	enqueue(q, start);
-	while (!is_empty(q))
+	search = (t_bfs*)malloc(sizeof(t_bfs));
+	IF_FAIL(search);
+	search->is_exist = false;
+	search->q = init_queue();
+	search->visited = init_hashmap(TABLE_SIZE);
+	IF_FAIL(put_elem(&search->visited, src->key, src->value, sizeof(t_room)));
+	enqueue(q, src);
+}
+
+static void 	clear_bfs(t_bfs *search)
+{
+	remove_hashmap(search->visited);
+	remove_queue(search->q);
+	ft_memdel((void**)&search);
+}
+
+t_path		*find_path(t_farm *data, t_table *src, t_table *sink)
+{
+	t_bfs		*search;
+	t_table		*cur;
+
+	search = init_bfs(src);
+	data->paths ? prepare_paths(data, data->paths) : 0;
+	while (!is_empty(search->q))
 	{
-		cur = dequeue(q);
-		if (cur == sink)
-		{
-			path_exist = true;
+		cur = dequeue(search->q);
+		if (cur == sink && (search->is_exist = true))
 			break ;
-		}
-		add_neighbors(q, data->rooms, cur, visited_rooms);
+		add_neighbors(search->q, data->rooms, cur, search->visited);
 	}
-	remove_hashmap(visited_rooms);
-	remove_queue(q);
-	return (path_exist ? get_route() : NULL);
+	clear_bfs(search);
+	return (path_exist ? restore_path(data, sink) : NULL);
 }

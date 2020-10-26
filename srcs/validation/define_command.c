@@ -11,6 +11,7 @@ void 	fill_room(t_room *room, int x, int y)
 	room->nbr_arcs = 0;
 	room->in = NULL;
 	room->member = NULL;
+	room->is_dup = 0;
 }
 
 void 	record_room(t_farm *data, char **room_data, short *start, short *end)

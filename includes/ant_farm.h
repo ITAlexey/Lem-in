@@ -16,25 +16,31 @@ typedef struct		s_room
 {
 	int 			x;
 	int 			y;
-	t_list			*neighbors;
-	short 			nbr_arcs;
-	char 			*member;
-	bool 			is_dup;
 	t_table			*in;
+	bool 			is_dup;
+	t_table 		*member;
+	int 			nbr_arcs;
+	t_list			*neighbors;
 }					t_room;
 
 typedef struct		s_link
 {
-	const char 		*room_name;
+	t_table			*linked;
 	bool 			is_lock;
 }					t_link;
 
 typedef struct		s_path
 {
-	int 			max;
 	int 			found;
 	t_list			*routes;
 }					t_path;
+
+typedef struct		s_bfs
+{
+	t_queue			q;
+	t_hashmap		*visited;
+	bool 			is_exist;
+}					t_bfs;
 
 typedef struct 		s_farm
 {
@@ -43,16 +49,18 @@ typedef struct 		s_farm
 	int 			ants;
 	short 			err;
 	int 			nbr_edges;
+	int 			max_paths;
 	t_hashmap		*rooms;
 	t_table 		*src;
 	t_table 		*sink;
-	t_path			paths;
+	t_path			*paths;
 }					t_farm;
 
-int 			parse_input(t_farm *data);
+short 			parse_input(t_farm *data, short start_msg, short end_msg);
 void 			define_command(t_farm *data, short *start, short *end);
 void 			define_link(t_farm *data);
-t_list 			*bfs(t_farm *data, t_table *src, t_table *sink);
+t_path 			*find_path(t_farm *data, t_table *src, t_table *sink);
 void 			throw_error(t_farm data);
+void 			find_solution(t_farm *data, int min_steps, int max);
 
 #endif

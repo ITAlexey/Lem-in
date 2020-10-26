@@ -4,12 +4,6 @@
 
 #include "ant_farm.h"
 
-void 	remove_duplicates(t_room *room)
-{
-	ft_memdel((void**)&room->in);
-	ft_memdel((void**)&room->out);
-}
-
 short 	is_equal(void *a, void *b)
 {
 	char	*str;
@@ -23,9 +17,11 @@ short 	is_equal(void *a, void *b)
 void 		split_room(t_farm *data, t_table *table)
 {
 	t_table	*room_data;
+	t_room	*tmp;
 	t_list	*member;
 
-	member = ft_lstfind(room->neighbors, room->member, is_equal);
+	tmp = table->value;
+	member = ft_lstfind(tmp->neighbors, tmp->member, is_equal);
 	member->next = NULL;
 	room_data = (t_table*)malloc(sizeof(t_table));
 	IF_FAIL(room_data);
@@ -54,31 +50,32 @@ void 		prepare_paths(t_farm *data, t_path *path)
 	}
 }
 
-t_list		*restore_path(t_hashmap rooms, t_table *sink)
+t_path		*optimize_path(void)
 {
-	t_list	*full_path;
-	t_table	*tmp;
-	size_t	idx;
-
-	idx = 1;
-	full_path = ft_lstcreate(sink, idx++);
-	IF_FAIL(full_path);
-	tmp = sink
-	while (((t_room*)tmp->value)->member)
-	{
-		tmp = get_table(rooms, ((t_room*)tmp->value)->member);
-		ft_lstadd(full_path, ft_lstcreate(tmp, idx++));
-	}
-	return (full_path);
+	// check_collusions
+	return (sort_paths());
 }
 
-t_list		*get_route(t_hashmap *rooms, t_table *sink, int size)
+t_path		*restore_path(t_data *data, t_table *sink)
 {
-	t_list	*route;
-	t_list	*path;
+	t_table	*cur;
+	t_table *tail;
+	t_room	*tmp;
+	t_path	*new;
+	t_list	*lst;
 
-	path = restore_path(rooms, sink);
-	route = ft_lstcreate(path, (size_t)size);
-	IF_FAIL(route);
-	return (route);
+	new = (t_path*)malloc(sizeof(t_path));
+	IF_FAIL(new);
+	data->paths ? ft_memecpy(new, prev, sizeof(t_path)) : 0;
+	cur = sink;
+	while (((t_room*)cur->value)->member)
+	{
+		tail = ((t_room*)cur->value)->member;
+		tmp = tail->value;
+		lst = ft_lstfind(tmp->neighbors, cur->key, is_equal);
+		((t_link*)lst->content)->is_lock = true;
+		tmp->in ? ft_memdel((void**)&tmp->in) : 0;
+		cur = tail;
+	}
+	return (optimize_path());
 }
