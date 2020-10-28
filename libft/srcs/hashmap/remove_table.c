@@ -13,12 +13,12 @@
 #include "hashmap.h"
 #include "libft.h"
 
-void		remove_table(t_table *table)
+void		remove_table(t_table *table, void (*del)(void *))
 {
 	if (table != NULL)
 	{
 		ft_memdel((void**)&table->key);
-		ft_memdel(&table->value);
+		del ? del(table->value) : ft_memdel(&table->value);
 		ft_memdel((void**)&table);
 	}
 }

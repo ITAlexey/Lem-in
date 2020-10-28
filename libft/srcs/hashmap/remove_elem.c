@@ -19,31 +19,30 @@ static void	del_finded(t_list **head, t_list *current)
 	ft_memdel((void**)&current);
 }
 
-static void	delete_lst(t_hashmap *data, t_list **head, t_list *lst,
-				char const *to_find)
+static short	delete_lst(t_list **head, t_list *lst,
+				char const *to_find, void (*del)(void *))
 {
 	t_list	*prev;
 	t_list	*cur;
-	int		place;
 
-	place = 0;
+	prev = NULL;
 	cur = lst;
 	while (cur)
 	{
 		if (!ft_strcmp(((t_table*)cur->content)->key, to_find))
 		{
-			remove_table((t_table*)cur->content);
-			del_finded(place == 0 ? head : &prev, cur);
-			data->occupied_cells--;
-			break ;
+			remove_table((t_table*)cur->content, del);
+			del_finded(prev ? &prev : head, cur);
+			return (1);
 		}
 		prev = cur;
 		cur = cur->next;
-		place++;
 	}
+	return (0);
 }
 
-void		remove_elem(t_hashmap *data, char const *key)
+void		remove_elem(t_hashmap *data, char const *key,
+				  void (*del)(void *))
 {
 	unsigned int	hash_code;
 	int				place;
@@ -59,11 +58,11 @@ void		remove_elem(t_hashmap *data, char const *key)
 			if (!ft_strcmp(((t_table*)current->content)->key, key))
 			{
 				current->content_size = 0;
-				remove_table((t_table*)current->content);
+				remove_table((t_table*)current->content, del);
 				data->occupied_cells--;
 			}
 			else
-				delete_lst(data, &current, current->next, key);
+				data->occupied_cells -= delete_lst(&current, current->next, key, del);
 		}
 	}
 }

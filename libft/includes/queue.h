@@ -19,6 +19,7 @@ typedef struct		s_queue
 {
 	t_list			*head;
 	t_list			*tail;
+	size_t			nbr_elem;
 }					t_queue;
 
 short				is_empty(t_queue *q);

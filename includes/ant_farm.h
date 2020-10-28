@@ -12,6 +12,12 @@
 # include <stdbool.h>
 # define INPUT "input.txt"
 
+typedef struct		s_route
+{
+	t_queue			*cur;
+	t_queue			*new;
+}					t_route;
+
 typedef struct		s_room
 {
 	int 			x;
@@ -21,6 +27,7 @@ typedef struct		s_room
 	t_table 		*member;
 	int 			nbr_arcs;
 	t_list			*neighbors;
+	t_route			*route;
 }					t_room;
 
 typedef struct		s_link
@@ -29,18 +36,19 @@ typedef struct		s_link
 	bool 			is_lock;
 }					t_link;
 
-typedef struct		s_path
-{
-	int 			found;
-	t_list			*routes;
-}					t_path;
-
 typedef struct		s_bfs
 {
-	t_queue			q;
+	t_queue			*q;
 	t_hashmap		*visited;
 	bool 			is_exist;
 }					t_bfs;
+
+typedef struct 		s_path
+{
+	int 			found;
+	int 			*lengths;
+	t_list			*all;
+}					t_path;
 
 typedef struct 		s_farm
 {
@@ -50,17 +58,24 @@ typedef struct 		s_farm
 	short 			err;
 	int 			nbr_edges;
 	int 			max_paths;
+	t_path			*paths;
 	t_hashmap		*rooms;
 	t_table 		*src;
 	t_table 		*sink;
-	t_path			*paths;
 }					t_farm;
 
 short 			parse_input(t_farm *data, short start_msg, short end_msg);
 void 			define_command(t_farm *data, short *start, short *end);
 void 			define_link(t_farm *data);
-t_path 			*find_path(t_farm *data, t_table *src, t_table *sink);
 void 			throw_error(t_farm data);
 void 			find_solution(t_farm *data, int min_steps, int max);
-
+t_path 			*find_path(t_farm *data, t_table *src, t_table *sink);
+void 			prepare_paths(t_path *paths, void *src, void *sink);
+t_path			*restore_path(t_farm *data, t_table *sink);
+void 			optimization(t_route *route);
+void			find_collisions(t_table *pattern, t_route *route);
+t_path			*sort_paths(t_queue *start_nodes);
+void 			clear_memory(t_farm *data);
+void 			clear_paths(t_path *paths);
+short 			is_equal(void *a, void *b);
 #endif

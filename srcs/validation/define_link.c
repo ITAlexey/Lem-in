@@ -6,7 +6,7 @@
 
 static t_link	*init_connection(t_table *dest)
 {
-	t_connection *link;
+	t_link *link;
 
 	link = (t_link*)malloc(sizeof(t_link));
 	ISNULL(link);
@@ -35,8 +35,8 @@ void 		define_link(t_farm *data)
 	t_table		*right;
 	t_table		*left;
 
-	if (!data->start_room || !data->end_room)
-		data->err = !data->end_room ? ERR_END : ERR_START;
+	if (!data->src || !data->sink)
+		data->err = !data->sink ? ERR_END : ERR_START;
 	else
 	{
 		data_link = ft_strsplit(data->line, '-');

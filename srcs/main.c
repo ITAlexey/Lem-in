@@ -12,7 +12,8 @@ int 	main(void)
 	if (!parse_input(&data, 0, 0))
 		throw_error(data);
 	find_solution(&data, INT_MAX, data.max_paths);
-	move_ants();
+	//move_ants();
+	clear_memory(&data);
 	close(data.fd);
 	return (0);
 }

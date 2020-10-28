@@ -13,7 +13,7 @@
 #include "hashmap.h"
 #include "libft.h"
 
-static void	clear_lsts(t_list *lst)
+static void	clear_lsts(t_list *lst, void (*del)(void *))
 {
 	t_list	*to_delete;
 
@@ -21,12 +21,12 @@ static void	clear_lsts(t_list *lst)
 	{
 		to_delete = lst;
 		lst = lst->next;
-		remove_table((t_table*)to_delete->content);
+		remove_table((t_table*)to_delete->content, del);
 		ft_memdel((void**)&to_delete);
 	}
 }
 
-void		remove_hashmap(t_hashmap *data)
+void		remove_hashmap(t_hashmap *data, void (*del)(void *))
 {
 	int	idx;
 
@@ -36,8 +36,8 @@ void		remove_hashmap(t_hashmap *data)
 		if (data->arr[idx].content_size != 0)
 		{
 			if (data->arr[idx].next != NULL)
-				clear_lsts(data->arr[idx].next);
-			remove_table((t_table*)data->arr[idx].content);
+				clear_lsts(data->arr[idx].next, del);
+			remove_table((t_table*)data->arr[idx].content, del);
 		}
 		idx++;
 	}

@@ -6,19 +6,18 @@
 
 static short 	count_max_paths(t_farm *data)
 {
-	int	*src;
-	int	*sink
+	int	src;
+	int	sink;
 
 	src = ((t_room*)data->src->value)->nbr_arcs;
 	sink = ((t_room*)data->sink->value)->nbr_arcs;
 	data->max_paths = MIN(src, sink);
-	data->err = data->paths.max != 0 ? data->err : ERR_PATH;
-	return (data->paths.max);
+	data->err = data->max_paths != 0 ? data->err : ERR_PATH;
+	return (data->max_paths);
 }
 
-static void	get_nbr_of_ants(t_farm *data, bool *is_ant_line)
+static void	get_nbr_of_ants(t_farm *data)
 {
-	*is_ant_line = false;
 	if (ft_ispositive_nbr(data->line)
 		&& ft_strlen(data->line) < 11
 		&& *(data->line) != '0')
@@ -38,10 +37,11 @@ static void define_comment(t_farm *data, short *start, short *end)
 
 static void	init_farm(t_farm *data)
 {
+	data->ants = 0;
 	data->nbr_edges = 0;
 	data->paths = NULL;
-	data->start_room = NULL;
-	data->end_room = NULL;
+	data->src = NULL;
+	data->sink = NULL;
 	data->err = -1;
 	data->rooms = init_hashmap(TABLE_SIZE);
 	IF_FAIL(data->rooms);
@@ -49,9 +49,6 @@ static void	init_farm(t_farm *data)
 
 short 		parse_input(t_farm *data, short start_msg, short end_msg)
 {
-	bool	is_ant_line;
-
-	is_ant_line = true;
 	init_farm(data);
 	while (data->err < 0 && get_next_line(data->fd, &data->line))
 	{
@@ -59,8 +56,8 @@ short 		parse_input(t_farm *data, short start_msg, short end_msg)
 			data->err = ERR_NL;
 		else if (*(data->line) == '#')
 			define_comment(data, &start_msg, &end_msg);
-		else if (is_ant_line)
-			get_nbr_of_ants(data, &is_ant_line);
+		else if (!data->ants)
+			get_nbr_of_ants(data);
 		else
 			define_command(data, &start_msg, &end_msg);
 		ft_strdel(&data->line);

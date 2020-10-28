@@ -26,5 +26,6 @@ void			*dequeue(t_queue *q)
 		q->tail = NULL;
 	free(tmp);
 	tmp = NULL;
+	q->nbr_elem--;
 	return (result);
 }

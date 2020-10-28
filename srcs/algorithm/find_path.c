@@ -14,8 +14,7 @@ static inline t_table	*analyse_room(t_table* main, t_table *neighbor)
 	return (!main_room->is_dup && link_room->in ? link_room->in : neighbor);
 }
 
-void 	add_neighbors(t_queue *q, t_hashmap *rooms,
-		t_table *room_data, t_hashmap *visited)
+void 	add_neighbors(t_queue *q, t_table *room_data, t_hashmap *visited)
 {
 	t_list		*tmp;
 	t_link		*link;
@@ -48,12 +47,13 @@ t_bfs		*init_bfs(t_table *src)
 	search->q = init_queue();
 	search->visited = init_hashmap(TABLE_SIZE);
 	IF_FAIL(put_elem(&search->visited, src->key, src->value, sizeof(t_room)));
-	enqueue(q, src);
+	enqueue(search->q, src);
+	return (search);
 }
 
 static void 	clear_bfs(t_bfs *search)
 {
-	remove_hashmap(search->visited);
+	remove_hashmap(search->visited, NULL);
 	remove_queue(search->q);
 	ft_memdel((void**)&search);
 }
@@ -64,14 +64,14 @@ t_path		*find_path(t_farm *data, t_table *src, t_table *sink)
 	t_table		*cur;
 
 	search = init_bfs(src);
-	data->paths ? prepare_paths(data, data->paths) : 0;
+	prepare_paths(data->paths, src, sink);
 	while (!is_empty(search->q))
 	{
 		cur = dequeue(search->q);
 		if (cur == sink && (search->is_exist = true))
 			break ;
-		add_neighbors(search->q, data->rooms, cur, search->visited);
+		add_neighbors(search->q, cur, search->visited);
 	}
 	clear_bfs(search);
-	return (path_exist ? restore_path(data, sink) : NULL);
+	return (search->is_exist ? restore_path(data, sink) : NULL);
 }

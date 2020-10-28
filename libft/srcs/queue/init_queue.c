@@ -19,6 +19,7 @@ t_queue			*init_queue(void)
 	q = (t_queue*)malloc(sizeof(t_queue));
 	if (!q)
 		return (NULL);
+	q->nbr_elem = 0;
 	q->head = NULL;
 	q->tail = NULL;
 	return (q);

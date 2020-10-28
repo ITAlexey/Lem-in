@@ -11,6 +11,8 @@ void 	fill_room(t_room *room, int x, int y)
 	room->nbr_arcs = 0;
 	room->in = NULL;
 	room->member = NULL;
+	room->route->cur = NULL;
+	room->route->new = NULL;
 	room->is_dup = 0;
 }
 
@@ -22,9 +24,9 @@ void 	record_room(t_farm *data, char **room_data, short *start, short *end)
 	IF_FAIL(room);
 	fill_room(room, ft_atoi(room_data[1]), ft_atoi(room_data[2]));
 	IF_FAIL(put_elem(&data->rooms, room_data[0], (void*)room, sizeof(t_room)));
-	if (*start && !data->start_room)
+	if (*start && !data->src)
 		data->src = get_table(data->rooms, room_data[0]);
-	else if (*end && !data->end_room)
+	else if (*end && !data->sink)
 		data->sink = get_table(data->rooms, room_data[0]);
 }
 

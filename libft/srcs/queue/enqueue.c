@@ -29,5 +29,6 @@ t_list			*enqueue(t_queue *q, void *src)
 	if (q->tail != NULL)
 		q->tail->next = new_node;
 	q->tail = new_node;
+	q->nbr_elem++;
 	return (new_node);
 }
