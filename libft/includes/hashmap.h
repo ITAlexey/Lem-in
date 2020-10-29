@@ -23,6 +23,7 @@ typedef struct		s_hashmap
 	int				occupied_cells;
 	int				size;
 	t_list			*arr;
+	void 			(*del)(void *);
 }					t_hashmap;
 
 typedef struct		s_table
@@ -32,18 +33,17 @@ typedef struct		s_table
 	void			*value;
 }					t_table;
 
-t_hashmap			*init_hashmap(int table_size);
+t_hashmap			*init_hashmap(int table_size, void (*f)(void *));
 t_table				*create_table(char const *key, void *value,
 						size_t value_size);
-void				remove_table(t_table *table, void (*del)(void *));
+void				remove_table(t_table *table, void (*f)(void *));
 unsigned int		get_hashcode(const char *str);
 void				*put_elem(t_hashmap **data, char const *key, void *value,
 						size_t size);
 void				*get_elem(t_hashmap *data, char const *key);
 short				is_elem_contained(t_hashmap *data, char const *key);
-void				remove_elem(t_hashmap *data, char const *key,
-						void (*del)(void *));
-void				remove_hashmap(t_hashmap *data, void (*del)(void *));
+void				remove_elem(t_hashmap *data, char const *key);
+void				remove_hashmap(t_hashmap *data);
 void				*resize_hashmap(t_hashmap **data);
 void				iterate_hashmap(t_hashmap *data, void (*fun)(t_list *));
 t_table				*get_table(t_hashmap *data, char const *key);

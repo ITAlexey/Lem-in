@@ -46,10 +46,9 @@ static void connect_path(t_list *path, t_route *route)
 
 	if (route)
 	{
-		tmp = dequeue(route->new);
+		tmp = route->new->head->content;
 		ft_lstpushback(path, ft_lstcreate(tmp, 0));
 		path->content_size++;
-		remove_queue(route->new);
 		connect_path(path, ((t_room*)tmp->value)->route);
 	}
 }
@@ -59,6 +58,7 @@ t_path		*sort_paths(t_queue *start_nodes)
 	t_path		*new;
 	t_list		*path;
 	t_table		*tmp;
+	t_list		*lst;
 	int 		idx;
 
 	idx = 0;
@@ -67,8 +67,10 @@ t_path		*sort_paths(t_queue *start_nodes)
 	new->found = start_nodes->nbr_elem;
 	new->lengths = (int*)ft_memalloc(sizeof(int) * new->found);
 	new->all = NULL;
-	while ((tmp = dequeue(start_nodes)))
+	lst = start_nodes->head;
+	while (lst)
 	{
+		tmp = lst->content;
 		path = ft_lstcreate(tmp, 1);
 		connect_path(path, ((t_room*)tmp->value)->route);
 		new->lengths[idx++] = (int)path->content_size;
@@ -79,7 +81,7 @@ t_path		*sort_paths(t_queue *start_nodes)
 		}
 		else
 			collect_paths(&new->all, path);
+		lst = lst->next;
 	}
-	remove_queue(start_nodes);
 	return (new);
 }

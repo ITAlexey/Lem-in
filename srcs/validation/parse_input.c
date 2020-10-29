@@ -43,7 +43,7 @@ static void	init_farm(t_farm *data)
 	data->src = NULL;
 	data->sink = NULL;
 	data->err = -1;
-	data->rooms = init_hashmap(TABLE_SIZE);
+	data->rooms = init_hashmap(TABLE_SIZE, del_value);
 	IF_FAIL(data->rooms);
 }
 

@@ -26,7 +26,7 @@ static void	clear_lsts(t_list *lst, void (*del)(void *))
 	}
 }
 
-void		remove_hashmap(t_hashmap *data, void (*del)(void *))
+void		remove_hashmap(t_hashmap *data)
 {
 	int	idx;
 
@@ -36,8 +36,8 @@ void		remove_hashmap(t_hashmap *data, void (*del)(void *))
 		if (data->arr[idx].content_size != 0)
 		{
 			if (data->arr[idx].next != NULL)
-				clear_lsts(data->arr[idx].next, del);
-			remove_table((t_table*)data->arr[idx].content, del);
+				clear_lsts(data->arr[idx].next, data->del);
+			remove_table((t_table*)data->arr[idx].content, data->del);
 		}
 		idx++;
 	}

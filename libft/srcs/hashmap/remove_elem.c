@@ -41,8 +41,7 @@ static short	delete_lst(t_list **head, t_list *lst,
 	return (0);
 }
 
-void		remove_elem(t_hashmap *data, char const *key,
-				  void (*del)(void *))
+void		remove_elem(t_hashmap *data, char const *key)
 {
 	unsigned int	hash_code;
 	int				place;
@@ -58,11 +57,12 @@ void		remove_elem(t_hashmap *data, char const *key,
 			if (!ft_strcmp(((t_table*)current->content)->key, key))
 			{
 				current->content_size = 0;
-				remove_table((t_table*)current->content, del);
+				remove_table((t_table*)current->content, data->del);
 				data->occupied_cells--;
 			}
 			else
-				data->occupied_cells -= delete_lst(&current, current->next, key, del);
+				data->occupied_cells -= delete_lst(&current,
+						current->next, key, data->del);
 		}
 	}
 }

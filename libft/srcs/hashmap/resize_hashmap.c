@@ -65,7 +65,7 @@ void		*resize_hashmap(t_hashmap **data)
 	t_list		*current;
 
 	idx = 0;
-	new_hashmap = init_hashmap((*data)->size * 2);
+	new_hashmap = init_hashmap((*data)->size * 2, (*data)->del);
 	ISNULL(new_hashmap);
 	while (idx < (*data)->size)
 	{

@@ -11,9 +11,11 @@ int 	main(void)
 	data.fd = open(INPUT, O_RDONLY);
 	if (!parse_input(&data, 0, 0))
 		throw_error(data);
-	find_solution(&data, INT_MAX, data.max_paths);
+	find_solution(&data, INT_MAX);
 	//move_ants();
-	clear_memory(&data);
+	print_path(data.paths);
+	clear_paths(data.paths);
+	remove_hashmap(data.rooms);
 	close(data.fd);
 	return (0);
 }

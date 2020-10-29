@@ -13,7 +13,7 @@
 #include "hashmap.h"
 #include "libft.h"
 
-t_hashmap		*init_hashmap(int table_size)
+t_hashmap		*init_hashmap(int table_size, void (*f)(void *))
 {
 	int			idx;
 	t_hashmap	*hashmap;
@@ -23,6 +23,7 @@ t_hashmap		*init_hashmap(int table_size)
 	ISNULL(hashmap);
 	hashmap->occupied_cells = 0;
 	hashmap->load_factor = 0;
+	hashmap->del = f;
 	hashmap->size = table_size;
 	hashmap->arr = (t_list*)ft_memalloc(sizeof(t_list) * table_size);
 	ISNULL(hashmap->arr);

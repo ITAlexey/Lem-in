@@ -11,8 +11,7 @@ void 	fill_room(t_room *room, int x, int y)
 	room->nbr_arcs = 0;
 	room->in = NULL;
 	room->member = NULL;
-	room->route->cur = NULL;
-	room->route->new = NULL;
+	room->route = NULL;
 	room->is_dup = 0;
 }
 

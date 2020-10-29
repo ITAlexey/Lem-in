@@ -52,17 +52,17 @@ void		find_collisions(t_table *pattern, t_route *route)
 
 void 		optimization(t_route *route)
 {
-	t_queue	*q;
 	t_table	*tmp;
+	t_list	*lst;
 
 	if (route)
 	{
-		q = route->new;
-		while (q->head)
+		lst = route->new->head;
+		while (lst)
 		{
-			tmp = q->head->content;
+			tmp = lst->content;
 			find_collisions(tmp, ((t_room*)tmp->value)->route);
-			q->head = q->head->next;
+			lst = lst->next;
 		}
 	}
 }

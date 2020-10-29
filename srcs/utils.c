@@ -4,57 +4,28 @@
 
 #include "ant_farm.h"
 
-/*void 	print_path(t_hashmap *rooms, t_room *end)
+void 	print_path(t_path *paths)
 {
-	t_room *tmp;
+	t_list	*path;
+	t_list	*node;
+	t_table	*tmp;
 
-	tmp = end;
-	printf("%s", "H");
-	while (tmp->member != NULL)
+	path = paths->all;
+	while (path)
 	{
-		printf("<-%s", tmp->member);
-		tmp = get_elem(rooms, tmp->member);
+		node = path->content;
+		while (node)
+		{
+			tmp = node->content;
+			printf("[%s]->", tmp->key);
+			node = node->next;
+		}
+		printf("\n");
+		path = path->next;
 	}
-	printf("\n");
-
 }
 
-void 	print_list(t_list *lst, char name[])
-{
-	t_connection *tmp;
-	t_list		*cur;
-
-	cur = lst;
-	printf("%s  :", name);
-	while (cur)
-	{
-		tmp = cur->content;
-		printf("[%s %d]", tmp->room_name, tmp->flow);
-		if (cur->next)
-			printf(" -> ");
-		cur = cur->next;
-	}
-	printf("\n\n");
-}
-
-void 	print_neighbors(t_hashmap *rooms)
-{
-	t_table *h;
-	t_table *a;
-	t_table *d;
-	t_table *e;
-
-	h = get_table(rooms, "H");
-	a = get_table(rooms, "A");
-	d = get_table(rooms, "D");
-	e = get_table(rooms, "E");
-	print_list(((t_room*)h->value)->neighbors, "H");
-	print_list(((t_room*)a->value)->neighbors, "A");
-	print_list(((t_room*)d->value)->neighbors, "D");
-	print_list(((t_room*)e->value)->neighbors, "E");
-}*/
-
-static void 	del_value(void *val)
+void 	del_value(void *val)
 {
 	t_room *room;
 
@@ -62,6 +33,7 @@ static void 	del_value(void *val)
 	if (room->route)
 	{
 		remove_queue(room->route->cur);
+		room->route->new ? remove_queue(room->route->new) : 0;
 		ft_memdel((void**)&room->route);
 	}
 	if (room->neighbors)
@@ -73,23 +45,20 @@ void 		clear_paths(t_path *paths)
 	t_list	*to_del;
 	t_list	*cur;
 
-	cur = paths->all;
-	while (cur)
+	if (paths)
 	{
-		to_del = cur;
-		ft_lstclr((t_list*)cur->content);
-		cur = cur->next;
-		free(to_del);
+		cur = paths->all;
+		while (cur)
+		{
+			to_del = cur;
+			ft_lstclr((t_list*)cur->content);
+			cur = cur->next;
+			free(to_del);
+		}
+		to_del = NULL;
+		ft_memdel((void**)&paths->lengths);
+		ft_memdel((void**)&paths);
 	}
-	to_del = NULL;
-	ft_memdel((void**)&paths->lengths);
-	ft_memdel((void**)&paths);
-}
-
-void 			clear_memory(t_farm *data)
-{
-	clear_paths(data->paths);
-	remove_hashmap(data->rooms, del_value);
 }
 
 static void 	init_errors(char *err_lst[])

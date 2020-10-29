@@ -41,7 +41,7 @@ static void		*define_case(t_hashmap *data, t_table *table)
 	}
 	else if (!ft_strcmp(table->key, ((t_table*)data->arr[idx].content)->key))
 	{
-		remove_table((t_table*)data->arr[idx].content, NULL);
+		remove_table((t_table*)data->arr[idx].content, data->del);
 		data->arr[idx].content = table;
 	}
 	else
