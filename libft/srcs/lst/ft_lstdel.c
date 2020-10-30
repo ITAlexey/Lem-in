@@ -12,14 +12,14 @@
 
 #include "lists.h"
 
-void	ft_lstdel(t_list **alst, void (*del)(void *, size_t))
+void	ft_lstdel(t_list **alst, void (*del)(void *))
 {
 	t_list		*tmp;
 
 	while (alst && del && *alst != NULL)
 	{
 		tmp = *alst;
-		del((*alst)->content, (*alst)->content_size);
+		del((*alst)->content);
 		*alst = (*alst)->next;
 		free(tmp);
 	}

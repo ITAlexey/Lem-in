@@ -37,7 +37,8 @@ void 	del_value(void *val)
 		ft_memdel((void**)&room->route);
 	}
 	if (room->neighbors)
-		ft_lstclr(room->neighbors);
+		ft_lstdel(&room->neighbors, free);
+	ft_memdel(&val);
 }
 
 void 		clear_paths(t_path *paths)

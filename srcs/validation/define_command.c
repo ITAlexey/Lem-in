@@ -4,8 +4,12 @@
 
 #include "ant_farm.h"
 
-void 	fill_room(t_room *room, int x, int y)
+static t_room 	*init_room(int x, int y)
 {
+	t_room	*room;
+
+	room = (t_room*)malloc(sizeof(t_room));
+	IF_FAIL(room);
 	room->x = x;
 	room->y = y;
 	room->nbr_arcs = 0;
@@ -13,20 +17,20 @@ void 	fill_room(t_room *room, int x, int y)
 	room->member = NULL;
 	room->route = NULL;
 	room->is_dup = 0;
+	return (room);
 }
 
 void 	record_room(t_farm *data, char **room_data, short *start, short *end)
 {
 	t_room	*room;
 
-	room = (t_room*)ft_memalloc(sizeof(t_room));
-	IF_FAIL(room);
-	fill_room(room, ft_atoi(room_data[1]), ft_atoi(room_data[2]));
+	room = init_room(ft_atoi(room_data[1]), ft_atoi(room_data[2]));
 	IF_FAIL(put_elem(&data->rooms, room_data[0], (void*)room, sizeof(t_room)));
 	if (*start && !data->src)
 		data->src = get_table(data->rooms, room_data[0]);
 	else if (*end && !data->sink)
 		data->sink = get_table(data->rooms, room_data[0]);
+	ft_memdel((void**)&room);
 }
 
 static void 	define_room(t_farm *data, short *start, short *end)
