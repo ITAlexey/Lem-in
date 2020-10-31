@@ -47,20 +47,11 @@ void 	del_value(void *val)
 
 void 		del_dup(void *data)
 {
-	t_table *clone;
 	t_table *tmp;
-	t_room	*clone_room;
 
 	tmp = data;
-	clone = ((t_room*)tmp->value)->in;
-	if (clone)
-	{
-		clone_room = clone->value;
-		ft_memdel(&clone_room->neighbors->content);
-		ft_memdel((void**)&clone_room->neighbors);
+	if (((t_room*)tmp->value)->in)
 		ft_memdel((void**)&((t_room*)tmp->value)->in);
-		((t_room*)tmp->value)->neighbors = ((t_room*)tmp->value)->tmp;
-	}
 }
 
 void 		clear_paths(t_path *paths)

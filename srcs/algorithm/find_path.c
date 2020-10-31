@@ -14,26 +14,36 @@ static inline t_table	*analyse_room(t_table* main, t_table *neighbor)
 	return (!main_room->is_dup && link_room->in ? link_room->in : neighbor);
 }
 
-static void 	add_neighbors(t_queue *q, t_table *room_data, t_hashmap *visited)
+static void 		f1(t_table *node, t_bfs *bfs)
 {
 	t_list		*tmp;
-	t_link		*link;
 	t_table		*cur;
 
-	tmp = ((t_room*)room_data->value)->neighbors;
-	if (((t_room*)room_data->value)->in)
-		enqueue(q, ((t_room*)room_data->value)->in);
+	tmp = ((t_room*)node->value)->neighbors;
+	if (((t_room*)node->value)->in)
+		enqueue(bfs->q, ((t_room*)node->value)->in);
 	while (tmp)
 	{
-		link = tmp->content;
-		cur = link->linked;
-		if (!link->is_lock && !is_elem_contained(visited, cur->key))
+		cur = ((t_link*)tmp->content)->linked;
+		if (!((t_link*)tmp->content)->is_lock && !get_elem(bfs->visited, cur->key))
 		{
-			((t_room*)cur->value)->member = room_data;
-			IF_FAIL(put_elem(&visited, cur->key, cur->value, sizeof(t_room)));
-			enqueue(q, analyse_room(room_data, cur));
+			((t_room*)cur->value)->member = node;
+			IF_FAIL(put_elem(&bfs->visited, cur->key, cur->value, sizeof(t_room)));
+			enqueue(bfs->q, analyse_room(node, cur));
 		}
 		tmp = tmp->next;
+	}
+}
+
+static void 		f(t_table *node, t_bfs *bfs)
+{
+	t_table		*member;
+
+	member = ((t_room*)node->value)->member;
+	if (!is_elem_contained(bfs->visited, member->key))
+	{
+		enqueue(bfs->q, member);
+		IF_FAIL(put_elem(&bfs->visited, member->key, member->value, sizeof(t_room)));
 	}
 }
 
@@ -50,13 +60,6 @@ static t_bfs		*init_bfs(t_table *src)
 	return (search);
 }
 
-static void 	clear_bfs(t_bfs *search)
-{
-	remove_hashmap(search->visited);
-	remove_queue(search->q);
-	ft_memdel((void**)&search);
-}
-
 t_path		*find_path(t_farm *data, t_table *src, t_table *sink)
 {
 	t_bfs		*search;
@@ -71,8 +74,10 @@ t_path		*find_path(t_farm *data, t_table *src, t_table *sink)
 		cur = dequeue(search->q);
 		if (cur == sink && (is_exist = true))
 			break ;
-		add_neighbors(search->q, cur, search->visited);
+		((t_room*)cur->value)->is_dup ? f(cur, search) : f1(cur, search);
 	}
-	clear_bfs(search);
+	remove_hashmap(search->visited);
+	remove_queue(search->q);
+	ft_memdel((void**)&search);
 	return (is_exist ? restore_path(data, sink) : NULL);
 }

@@ -27,7 +27,6 @@ typedef struct		s_room
 	bool 			is_dup;
 	t_table 		*member;
 	int 			nbr_arcs;
-	t_list			*tmp;
 	t_list			*neighbors;
 	t_route			*route;
 }					t_room;

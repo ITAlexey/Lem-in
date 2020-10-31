@@ -9,13 +9,11 @@ short 	is_equal(void *a, void *b)
 	return (((t_link*)a)->linked == (t_table*)b);
 }
 
-static t_table 		*clone_room(t_table *src, t_table *to)
+static t_table 		*clone_room(t_table *src)
 {
 	t_table *clone;
 	t_room	*tmp;
-	t_link	*link;
 
-	((t_room*)src->value)->tmp = ((t_room*)src->value)->neighbors;
 	clone = (t_table*)malloc(sizeof(t_table));
 	IF_FAIL(clone);
 	ft_memcpy(clone, src, sizeof(t_table));
@@ -23,11 +21,6 @@ static t_table 		*clone_room(t_table *src, t_table *to)
 	tmp->in = NULL;
 	tmp->nbr_arcs = 1;
 	tmp->is_dup = true;
-	link = (t_link*)malloc(sizeof(t_link));
-	IF_FAIL(link);
-	link->linked = to;
-	link->is_lock = false;
-	tmp->neighbors = ft_lstcreate(link, 0);
 	return (clone);
 }
 
@@ -68,7 +61,7 @@ void 		prepare_paths(t_path *paths, void *src, void *sink)
 				if (cur->content != sink)
 				{
 					room->route->new = copy_route(room->route->cur);
-					room->in = clone_room((t_table*)cur->content, room->member);
+					room->in = clone_room((t_table*)cur->content);
 				}
 				prev = cur;
 				cur = cur->next;
