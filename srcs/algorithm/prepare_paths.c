@@ -16,8 +16,11 @@ static t_table 		*clone_room(t_table *src)
 
 	clone = (t_table*)malloc(sizeof(t_table));
 	IF_FAIL(clone);
-	ft_memcpy(clone, src, sizeof(t_table));
+	clone->value = (t_room*)malloc(sizeof(t_room));
+	clone->key = src->key;
+	IF_FAIL(clone->value);
 	tmp = clone->value;
+	tmp->member = ((t_room*)src->value)->member;
 	tmp->in = NULL;
 	tmp->nbr_arcs = 1;
 	tmp->is_dup = true;

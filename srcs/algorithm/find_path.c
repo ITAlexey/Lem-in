@@ -19,6 +19,7 @@ static void 		f1(t_table *node, t_bfs *bfs)
 	t_list		*tmp;
 	t_table		*cur;
 
+	//printf("[%s]\n", node->key);
 	tmp = ((t_room*)node->value)->neighbors;
 	if (((t_room*)node->value)->in)
 		enqueue(bfs->q, ((t_room*)node->value)->in);
@@ -35,13 +36,14 @@ static void 		f1(t_table *node, t_bfs *bfs)
 	}
 }
 
-static void 		f(t_table *node, t_bfs *bfs)
+static void 		f(t_table *node, t_bfs *bfs, t_hashmap *rooms)
 {
 	t_table		*member;
 
 	member = ((t_room*)node->value)->member;
 	if (!is_elem_contained(bfs->visited, member->key))
 	{
+		((t_room*)member->value)->member = get_table(rooms, node->key);
 		enqueue(bfs->q, member);
 		IF_FAIL(put_elem(&bfs->visited, member->key, member->value, sizeof(t_room)));
 	}
@@ -74,7 +76,7 @@ t_path		*find_path(t_farm *data, t_table *src, t_table *sink)
 		cur = dequeue(search->q);
 		if (cur == sink && (is_exist = true))
 			break ;
-		((t_room*)cur->value)->is_dup ? f(cur, search) : f1(cur, search);
+		((t_room*)cur->value)->is_dup ? f(cur, search, data->rooms) : f1(cur, search);
 	}
 	remove_hashmap(search->visited);
 	remove_queue(search->q);

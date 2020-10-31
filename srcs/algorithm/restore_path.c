@@ -49,11 +49,13 @@ t_path		*restore_path(t_farm *data, t_table *sink)
 	cur = sink;
 	while (((t_room*)cur->value)->member)
 	{
+		//printf("cur: [%s]\t", cur->key);
 		tail = ((t_room*)cur->value)->member;
+		//printf("tail: [%s]\n", tail->key);
 		lock_passage(tail, cur);
 		add_new_route(tail, cur);
 		cur = tail;
 	}
-	//data->paths ? optimization(((t_room*)data->src->value)->route) : 0;
+	data->paths ? optimization(((t_room*)data->src->value)->route) : 0;
 	return (sort_paths(((t_room*)data->src->value)->route->new));
 }

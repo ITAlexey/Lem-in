@@ -37,11 +37,7 @@ void 	del_value(void *val)
 		room->route->new ? remove_queue(room->route->new) : 0;
 		ft_memdel((void**)&room->route);
 	}
-	if (room->neighbors)
-	{
-		printf("x = %d y = %d\n", room->x, room->y);
-		ft_lstdel(&room->neighbors, free);
-	}
+	ft_lstdel(&room->neighbors, free);
 	ft_memdel(&val);
 }
 
@@ -51,7 +47,10 @@ void 		del_dup(void *data)
 
 	tmp = data;
 	if (((t_room*)tmp->value)->in)
+	{
+		ft_memdel((void**)&((t_room*)tmp->value)->in->value);
 		ft_memdel((void**)&((t_room*)tmp->value)->in);
+	}
 }
 
 void 		clear_paths(t_path *paths)

@@ -86,7 +86,6 @@ void 		find_solution(t_farm *data, int min_steps)
 		{
 			clear_paths(data->paths);
 			data->paths = new;
-			//print_path(data->paths);
 			change_routes(data->paths, data->src);
 			min_steps = nbr_steps;
 			count_paths++;
@@ -97,4 +96,5 @@ void 		find_solution(t_farm *data, int min_steps)
 			break;
 		}
 	}
+	print_path(data->paths);
 }
