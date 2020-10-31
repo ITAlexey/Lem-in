@@ -4,6 +4,19 @@
 
 #include "ant_farm.h"
 
+void 		print_queue(t_queue *q)
+{
+	t_list *lst;
+
+	lst = q->head;
+	while (lst)
+	{
+		printf("[%s] ", ((t_table*)lst->content)->key);
+		lst = lst->next;
+	}
+	printf("\n");
+}
+
 static int		update_distance(t_path *path, int ants)
 {
 	int 	cur_steps;
@@ -73,6 +86,7 @@ void 		find_solution(t_farm *data, int min_steps)
 		{
 			clear_paths(data->paths);
 			data->paths = new;
+			//print_path(data->paths);
 			change_routes(data->paths, data->src);
 			min_steps = nbr_steps;
 			count_paths++;

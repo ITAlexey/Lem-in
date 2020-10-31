@@ -23,6 +23,7 @@ void 	print_path(t_path *paths)
 		printf("\n");
 		path = path->next;
 	}
+	printf("\n");
 }
 
 void 	del_value(void *val)
@@ -37,8 +38,29 @@ void 	del_value(void *val)
 		ft_memdel((void**)&room->route);
 	}
 	if (room->neighbors)
+	{
+		printf("x = %d y = %d\n", room->x, room->y);
 		ft_lstdel(&room->neighbors, free);
+	}
 	ft_memdel(&val);
+}
+
+void 		del_dup(void *data)
+{
+	t_table *clone;
+	t_table *tmp;
+	t_room	*clone_room;
+
+	tmp = data;
+	clone = ((t_room*)tmp->value)->in;
+	if (clone)
+	{
+		clone_room = clone->value;
+		ft_memdel(&clone_room->neighbors->content);
+		ft_memdel((void**)&clone_room->neighbors);
+		ft_memdel((void**)&((t_room*)tmp->value)->in);
+		((t_room*)tmp->value)->neighbors = ((t_room*)tmp->value)->tmp;
+	}
 }
 
 void 		clear_paths(t_path *paths)
@@ -52,7 +74,7 @@ void 		clear_paths(t_path *paths)
 		while (cur)
 		{
 			to_del = cur;
-			ft_lstclr((t_list*)cur->content);
+			ft_lstdel((t_list**)&cur->content, del_dup);
 			cur = cur->next;
 			free(to_del);
 		}

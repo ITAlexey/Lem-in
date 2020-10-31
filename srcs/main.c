@@ -13,7 +13,6 @@ int 	main(void)
 		throw_error(data);
 	find_solution(&data, INT_MAX);
 	//move_ants();
-	print_path(data.paths);
 	clear_paths(data.paths);
 	remove_hashmap(data.rooms);
 	close(data.fd);

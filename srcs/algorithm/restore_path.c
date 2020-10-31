@@ -4,7 +4,7 @@
 
 #include "ant_farm.h"
 
-static t_route		*init_route(t_path *paths, t_table *to_paste)
+static t_route		*init_route(t_table *to_paste)
 {
 	t_route	*route;
 
@@ -13,27 +13,22 @@ static t_route		*init_route(t_path *paths, t_table *to_paste)
 	route->new = init_queue();
 	IF_FAIL(route->new);
 	enqueue(route->new, to_paste);
-	if (!paths)
-	{
-		route->cur = init_queue();
-		IF_FAIL(route->cur);
-		enqueue(route->cur, to_paste);
-	}
+	route->cur = init_queue();
+	IF_FAIL(route->cur);
+	enqueue(route->cur, to_paste);
 	return (route);
 }
 
-static void 		add_new_route(t_path *paths, t_table *tail, t_table *cur)
+static void 		add_new_route(t_table *tail, t_table *cur)
 {
 	t_room	*tmp;
 
 	tmp = tail->value;
 	if (!tmp->route)
-		tmp->route = init_route(paths, cur);
+		tmp->route = init_route(cur);
 	else
 	{
-		tmp->route->new = init_queue();
-		IF_FAIL(tmp->route->new);
-		ft_memcpy(tmp->route->new, tmp->route->cur, sizeof(t_queue));
+		tmp->route->new = copy_route(tmp->route->cur);
 		enqueue(tmp->route->new, cur);
 	}
 }
@@ -56,10 +51,9 @@ t_path		*restore_path(t_farm *data, t_table *sink)
 	{
 		tail = ((t_room*)cur->value)->member;
 		lock_passage(tail, cur);
-		add_new_route(data->paths, tail, cur);
-		((t_room*)tail->value)->in ? ft_memdel((void**)&((t_room*)tail->value)->in) : 0;
+		add_new_route(tail, cur);
 		cur = tail;
 	}
-	data->paths ? optimization(((t_room*)data->src->value)->route) : 0;
+	//data->paths ? optimization(((t_room*)data->src->value)->route) : 0;
 	return (sort_paths(((t_room*)data->src->value)->route->new));
 }

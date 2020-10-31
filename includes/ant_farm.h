@@ -27,6 +27,7 @@ typedef struct		s_room
 	bool 			is_dup;
 	t_table 		*member;
 	int 			nbr_arcs;
+	t_list			*tmp;
 	t_list			*neighbors;
 	t_route			*route;
 }					t_room;
@@ -75,7 +76,9 @@ t_path			*restore_path(t_farm *data, t_table *sink);
 void 			optimization(t_route *route);
 void			find_collisions(t_table *pattern, t_route *route);
 t_path			*sort_paths(t_queue *start_nodes);
+t_queue			*copy_route(t_queue *cur);
 
+void 			print_queue(t_queue *q);
 void 			print_path(t_path *paths);
 void 			throw_error(t_farm data);
 void 			clear_paths(t_path *paths);

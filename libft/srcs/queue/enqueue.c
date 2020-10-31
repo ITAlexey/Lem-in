@@ -18,17 +18,14 @@ t_list			*enqueue(t_queue *q, void *src)
 
 	if (q == NULL || src == NULL)
 		return (NULL);
-	new_node = (t_list*)malloc(sizeof(t_list));
+	new_node = ft_lstcreate(src, 0);
 	if (!new_node)
 		return (NULL);
-	new_node->content_size = 0;
-	new_node->content = src;
-	new_node->next = NULL;
+	q->nbr_elem++;
 	if (q->head == NULL)
 		q->head = new_node;
 	if (q->tail != NULL)
 		q->tail->next = new_node;
 	q->tail = new_node;
-	q->nbr_elem++;
 	return (new_node);
 }

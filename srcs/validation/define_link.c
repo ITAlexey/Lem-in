@@ -4,7 +4,7 @@
 
 #include "ant_farm.h"
 
-static t_link	*init_connection(t_table *dest)
+static t_link	*init_link(t_table *dest)
 {
 	t_link *link;
 
@@ -19,7 +19,7 @@ static void 		link_rooms(t_table *src, t_table *dest)
 {
 	t_link	*link;
 
-	link = init_connection(dest);
+	link = init_link(dest);
 	IF_FAIL(link);
 	if (((t_room*)src->value)->nbr_arcs == 0)
 		((t_room*)src->value)->neighbors = ft_lstcreate(link, 0);
