@@ -4,12 +4,7 @@
 
 #include "ant_farm.h"
 
-short 	is_equal(void *a, void *b)
-{
-	return (((t_link*)a)->linked == (t_table*)b);
-}
-
-static t_table 		*clone_room(t_table *src)
+static t_table 	*clone_room(t_table *src)
 {
 	t_table *clone;
 	t_room	*tmp;
@@ -27,7 +22,7 @@ static t_table 		*clone_room(t_table *src)
 	return (clone);
 }
 
-t_queue	*copy_route(t_queue *cur)
+t_queue			*copy_route(t_queue *cur)
 {
 	t_list *lst;
 	t_queue	*new;
@@ -43,33 +38,35 @@ t_queue	*copy_route(t_queue *cur)
 	return (new);
 }
 
-void 		prepare_paths(t_path *paths, void *src, void *sink)
+static void 	reconfiguration(t_list *cur, t_list *prev,
+						void *src, void *sink)
+{
+	t_room	*room;
+
+	while (cur)
+	{
+		room = ((t_table*)cur->content)->value;
+		room->member = prev ? prev->content : src;
+		if (cur->content != sink)
+		{
+			room->route->new = copy_route(room->route->cur);
+			room->in = clone_room((t_table*)cur->content);
+		}
+		prev = cur;
+		cur = cur->next;
+	}
+}
+
+void 			prepare_paths(t_path *paths, void *src, void *sink)
 {
 	t_list	*path;
-	t_list	*cur;
-	t_list	*prev;
-	t_room	*room;
 
 	if (paths)
 	{
 		path = paths->all;
 		while (path)
 		{
-			cur = path->content;
-			prev = NULL;
-			while (cur)
-			{
-				room = ((t_table*)cur->content)->value;
-				room->member = prev ? prev->content : src;
-				if (cur->content != sink)
-				{
-					room->route->new = copy_route(room->route->cur);
-					room->in = clone_room((t_table*)cur->content);
-				}
-				prev = cur;
-				cur = cur->next;
-			}
-			printf("\n\n");
+			reconfiguration(path->content, NULL, src, sink);
 			path = path->next;
 		}
 	}

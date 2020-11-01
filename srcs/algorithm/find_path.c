@@ -14,7 +14,7 @@ static inline t_table	*analyse_room(t_table* main, t_table *neighbor)
 	return (!main_room->is_dup && link_room->in ? link_room->in : neighbor);
 }
 
-static void 		f1(t_table *node, t_bfs *bfs)
+static void 		add_neighbor(t_table *node, t_bfs *bfs)
 {
 	t_list		*tmp;
 	t_table		*cur;
@@ -35,15 +35,14 @@ static void 		f1(t_table *node, t_bfs *bfs)
 	}
 }
 
-static void 		f(t_table *node, t_bfs *bfs, t_hashmap *rooms)
+static void 		add_dup(t_table *node, t_table *origin, t_bfs *bfs)
 {
 	t_table		*member;
 
 	member = ((t_room*)node->value)->member;
-	printf(" in");
 	if (!is_elem_contained(bfs->visited, member->key))
 	{
-		((t_room*)member->value)->member = get_table(rooms, node->key);
+		((t_room*)member->value)->member = origin;
 		enqueue(bfs->q, member);
 		IF_FAIL(put_elem(&bfs->visited, member->key, member->value, sizeof(t_room)));
 	}
@@ -62,24 +61,25 @@ static t_bfs		*init_bfs(t_table *src)
 	return (search);
 }
 
-t_path		*find_path(t_farm *data, t_table *src, t_table *sink)
+t_path		*find_path(t_farm *data)
 {
 	t_bfs		*search;
 	t_table		*cur;
 	bool		is_exist;
 
-	search = init_bfs(src);
+	search = init_bfs(data->src);
 	is_exist = false;
-	prepare_paths(data->paths, src, sink);
+	prepare_paths(data->paths, data->src, data->sink);
 	while (!is_empty(search->q))
 	{
 		cur = dequeue(search->q);
-		if (cur == sink && (is_exist = true))
+		if (cur == data->sink && (is_exist = true))
 			break ;
-		((t_room*)cur->value)->is_dup ? f(cur, search, data->rooms) : f1(cur, search);
+		!((t_room*)cur->value)->is_dup ? add_neighbor(cur, search) :
+				add_dup(cur, get_table(data->rooms, cur->key), search);
 	}
 	remove_hashmap(search->visited);
 	remove_queue(search->q);
 	ft_memdel((void**)&search);
-	return (is_exist ? restore_path(data, sink) : NULL);
+	return (is_exist ? restore_path(data, data->sink) : NULL);
 }

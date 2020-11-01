@@ -4,6 +4,19 @@
 
 #include "ant_farm.h"
 
+void 		print_queue(t_queue *q)
+{
+	t_list *lst;
+
+	lst = q->head;
+	while (lst)
+	{
+		printf("[%s] ", ((t_table*)lst->content)->key);
+		lst = lst->next;
+	}
+	printf("\n");
+}
+
 void 	print_path(t_path *paths)
 {
 	t_list	*path;

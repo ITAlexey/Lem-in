@@ -34,6 +34,11 @@ static void 		add_new_route(t_table *tail, t_table *cur, t_table *src)
 	}
 }
 
+static short 	is_equal(void *a, void *b)
+{
+	return (((t_link*)a)->linked == (t_table*)b);
+}
+
 static 	void 	lock_passage(t_table *tail, t_table *cur)
 {
 	t_list	*lst;
@@ -42,7 +47,7 @@ static 	void 	lock_passage(t_table *tail, t_table *cur)
 	((t_link*)lst->content)->is_lock = true;
 }
 
-t_path		*restore_path(t_farm *data, t_table *sink)
+t_path			*restore_path(t_farm *data, t_table *sink)
 {
 	t_table	*cur;
 	t_table *tail;

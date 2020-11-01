@@ -69,7 +69,7 @@ void 			define_command(t_farm *data, short *start, short *end);
 void 			define_link(t_farm *data);
 
 void 			find_solution(t_farm *data, int min_steps);
-t_path 			*find_path(t_farm *data, t_table *src, t_table *sink);
+t_path 			*find_path(t_farm *data);
 void 			prepare_paths(t_path *paths, void *src, void *sink);
 t_path			*restore_path(t_farm *data, t_table *sink);
 void 			optimization(t_route *route);
@@ -81,6 +81,5 @@ void 			print_queue(t_queue *q);
 void 			print_path(t_path *paths);
 void 			throw_error(t_farm data);
 void 			clear_paths(t_path *paths);
-short 			is_equal(void *a, void *b);
 void 			del_value(void *val);
 #endif
