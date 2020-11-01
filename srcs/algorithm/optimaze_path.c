@@ -40,12 +40,10 @@ void		find_collisions(t_table *pattern, t_route *route)
 		q = init_queue();
 		while ((tmp = dequeue(nodes)))
 		{
-			//printf("1: pattern: %s, node: %s\n", pattern->key, tmp->key);
 			if (is_collision(pattern, ((t_room*)tmp->value)->route))
 				continue ;
 			enqueue(q, tmp);
 		}
-		//printf("\n");
 		remove_queue(route->new);
 		route->new = q;
 		optimization(route);

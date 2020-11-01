@@ -69,6 +69,7 @@ void 		prepare_paths(t_path *paths, void *src, void *sink)
 				prev = cur;
 				cur = cur->next;
 			}
+			printf("\n\n");
 			path = path->next;
 		}
 	}

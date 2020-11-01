@@ -19,7 +19,6 @@ static void 		f1(t_table *node, t_bfs *bfs)
 	t_list		*tmp;
 	t_table		*cur;
 
-	//printf("[%s]\n", node->key);
 	tmp = ((t_room*)node->value)->neighbors;
 	if (((t_room*)node->value)->in)
 		enqueue(bfs->q, ((t_room*)node->value)->in);
@@ -41,6 +40,7 @@ static void 		f(t_table *node, t_bfs *bfs, t_hashmap *rooms)
 	t_table		*member;
 
 	member = ((t_room*)node->value)->member;
+	printf(" in");
 	if (!is_elem_contained(bfs->visited, member->key))
 	{
 		((t_room*)member->value)->member = get_table(rooms, node->key);

@@ -19,7 +19,7 @@ static t_route		*init_route(t_table *to_paste)
 	return (route);
 }
 
-static void 		add_new_route(t_table *tail, t_table *cur)
+static void 		add_new_route(t_table *tail, t_table *cur, t_table *src)
 {
 	t_room	*tmp;
 
@@ -28,7 +28,8 @@ static void 		add_new_route(t_table *tail, t_table *cur)
 		tmp->route = init_route(cur);
 	else
 	{
-		tmp->route->new = copy_route(tmp->route->cur);
+		if (tail == src)
+			tmp->route->new = copy_route(tmp->route->cur);
 		enqueue(tmp->route->new, cur);
 	}
 }
@@ -49,11 +50,9 @@ t_path		*restore_path(t_farm *data, t_table *sink)
 	cur = sink;
 	while (((t_room*)cur->value)->member)
 	{
-		//printf("cur: [%s]\t", cur->key);
 		tail = ((t_room*)cur->value)->member;
-		//printf("tail: [%s]\n", tail->key);
 		lock_passage(tail, cur);
-		add_new_route(tail, cur);
+		add_new_route(tail, cur, data->src);
 		cur = tail;
 	}
 	data->paths ? optimization(((t_room*)data->src->value)->route) : 0;

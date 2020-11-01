@@ -11,7 +11,7 @@
 # include "stdio.h"
 # include "queue.h"
 # include <stdbool.h>
-# define INPUT "input.txt"
+# define INPUT "middle.txt"
 
 typedef struct		s_route
 {
@@ -26,7 +26,6 @@ typedef struct		s_room
 	t_table			*in;
 	bool 			is_dup;
 	t_table 		*member;
-	//t_table			*backup;
 	int 			nbr_arcs;
 	t_list			*neighbors;
 	t_route			*route;
