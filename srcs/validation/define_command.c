@@ -16,6 +16,7 @@ static t_room 	*init_room(int x, int y)
 	room->in = NULL;
 	room->member = NULL;
 	room->route = NULL;
+	room->neighbors = NULL;
 	room->is_dup = 0;
 	return (room);
 }

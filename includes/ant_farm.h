@@ -11,7 +11,7 @@
 # include "queue.h"
 # include <stdio.h>
 
-# define INPUT "maps/valid/big_sup/map_big_sup_1"
+# define INPUT "maps2/model_cobweb"
 # define STR_MSG 0
 # define END_MSG 0
 # define MIN_STEPS (INT_MAX)
