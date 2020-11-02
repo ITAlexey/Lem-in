@@ -4,14 +4,18 @@
 
 #ifndef ANT_FARM_H
 #define ANT_FARM_H
-# include "hashmap.h"
 # include "error_types.h"
 # include "libft.h"
 # include "ft_printf.h"
-# include "stdio.h"
+# include "hashmap.h"
 # include "queue.h"
-# include <stdbool.h>
-# define INPUT "middle.txt"
+# include <stdio.h>
+
+# define INPUT "maps/middle.txt"
+# define STR_MSG 0
+# define END_MSG 0
+# define MIN_STEPS (INT_MAX)
+# define ANTS_REACHED_TO_END 0
 
 typedef struct		s_route
 {
@@ -73,9 +77,10 @@ t_path 			*find_path(t_farm *data);
 void 			prepare_paths(t_path *paths, void *src, void *sink);
 t_path			*restore_path(t_farm *data, t_table *sink);
 void 			optimization(t_route *route);
-void			find_collisions(t_table *pattern, t_route *route);
 t_path			*sort_paths(t_queue *start_nodes);
 t_queue			*copy_route(t_queue *cur);
+
+void 			print_solution(t_path *data, int ants, int reached);
 
 void 			print_queue(t_queue *q);
 void 			print_path(t_path *paths);

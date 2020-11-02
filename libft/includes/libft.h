@@ -17,6 +17,7 @@
 # include <stdlib.h>
 # include <limits.h>
 # include <string.h>
+# include <stdbool.h>
 # include <fcntl.h>
 # define ABC(c) ((c) < 0 ? -(c) : (c))
 # define MAX(a, b) ((a) > (b) ? (a) : (b))

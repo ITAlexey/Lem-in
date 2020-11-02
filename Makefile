@@ -27,6 +27,7 @@ SRC   := define_link \
 		restore_path \
 		sort_paths \
 		utils \
+		print_solution \
 
 OBJS  := $(addsuffix .o, $(addprefix $(O_DIR)/, $(SRC)))
 

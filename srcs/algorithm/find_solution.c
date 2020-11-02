@@ -80,4 +80,5 @@ void 		find_solution(t_farm *data, int min_steps)
 			break;
 		}
 	}
+	//print_path(data->paths);
 }
