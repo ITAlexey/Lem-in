@@ -17,10 +17,10 @@ int 	move_ant(t_hashmap *data, int reached, int ants)
 		IF_FAIL(ant_name);
 		tmp = get_elem(data, ant_name);
 		tmp = ((t_room*)tmp->value)->route->cur->head->content;
+		remove_elem(data, ant_name);
 		if (!((t_room*)tmp->value)->route)
 		{
 			nbr++;
-			remove_elem(data, ant_name);
 		}
 		else
 			IF_FAIL(put_elem(&data, ant_name, tmp, sizeof(t_table)));
@@ -57,7 +57,7 @@ void 	print_solution(t_path *data, int ants, int reached)
 	t_list		*node;
 
 	id_ant = 1;
-	output = init_hashmap(100, NULL);
+	output = init_hashmap(4000, NULL);
 	while (reached < ants)
 	{
 		path = data->all;

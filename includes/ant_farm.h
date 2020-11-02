@@ -11,7 +11,7 @@
 # include "queue.h"
 # include <stdio.h>
 
-# define INPUT "maps/middle.txt"
+# define INPUT "maps/input.txt"
 # define STR_MSG 0
 # define END_MSG 0
 # define MIN_STEPS (INT_MAX)
