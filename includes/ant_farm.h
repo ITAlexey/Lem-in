@@ -11,11 +11,12 @@
 # include "queue.h"
 # include <stdio.h>
 
-# define INPUT "maps/input.txt"
+# define INPUT "maps/valid/big_sup/map_big_sup_1"
 # define STR_MSG 0
 # define END_MSG 0
 # define MIN_STEPS (INT_MAX)
 # define ANTS_REACHED_TO_END 0
+# define MAX_SIZE 6000
 
 typedef struct		s_route
 {

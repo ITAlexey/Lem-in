@@ -29,9 +29,22 @@
   <component name="ChangeListManager">
     <list default="true" id="bf8090c8-d868-4bed-a984-044a79c944de" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Makefile" beforeDir="false" afterPath="$PROJECT_DIR$/Makefile" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/includes/ant_farm.h" beforeDir="false" afterPath="$PROJECT_DIR$/includes/ant_farm.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/libft/srcs/hashmap/remove_elem.c" beforeDir="false" afterPath="$PROJECT_DIR$/libft/srcs/hashmap/remove_elem.c" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/libft/srcs/hashmap/resize_hashmap.c" beforeDir="false" afterPath="$PROJECT_DIR$/libft/srcs/hashmap/resize_hashmap.c" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/libft/srcs/lst/ft_lstdel.c" beforeDir="false" afterPath="$PROJECT_DIR$/libft/srcs/lst/ft_lstdel.c" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/maps/first.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/maps/input.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/maps/middle.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/maps/second.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/maps/simple.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/maps/test.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/srcs/algorithm/find_path.c" beforeDir="false" afterPath="$PROJECT_DIR$/srcs/algorithm/find_path.c" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/srcs/algorithm/find_solution.c" beforeDir="false" afterPath="$PROJECT_DIR$/srcs/algorithm/find_solution.c" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/srcs/main.c" beforeDir="false" afterPath="$PROJECT_DIR$/srcs/main.c" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/srcs/print_solution.c" beforeDir="false" afterPath="$PROJECT_DIR$/srcs/print_solution.c" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/srcs/validation/parse_input.c" beforeDir="false" afterPath="$PROJECT_DIR$/srcs/validation/parse_input.c" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -91,7 +104,7 @@
       <workItem from="1603002898810" duration="57125000" />
       <workItem from="1603455403746" duration="157123000" />
       <workItem from="1604123528454" duration="28418000" />
-      <workItem from="1604209006596" duration="45739000" />
+      <workItem from="1604209006596" duration="52548000" />
     </task>
     <servers />
   </component>

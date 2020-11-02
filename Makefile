@@ -43,7 +43,7 @@ $(NAME): $(OBJS)
 	@$(CC) $(OBJS) $(LIB_DIR)$(LIB) -o $@
 
 $(O_DIR)/%.o: %.c $(INC) $(LIBINC) 
-	@$(CC) $(CFLAGS) -g -o $@ -c $< -I$(INC) -I$(LIBINC) 
+	$(CC) $(CFLAGS) -g -o $@ -c $< -I$(INC) -I$(LIBINC) 
 
 clean:
 	@$(MAKE) clean -sC $(LIB_DIR)

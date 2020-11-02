@@ -64,5 +64,6 @@ void		remove_elem(t_hashmap *data, char const *key)
 				data->occupied_cells -= delete_lst(&current,
 						current->next, key, data->del);
 		}
+		data->load_factor = data->occupied_cells / (float)data->size;
 	}
 }
