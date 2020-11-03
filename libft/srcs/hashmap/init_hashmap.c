@@ -31,6 +31,7 @@ t_hashmap		*init_hashmap(int table_size, void (*f)(void *))
 	{
 		hashmap->arr[idx].content_size = 0;
 		hashmap->arr[idx].next = NULL;
+		hashmap->arr[idx].content = NULL;
 		idx++;
 	}
 	return (hashmap);

@@ -34,12 +34,10 @@ typedef struct		s_table
 }					t_table;
 
 t_hashmap			*init_hashmap(int table_size, void (*f)(void *));
-t_table				*create_table(char const *key, void *value,
-						size_t value_size);
+t_table				*create_table(char const *key, void *value);
 void				remove_table(t_table *table, void (*f)(void *));
 unsigned int		get_hashcode(const char *str);
-void				*put_elem(t_hashmap **data, char const *key, void *value,
-						size_t size);
+void				*put_elem(t_hashmap **data, char const *key, void *value);
 void				*get_elem(t_hashmap *data, char const *key);
 short				is_elem_contained(t_hashmap *data, char const *key);
 void				remove_elem(t_hashmap *data, char const *key);

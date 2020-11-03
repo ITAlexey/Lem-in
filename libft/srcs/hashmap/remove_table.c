@@ -18,7 +18,7 @@ void		remove_table(t_table *table, void (*del)(void *))
 	if (table != NULL)
 	{
 		ft_memdel((void**)&table->key);
-		del ? del(table->value) : ft_memdel(&table->value);
+		del ? del(table->value) : 0;
 		ft_memdel((void**)&table);
 	}
 }

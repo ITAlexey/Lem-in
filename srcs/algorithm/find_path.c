@@ -28,7 +28,7 @@ static void 		add_neighbor(t_table *node, t_bfs *bfs)
 		if (!((t_link*)tmp->content)->is_lock && !get_elem(bfs->visited, cur->key))
 		{
 			((t_room*)cur->value)->member = node;
-			IF_FAIL(put_elem(&bfs->visited, cur->key, cur->value, sizeof(t_room)));
+			IF_FAIL(put_elem(&bfs->visited, cur->key, cur->value));
 			enqueue(bfs->q, analyse_room(node, cur));
 		}
 		tmp = tmp->next;
@@ -44,7 +44,7 @@ static void 		add_dup(t_table *node, t_table *origin, t_bfs *bfs)
 	{
 		((t_room*)member->value)->member = origin;
 		enqueue(bfs->q, member);
-		IF_FAIL(put_elem(&bfs->visited, member->key, member->value, sizeof(t_room)));
+		IF_FAIL(put_elem(&bfs->visited, member->key, member->value));
 	}
 }
 
@@ -55,8 +55,8 @@ static t_bfs		*init_bfs(t_table *src)
 	search = (t_bfs*)malloc(sizeof(t_bfs));
 	IF_FAIL(search);
 	search->q = init_queue();
-	search->visited = init_hashmap(MAX_SIZE / 3, NULL);
-	IF_FAIL(put_elem(&search->visited, src->key, src->value, sizeof(t_room)));
+	search->visited = init_hashmap(TABLE_SIZE, NULL);
+	IF_FAIL(put_elem(&search->visited, src->key, src->value));
 	enqueue(search->q, src);
 	return (search);
 }
