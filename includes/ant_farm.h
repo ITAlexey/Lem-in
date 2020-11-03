@@ -11,7 +11,7 @@
 # include "queue.h"
 # include <stdio.h>
 
-# define INPUT "maps2/model_1000"
+# define INPUT "maps/valid/big/map_big_1"
 # define STR_MSG 0
 # define END_MSG 0
 # define MIN_STEPS (INT_MAX)

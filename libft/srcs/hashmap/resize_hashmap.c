@@ -40,7 +40,6 @@ static void	put_on_new_place(t_hashmap **newdata, t_list *lst, short counter)
 	}
 	else
 		ft_lstpushback(&(*newdata)->arr[place], lst);
-	(*newdata)->occupied_cells++;
 }
 
 static void	redirect_lsts(t_hashmap **newdata, t_list *lst)
@@ -66,6 +65,7 @@ void		*resize_hashmap(t_hashmap **data)
 
 	idx = 0;
 	new_hashmap = init_hashmap((*data)->size * 2, (*data)->del);
+	new_hashmap->occupied_cells = (*data)->occupied_cells;
 	ISNULL(new_hashmap);
 	while (idx < (*data)->size)
 	{

@@ -55,7 +55,7 @@ static t_bfs		*init_bfs(t_table *src)
 	search = (t_bfs*)malloc(sizeof(t_bfs));
 	IF_FAIL(search);
 	search->q = init_queue();
-	search->visited = init_hashmap(TABLE_SIZE, NULL);
+	search->visited = init_hashmap(MAX_SIZE / 2, NULL);
 	IF_FAIL(put_elem(&search->visited, src->key, src->value));
 	enqueue(search->q, src);
 	return (search);
