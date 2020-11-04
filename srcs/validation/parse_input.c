@@ -58,7 +58,7 @@ static void		init_farm(t_farm *data)
 short			parse_input(t_farm *data, short start_msg, short end_msg)
 {
 	init_farm(data);
-	while (data->err < 0 && get_next_line(data->fd, &data->line))
+	while (data->err < 0 && get_next_line(STDIN, &data->line))
 	{
 		if (!ft_strlen(data->line))
 			data->err = ERR_NL;

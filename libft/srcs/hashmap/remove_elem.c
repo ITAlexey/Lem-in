@@ -13,7 +13,7 @@
 #include "hashmap.h"
 #include "libft.h"
 
-static void	del_finded(t_list **head, t_list *current)
+static void		del_finded(t_list **head, t_list *current)
 {
 	(*head)->next = current->next;
 	ft_memdel((void**)&current);
@@ -41,7 +41,7 @@ static short	delete_lst(t_list **head, t_list *lst,
 	return (0);
 }
 
-void		remove_elem(t_hashmap *data, char const *key)
+void			remove_elem(t_hashmap *data, char const *key)
 {
 	unsigned int	hash_code;
 	int				place;

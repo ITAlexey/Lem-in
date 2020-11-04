@@ -13,6 +13,7 @@ CC      := gcc
 CFLAGS  := -Wall -Wextra -Werror
 
 HEADERS := $(shell find includes/ -type f | cut -d "/" -f 2)
+
 BOOL    := $(shell find srcs/bool/ -type f | cut -d "/" -f 3)
 CONV    := $(shell find srcs/conv/ -type f | cut -d "/" -f 3)
 LST     := $(shell find srcs/lst/ -type f | cut -d "/" -f 3)
@@ -25,16 +26,18 @@ HASHMAP := $(shell find srcs/hashmap/ -type f | cut -d "/" -f 3)
 QUEUE   := $(shell find srcs/queue/ -type f | cut -d "/" -f 3)
 
 
-LIB_OBJ  = $(addprefix $(OBJ_DIR)/,$(BOOL:%.c=%.o))
-LIB_OBJ += $(addprefix $(OBJ_DIR)/,$(CONV:%.c=%.o))
-LIB_OBJ += $(addprefix $(OBJ_DIR)/,$(LST:%.c=%.o))
-LIB_OBJ += $(addprefix $(OBJ_DIR)/,$(MEM:%.c=%.o))
-LIB_OBJ += $(addprefix $(OBJ_DIR)/,$(STR:%.c=%.o))
-LIB_OBJ += $(addprefix $(OBJ_DIR)/,$(OTHERS:%.c=%.o))
-LIB_OBJ += $(addprefix $(OBJ_DIR)/,$(PUT:%.c=%.o))
-LIB_OBJ += $(addprefix $(OBJ_DIR)/,$(PRINTF:%.c=%.o))
-LIB_OBJ += $(addprefix $(OBJ_DIR)/,$(HASHMAP:%.c=%.o))
-LIB_OBJ += $(addprefix $(OBJ_DIR)/,$(QUEUE:%.c=%.o))
+SRCS    := $(BOOL)
+SRCS    += $(CONV)
+SRCS    += $(LST)
+SRCS    += $(MEM)
+SRCS    += $(STR)
+SRCS    += $(PRINTF)
+SRCS    += $(OTHERS)
+SRCS    += $(PUT)
+SRCS    += $(HASHMAP)
+SRCS    += $(QUEUE)
+
+LIB_OBJ  = $(addprefix $(OBJ_DIR)/,$(SRCS:%.c=%.o))
 
 VPATH = srcs/bool:\
 		srcs/conv:\
@@ -47,18 +50,15 @@ VPATH = srcs/bool:\
 		srcs/hashmap:\
 		srcs/queue\
 
-all: $(NAME)
-	@echo "$(CYAN)Creating library$(RESET)"
-	@ar rcs $< $(LIB_OBJ)
-	@echo "$(RED)libft has successfully created!$(RESET)"
+all: objects $(LIB_OBJ) $(NAME)
+	@ar rcs $(NAME) $(LIB_OBJ)
+	@echo "$(RED)libft has successfully created!\n$(RESET)"
 
-$(NAME): objects $(LIB_OBJ)
-	@echo "$(RED)o files has been created$(RESET)"
+$(NAME): $(LIB_OBJ)
 
 objects:
-	@echo "$(CYAN)Creating object folder$(RESET)"
+	@echo "$(CYAN)Creating library ...$(RESET)"
 	@mkdir -p $(OBJ_DIR)
-	@echo "$(RED)Object folder has been created$(RESET)"
 
 $(OBJ_DIR)/%.o: %.c $(addprefix $(INC), $(HEADERS))
 	@$(CC) $(CFLAGS) -c $< -o $@ -I$(INC)
@@ -68,9 +68,14 @@ clean:
 	@rm -rf $(OBJ_DIR)
 
 fclean: clean
-	@echo "$(CYAN)Removing library$(RESET)"
 	@rm -rf $(NAME)
+	@echo "$(RED)Library has been removed\n$(RESET)"
+
+norm:
+	@echo "$(RED)Checking libft files ...$(RESET)"
+	@norminette srcs/*/
+	@norminette $(INC)
 
 re: fclean all
 
-.PHONY: all, objects, clean, fclean, re
+.PHONY: all, objects, clean, fclean, re, norm

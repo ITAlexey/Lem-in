@@ -18,11 +18,10 @@
 # include "ft_printf.h"
 # include "hashmap.h"
 # include "queue.h"
-# include <stdio.h>
 
-# define INPUT "maps/valid/big/map_big_1"
 # define STR_MSG 0
 # define END_MSG 0
+# define STDIN 0
 # define MIN_STEPS (INT_MAX)
 # define ANTS_REACHED_TO_END 0
 # define MAX_SIZE 6000
@@ -66,7 +65,6 @@ typedef struct	s_path
 
 typedef struct	s_farm
 {
-	int			fd;
 	char		*line;
 	int			ants;
 	short		err;
