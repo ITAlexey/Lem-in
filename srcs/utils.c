@@ -1,45 +1,18 @@
-//
-// Created by alexey on 24.10.2020.
-//
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   utils.c                                            :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: dshala <marvin@42.fr>                      +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2020/10/15 13:10:00 by dshala            #+#    #+#             */
+/*   Updated: 2020/10/15 15:07:37 by dshala           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
 #include "ant_farm.h"
 
-void 		print_queue(t_queue *q)
-{
-	t_list *lst;
-
-	lst = q->head;
-	while (lst)
-	{
-		printf("[%s] ", ((t_table*)lst->content)->key);
-		lst = lst->next;
-	}
-	printf("\n");
-}
-
-void 	print_path(t_path *paths)
-{
-	t_list	*path;
-	t_list	*node;
-	t_table	*tmp;
-
-	path = paths->all;
-	while (path)
-	{
-		node = path->content;
-		while (node)
-		{
-			tmp = node->content;
-			printf("[%s]->", tmp->key);
-			node = node->next;
-		}
-		printf("\n");
-		path = path->next;
-	}
-	printf("\n");
-}
-
-void 	del_value(void *val)
+void			del_value(void *val)
 {
 	t_room *room;
 
@@ -54,9 +27,9 @@ void 	del_value(void *val)
 	ft_memdel(&val);
 }
 
-void 		del_dup(void *data)
+void			del_dup(void *data)
 {
-	t_table *tmp;
+	t_table	*tmp;
 
 	tmp = data;
 	if (((t_room*)tmp->value)->in)
@@ -66,7 +39,7 @@ void 		del_dup(void *data)
 	}
 }
 
-void 		clear_paths(t_path *paths)
+void			clear_paths(t_path *paths)
 {
 	t_list	*to_del;
 	t_list	*cur;
@@ -87,7 +60,7 @@ void 		clear_paths(t_path *paths)
 	}
 }
 
-static void 	init_errors(char *err_lst[])
+static void		init_errors(char *err_lst[])
 {
 	err_lst[0] = "Invalid number of ants.";
 	err_lst[1] = "Multiple start or end commands.";
@@ -100,9 +73,9 @@ static void 	init_errors(char *err_lst[])
 	err_lst[8] = "Paths are not exist.";
 }
 
-void 	throw_error(t_farm data)
+void			throw_error(t_farm data)
 {
-	char 	*errors[ERRORS];
+	char	*errors[ERRORS];
 
 	init_errors(errors);
 	ft_printf("ERROR: %s\n", errors[data.err]);

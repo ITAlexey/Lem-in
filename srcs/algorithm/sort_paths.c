@@ -1,12 +1,19 @@
-//
-// Created by alexey on 28.10.2020.
-//
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   sort_paths.c                                       :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: dshala <marvin@42.fr>                      +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2020/10/15 13:10:00 by dshala            #+#    #+#             */
+/*   Updated: 2020/10/15 15:07:37 by dshala           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
 #include "ant_farm.h"
 
-
-static void	lst_swap(t_list **head, t_list *cur,
-				t_list *prev, t_list *elem)
+static void		lst_swap(t_list **head, t_list *cur,
+					t_list *prev, t_list *elem)
 {
 	if (prev == NULL)
 	{
@@ -20,7 +27,7 @@ static void	lst_swap(t_list **head, t_list *cur,
 	}
 }
 
-static void collect_paths(t_list **head, t_list *path)
+static void		collect_paths(t_list **head, t_list *path)
 {
 	t_list	*prev;
 	t_list	*cur;
@@ -40,7 +47,7 @@ static void collect_paths(t_list **head, t_list *path)
 	prev->next = elem;
 }
 
-static void connect_path(t_list *path, t_route *route)
+static void		connect_path(t_list *path, t_route *route)
 {
 	t_table *tmp;
 	t_list	*elem;
@@ -73,11 +80,11 @@ static void		f(t_table *node, t_path *path, int idx)
 		collect_paths(&path->all, elem);
 }
 
-t_path		*sort_paths(t_queue *start_nodes)
+t_path			*sort_paths(t_queue *start_nodes)
 {
 	t_path		*new;
 	t_list		*lst;
-	int 		idx;
+	int			idx;
 
 	idx = 0;
 	new = (t_path*)malloc(sizeof(t_path));

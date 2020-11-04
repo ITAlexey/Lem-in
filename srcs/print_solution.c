@@ -1,13 +1,21 @@
-//
-// Created by alexey on 01.11.2020.
-//
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   print_solution.c                                   :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: dshala <marvin@42.fr>                      +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2020/10/15 13:10:00 by dshala            #+#    #+#             */
+/*   Updated: 2020/10/15 15:07:37 by dshala           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
 #include "ant_farm.h"
 
-int 	move_ant(t_hashmap **data, int reached, int ants)
+int		move_ant(t_hashmap **data, int reached, int ants)
 {
 	int		nbr;
-	char 	*ant_name;
+	char	*ant_name;
 	t_table	*tmp;
 
 	nbr = 0;
@@ -27,10 +35,10 @@ int 	move_ant(t_hashmap **data, int reached, int ants)
 	return (nbr);
 }
 
-int 	push_ant(t_hashmap **data, t_table *node, int id_ant)
+int		push_ant(t_hashmap **data, t_table *node, int id_ant)
 {
-	char 	*ant_name;
-	int 	nbr;
+	char	*ant_name;
+	int		nbr;
 
 	nbr = 0;
 	if (((t_room*)node->value)->route)
@@ -46,9 +54,9 @@ int 	push_ant(t_hashmap **data, t_table *node, int id_ant)
 	return (nbr);
 }
 
-void 	print_solution(t_path *data, int ants, int reached)
+void	print_solution(t_path *data, int ants, int reached)
 {
-	int 		id_ant;
+	int			id_ant;
 	t_hashmap	*output;
 	t_list		*path;
 	t_list		*node;

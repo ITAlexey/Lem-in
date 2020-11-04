@@ -1,10 +1,18 @@
-//
-// Created by alexey on 01.10.2020.
-//
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   define_command.c                                   :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: dshala <marvin@42.fr>                      +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2020/10/15 13:10:00 by dshala            #+#    #+#             */
+/*   Updated: 2020/10/15 15:07:37 by dshala           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
 #include "ant_farm.h"
 
-static t_room 	*init_room(int x, int y)
+static t_room	*init_room(int x, int y)
 {
 	t_room	*room;
 
@@ -21,7 +29,8 @@ static t_room 	*init_room(int x, int y)
 	return (room);
 }
 
-void 	record_room(t_farm *data, char **room_data, short *start, short *end)
+void			record_room(t_farm *data, char **room_data,
+					short *start, short *end)
 {
 	t_room	*room;
 
@@ -33,9 +42,9 @@ void 	record_room(t_farm *data, char **room_data, short *start, short *end)
 		data->sink = get_table(data->rooms, room_data[0]);
 }
 
-static void 	define_room(t_farm *data, short *start, short *end)
+static void		define_room(t_farm *data, short *start, short *end)
 {
-	char 	**data_room;
+	char	**data_room;
 
 	data_room = ft_strsplit(data->line, ' ');
 	IF_FAIL(data_room);
@@ -48,7 +57,7 @@ static void 	define_room(t_farm *data, short *start, short *end)
 	ft_free2darray((void**)data_room);
 }
 
-void 		define_command(t_farm *data, short *start, short *end)
+void			define_command(t_farm *data, short *start, short *end)
 {
 	if (!data->nbr_edges && ft_count_words(data->line, ' ') == 3)
 		define_room(data, start, end);

@@ -34,6 +34,5 @@ size_t				ft_lstcount(t_list *lst);
 t_list				*ft_lstcreate(void *content, size_t content_size);
 t_list				*ft_lstfind(t_list *head, void *to_find,
 						short (*predic)(void *, void *));
-void				ft_lstclr(t_list *lst);
 
 #endif

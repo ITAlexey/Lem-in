@@ -1,10 +1,18 @@
-//
-// Created by alexey on 27.10.2020.
-//
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   restore_path.c                                     :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: dshala <marvin@42.fr>                      +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2020/10/15 13:10:00 by dshala            #+#    #+#             */
+/*   Updated: 2020/10/15 15:07:37 by dshala           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
 #include "ant_farm.h"
 
-static t_route		*init_route(t_table *to_paste)
+static t_route	*init_route(t_table *to_paste)
 {
 	t_route	*route;
 
@@ -19,7 +27,7 @@ static t_route		*init_route(t_table *to_paste)
 	return (route);
 }
 
-static void 		add_new_route(t_table *tail, t_table *cur, t_table *src)
+static void		add_new_route(t_table *tail, t_table *cur, t_table *src)
 {
 	t_room	*tmp;
 
@@ -34,12 +42,12 @@ static void 		add_new_route(t_table *tail, t_table *cur, t_table *src)
 	}
 }
 
-static short 	is_equal(void *a, void *b)
+static short	is_equal(void *a, void *b)
 {
 	return (((t_link*)a)->linked == (t_table*)b);
 }
 
-static 	void 	lock_passage(t_table *tail, t_table *cur)
+static void		lock_passage(t_table *tail, t_table *cur)
 {
 	t_list	*lst;
 

@@ -1,6 +1,14 @@
-//
-// Created by alexey on 27.10.2020.
-//
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   optimaze_path.c                                    :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: dshala <marvin@42.fr>                      +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2020/10/15 13:10:00 by dshala            #+#    #+#             */
+/*   Updated: 2020/10/15 15:07:37 by dshala           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
 #include "ant_farm.h"
 
@@ -50,7 +58,7 @@ void		find_collisions(t_table *pattern, t_route *route)
 	}
 }
 
-void 		optimization(t_route *route)
+void		optimization(t_route *route)
 {
 	t_table	*tmp;
 	t_list	*lst;

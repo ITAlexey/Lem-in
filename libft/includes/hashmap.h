@@ -23,7 +23,7 @@ typedef struct		s_hashmap
 	int				occupied_cells;
 	int				size;
 	t_list			*arr;
-	void 			(*del)(void *);
+	void			(*del)(void *);
 }					t_hashmap;
 
 typedef struct		s_table

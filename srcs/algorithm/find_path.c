@@ -1,10 +1,18 @@
-//
-// Created by alexey on 17.10.2020.
-//
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   find_path.c                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: dshala <marvin@42.fr>                      +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2020/10/15 13:10:00 by dshala            #+#    #+#             */
+/*   Updated: 2020/10/15 15:07:37 by dshala           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
 #include "ant_farm.h"
 
-static inline t_table	*analyse_room(t_table* main, t_table *neighbor)
+static inline t_table	*analyse_room(t_table *main, t_table *neighbor)
 {
 	t_room	*main_room;
 	t_room	*link_room;
@@ -14,7 +22,7 @@ static inline t_table	*analyse_room(t_table* main, t_table *neighbor)
 	return (!main_room->is_dup && link_room->in ? link_room->in : neighbor);
 }
 
-static void 		add_neighbor(t_table *node, t_bfs *bfs)
+static void				add_neighbor(t_table *node, t_bfs *bfs)
 {
 	t_list		*tmp;
 	t_table		*cur;
@@ -25,7 +33,8 @@ static void 		add_neighbor(t_table *node, t_bfs *bfs)
 	while (tmp)
 	{
 		cur = ((t_link*)tmp->content)->linked;
-		if (!((t_link*)tmp->content)->is_lock && !get_elem(bfs->visited, cur->key))
+		if (!((t_link*)tmp->content)->is_lock &&
+				!get_elem(bfs->visited, cur->key))
 		{
 			((t_room*)cur->value)->member = node;
 			IF_FAIL(put_elem(&bfs->visited, cur->key, cur->value));
@@ -35,7 +44,7 @@ static void 		add_neighbor(t_table *node, t_bfs *bfs)
 	}
 }
 
-static void 		add_dup(t_table *node, t_table *origin, t_bfs *bfs)
+static void				add_dup(t_table *node, t_table *origin, t_bfs *bfs)
 {
 	t_table		*member;
 
@@ -48,7 +57,7 @@ static void 		add_dup(t_table *node, t_table *origin, t_bfs *bfs)
 	}
 }
 
-static t_bfs		*init_bfs(t_table *src)
+static t_bfs			*init_bfs(t_table *src)
 {
 	t_bfs	*search;
 
@@ -61,7 +70,7 @@ static t_bfs		*init_bfs(t_table *src)
 	return (search);
 }
 
-t_path		*find_path(t_farm *data)
+t_path					*find_path(t_farm *data)
 {
 	t_bfs		*search;
 	t_table		*cur;

@@ -1,15 +1,23 @@
-//
-// Created by alexey on 26.10.2020.
-//
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   find_solution.c                                    :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: dshala <marvin@42.fr>                      +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2020/10/15 13:10:00 by dshala            #+#    #+#             */
+/*   Updated: 2020/10/15 15:07:37 by dshala           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
 #include "ant_farm.h"
 
 static int		update_distance(t_path *path, int ants)
 {
-	int 	cur_steps;
-	int 	min_steps;
-	int 	idx;
-	int 	sum;
+	int	cur_steps;
+	int	min_steps;
+	int	idx;
+	int	sum;
 
 	idx = 0;
 	sum = 0;
@@ -26,7 +34,7 @@ static int		update_distance(t_path *path, int ants)
 	return (min_steps);
 }
 
-static void 		swap_routes(t_table *node)
+static void		swap_routes(t_table *node)
 {
 	t_route		*r;
 
@@ -39,7 +47,7 @@ static void 		swap_routes(t_table *node)
 	}
 }
 
-static void 		change_routes(t_path *paths, t_table *src)
+static void		change_routes(t_path *paths, t_table *src)
 {
 	t_list	*path;
 	t_list	*elem;
@@ -58,10 +66,10 @@ static void 		change_routes(t_path *paths, t_table *src)
 	}
 }
 
-void 		find_solution(t_farm *data, int min_steps)
+void			find_solution(t_farm *data, int min_steps)
 {
 	t_path	*new;
-	int 	nbr_steps;
+	int		nbr_steps;
 
 	while (data->max_paths && (new = find_path(data)))
 	{
@@ -77,8 +85,7 @@ void 		find_solution(t_farm *data, int min_steps)
 		else
 		{
 			clear_paths(new);
-			break;
+			break ;
 		}
 	}
-	//print_path(data->paths);
 }

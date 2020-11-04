@@ -30,8 +30,23 @@
     <list default="true" id="bf8090c8-d868-4bed-a984-044a79c944de" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/includes/ant_farm.h" beforeDir="false" afterPath="$PROJECT_DIR$/includes/ant_farm.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/libft/srcs/hashmap/resize_hashmap.c" beforeDir="false" afterPath="$PROJECT_DIR$/libft/srcs/hashmap/resize_hashmap.c" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/includes/error_types.h" beforeDir="false" afterPath="$PROJECT_DIR$/includes/error_types.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/libft/includes/hashmap.h" beforeDir="false" afterPath="$PROJECT_DIR$/libft/includes/hashmap.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/libft/includes/lists.h" beforeDir="false" afterPath="$PROJECT_DIR$/libft/includes/lists.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/libft/srcs/lst/ft_lstclr.c" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/libft/srcs/lst/ft_lstdel.c" beforeDir="false" afterPath="$PROJECT_DIR$/libft/srcs/lst/ft_lstdel.c" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/libft/srcs/lst/ft_lstdelone.c" beforeDir="false" afterPath="$PROJECT_DIR$/libft/srcs/lst/ft_lstdelone.c" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/srcs/algorithm/find_path.c" beforeDir="false" afterPath="$PROJECT_DIR$/srcs/algorithm/find_path.c" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/srcs/algorithm/find_solution.c" beforeDir="false" afterPath="$PROJECT_DIR$/srcs/algorithm/find_solution.c" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/srcs/algorithm/optimaze_path.c" beforeDir="false" afterPath="$PROJECT_DIR$/srcs/algorithm/optimaze_path.c" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/srcs/algorithm/prepare_paths.c" beforeDir="false" afterPath="$PROJECT_DIR$/srcs/algorithm/prepare_paths.c" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/srcs/algorithm/restore_path.c" beforeDir="false" afterPath="$PROJECT_DIR$/srcs/algorithm/restore_path.c" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/srcs/algorithm/sort_paths.c" beforeDir="false" afterPath="$PROJECT_DIR$/srcs/algorithm/sort_paths.c" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/srcs/main.c" beforeDir="false" afterPath="$PROJECT_DIR$/srcs/main.c" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/srcs/print_solution.c" beforeDir="false" afterPath="$PROJECT_DIR$/srcs/print_solution.c" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/srcs/validation/define_command.c" beforeDir="false" afterPath="$PROJECT_DIR$/srcs/validation/define_command.c" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/srcs/validation/define_link.c" beforeDir="false" afterPath="$PROJECT_DIR$/srcs/validation/define_link.c" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/srcs/validation/parse_input.c" beforeDir="false" afterPath="$PROJECT_DIR$/srcs/validation/parse_input.c" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -90,7 +105,7 @@
       <workItem from="1604394613923" duration="8061000" />
       <workItem from="1604408873038" duration="98000" />
       <workItem from="1604409278789" duration="1844000" />
-      <workItem from="1604413009592" duration="3604000" />
+      <workItem from="1604413009592" duration="5279000" />
     </task>
     <servers />
   </component>

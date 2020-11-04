@@ -1,12 +1,20 @@
-//
-// Created by alexey on 01.10.2020.
-//
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   define_link.c                                      :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: dshala <marvin@42.fr>                      +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2020/10/15 13:10:00 by dshala            #+#    #+#             */
+/*   Updated: 2020/10/15 15:07:37 by dshala           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
 #include "ant_farm.h"
 
-static t_link	*init_link(t_table *dest)
+static t_link		*init_link(t_table *dest)
 {
-	t_link *link;
+	t_link	*link;
 
 	link = (t_link*)malloc(sizeof(t_link));
 	ISNULL(link);
@@ -15,7 +23,7 @@ static t_link	*init_link(t_table *dest)
 	return (link);
 }
 
-static void 		link_rooms(t_table *src, t_table *dest)
+static void			link_rooms(t_table *src, t_table *dest)
 {
 	t_link	*link;
 
@@ -28,10 +36,9 @@ static void 		link_rooms(t_table *src, t_table *dest)
 	((t_room*)src->value)->nbr_arcs++;
 }
 
-
-void 		define_link(t_farm *data)
+void				define_link(t_farm *data)
 {
-	char 		**data_link;
+	char		**data_link;
 	t_table		*right;
 	t_table		*left;
 

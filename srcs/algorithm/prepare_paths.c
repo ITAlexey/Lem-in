@@ -1,12 +1,20 @@
-//
-// Created by alexey on 21.10.2020.
-//
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   prepare_paths.c                                    :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: dshala <marvin@42.fr>                      +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2020/10/15 13:10:00 by dshala            #+#    #+#             */
+/*   Updated: 2020/10/15 15:07:37 by dshala           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
 #include "ant_farm.h"
 
-static t_table 	*clone_room(t_table *src)
+static t_table	*clone_room(t_table *src)
 {
-	t_table *clone;
+	t_table	*clone;
 	t_room	*tmp;
 
 	clone = (t_table*)malloc(sizeof(t_table));
@@ -24,7 +32,7 @@ static t_table 	*clone_room(t_table *src)
 
 t_queue			*copy_route(t_queue *cur)
 {
-	t_list *lst;
+	t_list	*lst;
 	t_queue	*new;
 
 	lst = cur->head;
@@ -38,7 +46,7 @@ t_queue			*copy_route(t_queue *cur)
 	return (new);
 }
 
-static void 	reconfiguration(t_list *cur, t_list *prev,
+static void		reconfiguration(t_list *cur, t_list *prev,
 						void *src, void *sink)
 {
 	t_room	*room;
@@ -57,7 +65,7 @@ static void 	reconfiguration(t_list *cur, t_list *prev,
 	}
 }
 
-void 			prepare_paths(t_path *paths, void *src, void *sink)
+void			prepare_paths(t_path *paths, void *src, void *sink)
 {
 	t_list	*path;
 
