@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse_input.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dshala <marvin@42.fr>                      +#+  +:+       +#+        */
+/*   By: tclarita <tclarita@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/15 13:10:00 by dshala            #+#    #+#             */
-/*   Updated: 2020/10/15 15:07:37 by dshala           ###   ########.fr       */
+/*   Updated: 2020/11/06 13:02:01 by tclarita         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,6 +52,9 @@ static void		init_farm(t_farm *data)
 	data->sink = NULL;
 	data->err = -1;
 	data->rooms = init_hashmap(TABLE_SIZE, del_value);
+	data->pos = 0;
+	for (int i = 0; i < 200; i++)
+		data->vis[i] = NULL;
 	IF_FAIL(data->rooms);
 }
 
