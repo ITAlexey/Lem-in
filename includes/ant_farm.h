@@ -6,7 +6,7 @@
 /*   By: tclarita <tclarita@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/15 13:10:00 by dshala            #+#    #+#             */
-/*   Updated: 2020/11/07 18:28:11 by tclarita         ###   ########.fr       */
+/*   Updated: 2020/11/07 19:14:38 by tclarita         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@
 # include "hashmap.h"
 # include "queue.h"
 # include <SDL2/SDL.h>
+# include <SDL2/SDL_mixer.h>
 # include <SDL2/SDL_ttf.h>
 
 # define WINDOW_WIDTH 1000

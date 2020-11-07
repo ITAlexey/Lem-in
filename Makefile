@@ -49,7 +49,7 @@ folder:
 	@mkdir -p $(O_DIR)
 
 $(NAME): $(OBJS)
-	@$(CC) $(OBJS) $(LIB_DIR)$(LIB) -o $@ -lSDL2 -lSDL2_ttf
+	@$(CC) $(OBJS) $(LIB_DIR)$(LIB) -o $@ -lSDL2 -lSDL2_ttf -lSDL2_mixer
 	@echo "$(RED)Project has been successfully built$(RESET)"
 
 $(O_DIR)/%.o: %.c $(INC) $(LIBINC) 

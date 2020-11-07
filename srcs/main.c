@@ -6,7 +6,7 @@
 /*   By: tclarita <tclarita@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/15 13:10:00 by dshala            #+#    #+#             */
-/*   Updated: 2020/11/07 18:26:54 by tclarita         ###   ########.fr       */
+/*   Updated: 2020/11/07 19:19:59 by tclarita         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,11 @@ int	main(void)
 	if (!parse_input(&data, STR_MSG, END_MSG))
 		throw_error(data);
 	init_sdl(sdl);
+	Mix_Init(MIX_INIT_MP3);//AUDIO
+	Mix_OpenAudio(22050, MIX_DEFAULT_FORMAT, 2, 1024);
+	Mix_Music *pahomsong = NULL;
+	pahomsong=Mix_LoadMUS("music.mp3");
+	Mix_PlayMusic(pahomsong, -1);
 	find_solution(&data, MIN_STEPS);
 	sdl->farm = &data;
 	print_solution(data.paths, data.ants, ANTS_REACHED_TO_END, sdl);
