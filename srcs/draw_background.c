@@ -6,7 +6,7 @@
 /*   By: tclarita <tclarita@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/07 15:45:10 by tclarita          #+#    #+#             */
-/*   Updated: 2020/11/07 16:13:18 by tclarita         ###   ########.fr       */
+/*   Updated: 2020/11/07 18:28:49 by tclarita         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,8 +88,48 @@ void	draw_circles(t_sdl *sdl, t_farm *data, int radius)
 	}
 }
 
+void	sdl_key_down(t_sdl *sdl, t_farm *data)
+{
+	if (sdl->event.key.keysym.sym == SDLK_ESCAPE)
+	{
+		close_window(sdl, data);
+		exit(0);
+	}
+}
+
+void	sdl_events(t_sdl *sdl, t_farm *data)
+{
+	SDL_PollEvent(&sdl->event);
+	if (sdl->event.type == SDL_QUIT)
+		close_window(sdl, data);
+	if (sdl->event.type == SDL_KEYDOWN)
+		sdl_key_down(sdl, data);
+	// if (sdl->event.type == SDL_KEYUP)
+	// 	sdl_key_up(sdl);
+}
+
+
+void	draw_sidebar(t_sdl *sdl, t_farm *data)
+{
+	(void)data;
+	TTF_Font* Sans = TTF_OpenFont("TTF.ttf", 80);
+	SDL_Color white = {255, 255, 255, 255};
+	SDL_Surface *surface = TTF_RenderText_Solid(Sans, "message", white);
+	SDL_Texture* message = SDL_CreateTextureFromSurface(sdl->render, surface);
+	SDL_Rect Message_rect;
+	Message_rect.x = 0; 
+	Message_rect.y = 0;
+	Message_rect.w = 50;
+	Message_rect.h = 50;
+	SDL_RenderCopy(sdl->render, message, NULL, &Message_rect);
+	SDL_FreeSurface(surface);
+	SDL_DestroyTexture(message);
+}
+
 void	draw_background(t_sdl *sdl, t_farm *data)
 {
+	sdl_events(sdl, data);
+	// draw_sidebar(sdl, data);
 	SDL_SetRenderDrawColor(sdl->render, 0, 0, 0, 0);
 	draw_circles(sdl, data, 10);
 	draw_connections(sdl, data);

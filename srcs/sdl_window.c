@@ -6,14 +6,16 @@
 /*   By: tclarita <tclarita@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/07 15:40:39 by tclarita          #+#    #+#             */
-/*   Updated: 2020/11/07 16:11:15 by tclarita         ###   ########.fr       */
+/*   Updated: 2020/11/07 18:27:42 by tclarita         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ant_farm.h"
 
-void	close_window(t_sdl *sdl)
+void	close_window(t_sdl *sdl, t_farm *data)
 {
+	clear_paths(data->paths);
+	remove_hashmap(data->rooms);
 	SDL_RenderClear(sdl->render);
 	SDL_DestroyRenderer(sdl->render);
 	SDL_DestroyWindow(sdl->window);
@@ -22,6 +24,7 @@ void	close_window(t_sdl *sdl)
 
 void	init_sdl(t_sdl *sdl)
 {
+	TTF_Init();
 	sdl->start = 0;
 	if (SDL_Init(SDL_INIT_EVERYTHING) != 0)
 	{

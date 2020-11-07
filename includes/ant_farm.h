@@ -6,7 +6,7 @@
 /*   By: tclarita <tclarita@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/15 13:10:00 by dshala            #+#    #+#             */
-/*   Updated: 2020/11/07 16:12:37 by tclarita         ###   ########.fr       */
+/*   Updated: 2020/11/07 18:28:11 by tclarita         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@
 # include "hashmap.h"
 # include "queue.h"
 # include <SDL2/SDL.h>
+# include <SDL2/SDL_ttf.h>
 
 # define WINDOW_WIDTH 1000
 # define WINDOW_HEIGHT 1000
@@ -122,12 +123,13 @@ void			clear_paths(t_path *paths);
 void			del_value(void *val);
 
 void			init_sdl(t_sdl *sdl);
-void			close_window(t_sdl *sdl);
+void			close_window(t_sdl *sdl, t_farm *data);
 void			draw_background(t_sdl *sdl, t_farm *data);
 void			draw_circle(int x, int y, int radius, t_sdl *sdl);
 int				count_done(t_sdl *sdl, t_farm *data);
 void			fill_ants(t_sdl *sdl, t_farm *data);
 void			draw_movements(t_sdl *sdl, t_farm *data);
 void			note_movements(t_sdl *sdl, int index, const char *room);
+void			sdl_events(t_sdl *sdl, t_farm *data);
 
 #endif

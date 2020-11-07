@@ -6,7 +6,7 @@
 /*   By: tclarita <tclarita@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/07 15:49:41 by tclarita          #+#    #+#             */
-/*   Updated: 2020/11/07 16:13:27 by tclarita         ###   ########.fr       */
+/*   Updated: 2020/11/07 19:07:32 by tclarita         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,22 +45,36 @@ void	draw_movements(t_sdl *sdl, t_farm *data)
 	int i = 0;
 	while (i < data->ants)
 	{
-		if (sdl->ant[i].x != sdl->ant[i].x1 || sdl->ant[i].y != sdl->ant[i].y1)
+		fdf[i].x = sdl->ant[i].x;
+		fdf[i].x1 = sdl->ant[i].x1;
+		fdf[i].y = sdl->ant[i].y;
+		fdf[i].y1 = sdl->ant[i].y1;
+		fdf[i].x_step = fdf[i].x1 - fdf[i].x;
+		fdf[i].y_step = fdf[i].y1 - fdf[i].y;
+		int max = MAX1(MOD(fdf[i].x_step), MOD(fdf[i].y_step));
+		fdf[i].x_step /= max;
+		fdf[i].y_step /= max;
+		i++;
+	}
+	i = 0;
+	while (i < data->ants)
+	{
+		if (((int)(fdf[i].x - fdf[i].x1)) || ((int)(fdf[i].y - fdf[i].y1)))
 		{
-			fdf[i].x_step = sdl->ant[i].x1 - sdl->ant[i].x;
-			fdf[i].y_step = sdl->ant[i].y1 - sdl->ant[i].y;
-			int max = MAX1(MOD(fdf[i].x_step), MOD(fdf[i].y_step));
-			fdf[i].x_step /= max;
-			fdf[i].y_step /= max;
-
 			SDL_SetRenderDrawColor(sdl->render, 255, 0, 130, 255);
-			draw_circle(sdl->ant[i].x, sdl->ant[i].y, radius, sdl);
-			sdl->ant[i].x += fdf[i].x_step;
-			sdl->ant[i].y += fdf[i].y_step;
+			draw_circle(fdf[i].x, fdf[i].y, radius, sdl);
+			fdf[i].x += fdf[i].x_step;
+			fdf[i].y += fdf[i].y_step;
+		}
+		if (!((int)(fdf[i].x - fdf[i].x1)) && !((int)(fdf[i].y - fdf[i].y1)))
+		{
+			sdl->ant[i].x = sdl->ant[i].x1;
+			sdl->ant[i].y = sdl->ant[i].y1;
 		}
 		if (i == data->ants - 1)
 		{
 			draw_background(sdl, data);
+			sdl_events(sdl, data);
 			SDL_Delay(3);
 			SDL_RenderPresent(sdl->render);
 			SDL_SetRenderDrawColor(sdl->render, 0, 0, 0, 255);

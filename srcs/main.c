@@ -6,7 +6,7 @@
 /*   By: tclarita <tclarita@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/15 13:10:00 by dshala            #+#    #+#             */
-/*   Updated: 2020/11/07 15:41:50 by tclarita         ###   ########.fr       */
+/*   Updated: 2020/11/07 18:26:54 by tclarita         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,11 @@ int	main(void)
 	find_solution(&data, MIN_STEPS);
 	sdl->farm = &data;
 	print_solution(data.paths, data.ants, ANTS_REACHED_TO_END, sdl);
+	while (1)
+	{
+		draw_background(sdl, &data);
+		sdl_events(sdl, &data);
+	}
 	clear_paths(data.paths);
 	remove_hashmap(data.rooms);
 	return (0);
