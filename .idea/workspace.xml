@@ -29,184 +29,6 @@
   <component name="ChangeListManager">
     <list default="true" id="bf8090c8-d868-4bed-a984-044a79c944de" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Makefile" beforeDir="false" afterPath="$PROJECT_DIR$/Makefile" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/includes/ant_farm.h" beforeDir="false" afterPath="$PROJECT_DIR$/includes/ant_farm.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/libft/Makefile" beforeDir="false" afterPath="$PROJECT_DIR$/libft/Makefile" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/libft/srcs/hashmap/remove_elem.c" beforeDir="false" afterPath="$PROJECT_DIR$/libft/srcs/hashmap/remove_elem.c" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/maps/invalid/ants_empty" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/maps/invalid/ants_nbr_inf_int_min" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/maps/invalid/ants_nbr_invalid_char" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/maps/invalid/ants_nbr_invalid_char_2" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/maps/invalid/ants_nbr_invalid_spacing" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/maps/invalid/ants_nbr_neg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/maps/invalid/ants_nbr_too_big" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/maps/invalid/empty_line_no_end_defined" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/maps/invalid/empty_line_no_tube_to_end" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/maps/invalid/empty_map" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/maps/invalid/end_before_nb_ants" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/maps/invalid/no_end" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/maps/invalid/no_start" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/maps/invalid/no_tubes" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/maps/invalid/room_after_tube" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/maps/invalid/room_coord_duplicated" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/maps/invalid/room_duplicated" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/maps/invalid/room_has_dash" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/maps/invalid/room_has_unprintable_char" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/maps/invalid/room_invalid_coord" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/maps/invalid/room_name_duplicated" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/maps/invalid/room_no_y_coord" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/maps/invalid/room_start_with_L" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/maps/invalid/room_too_much_arg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/maps/invalid/room_without_coord" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/maps/invalid/start_and_comments_before_nb_ants" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/maps/invalid/start_before_nb_ants" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/maps/invalid/start_command_before_tube" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/maps/invalid/start_is_end" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/maps/invalid/start_not_followed_by_room" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/maps/invalid/tube_has_spaces" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/maps/invalid/tube_room_does_not_exist" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/maps/valid/big/map_big_1" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/maps/valid/big/map_big_10" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/maps/valid/big/map_big_11" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/maps/valid/big/map_big_12" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/maps/valid/big/map_big_13" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/maps/valid/big/map_big_14" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/maps/valid/big/map_big_15" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/maps/valid/big/map_big_16" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/maps/valid/big/map_big_17" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/maps/valid/big/map_big_18" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/maps/valid/big/map_big_19" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/maps/valid/big/map_big_2" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/maps/valid/big/map_big_20" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/maps/valid/big/map_big_21" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/maps/valid/big/map_big_22" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/maps/valid/big/map_big_223" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/maps/valid/big/map_big_23" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/maps/valid/big/map_big_24" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/maps/valid/big/map_big_25" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/maps/valid/big/map_big_26" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/maps/valid/big/map_big_27" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/maps/valid/big/map_big_28" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/maps/valid/big/map_big_29" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/maps/valid/big/map_big_3" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/maps/valid/big/map_big_30" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/maps/valid/big/map_big_31" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/maps/valid/big/map_big_32" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/maps/valid/big/map_big_33" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/maps/valid/big/map_big_34" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/maps/valid/big/map_big_35" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/maps/valid/big/map_big_36" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/maps/valid/big/map_big_365" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/maps/valid/big/map_big_37" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/maps/valid/big/map_big_38" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/maps/valid/big/map_big_39" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/maps/valid/big/map_big_4" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/maps/valid/big/map_big_40" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/maps/valid/big/map_big_41" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/maps/valid/big/map_big_42" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/maps/valid/big/map_big_43" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/maps/valid/big/map_big_44" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/maps/valid/big/map_big_45" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/maps/valid/big/map_big_458" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/maps/valid/big/map_big_46" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/maps/valid/big/map_big_47" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/maps/valid/big/map_big_48" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/maps/valid/big/map_big_49" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/maps/valid/big/map_big_5" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/maps/valid/big/map_big_50" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/maps/valid/big/map_big_51" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/maps/valid/big/map_big_52" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/maps/valid/big/map_big_6" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/maps/valid/big/map_big_7" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/maps/valid/big/map_big_8" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/maps/valid/big/map_big_9" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/maps/valid/big/map_big_98" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/maps/valid/big_sup/map_big_sup_1" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/maps/valid/big_sup/map_big_sup_10" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/maps/valid/big_sup/map_big_sup_11" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/maps/valid/big_sup/map_big_sup_12" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/maps/valid/big_sup/map_big_sup_13" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/maps/valid/big_sup/map_big_sup_14" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/maps/valid/big_sup/map_big_sup_15" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/maps/valid/big_sup/map_big_sup_16" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/maps/valid/big_sup/map_big_sup_17" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/maps/valid/big_sup/map_big_sup_18" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/maps/valid/big_sup/map_big_sup_19" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/maps/valid/big_sup/map_big_sup_2" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/maps/valid/big_sup/map_big_sup_20" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/maps/valid/big_sup/map_big_sup_21" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/maps/valid/big_sup/map_big_sup_22" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/maps/valid/big_sup/map_big_sup_23" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/maps/valid/big_sup/map_big_sup_24" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/maps/valid/big_sup/map_big_sup_25" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/maps/valid/big_sup/map_big_sup_26" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/maps/valid/big_sup/map_big_sup_27" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/maps/valid/big_sup/map_big_sup_28" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/maps/valid/big_sup/map_big_sup_29" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/maps/valid/big_sup/map_big_sup_3" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/maps/valid/big_sup/map_big_sup_30" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/maps/valid/big_sup/map_big_sup_4" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/maps/valid/big_sup/map_big_sup_5" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/maps/valid/big_sup/map_big_sup_6" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/maps/valid/big_sup/map_big_sup_7" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/maps/valid/big_sup/map_big_sup_8" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/maps/valid/big_sup/map_big_sup_9" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/maps/valid/map_25" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/maps/valid/map_33" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/maps/valid/map_39" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/maps/valid/map_40" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/maps/valid/map_big" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/maps/valid/map_comments" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/maps/valid/map_dead_end" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/maps/valid/map_dead_end_2" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/maps/valid/map_dead_end_3" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/maps/valid/map_duplicatepipe" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/maps/valid/map_duplicatepipe1" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/maps/valid/map_empty" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/maps/valid/map_flow_max" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/maps/valid/map_follow_one_1" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/maps/valid/map_hexagonal" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/maps/valid/map_invalidcommand" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/maps/valid/map_invalidcommand1" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/maps/valid/map_jk_weird" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/maps/valid/map_loop" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/maps/valid/map_loop1" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/maps/valid/map_overflow" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/maps/valid/map_pdf" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/maps/valid/map_shortest" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/maps/valid/map_simple" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/maps/valid/map_simple1" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/maps/valid/map_simple2" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/maps/valid/map_simple_web" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/maps/valid/map_size_1000" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/maps/valid/map_slack" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/maps/valid/map_slack_2" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/maps/valid/map_slack_2_brute" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/maps/valid/map_subject_1" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/maps/valid/map_subject_2" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/maps/valid/map_subject_3" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/maps/valid/map_subject_3_modified" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/maps2/bouchon" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/maps2/coolmap" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/maps2/cursus" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/maps2/double_path" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/maps2/felixmap" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/maps2/felixmap.dms" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/maps2/map_conflict" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/maps2/model_1000" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/maps2/model_3" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/maps2/model_bin" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/maps2/model_cobweb" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/maps2/model_cornelian" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/maps2/model_easy" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/maps2/model_medium" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/maps2/model_regress" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/maps2/model_uhc" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/maps2/simple_map" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/maps2/subject_map" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/maps2/test_map" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/srcs/main.c" beforeDir="false" afterPath="$PROJECT_DIR$/srcs/main.c" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/srcs/validation/parse_input.c" beforeDir="false" afterPath="$PROJECT_DIR$/srcs/validation/parse_input.c" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -232,7 +54,7 @@
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="cf.first.check.clang-format" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../Filler" />
   </component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
@@ -265,7 +87,9 @@
       <workItem from="1604394613923" duration="8061000" />
       <workItem from="1604408873038" duration="98000" />
       <workItem from="1604409278789" duration="1844000" />
-      <workItem from="1604413009592" duration="10730000" />
+      <workItem from="1604413009592" duration="13210000" />
+      <workItem from="1604586493846" duration="442000" />
+      <workItem from="1604587235333" duration="21000" />
     </task>
     <servers />
   </component>
@@ -285,10 +109,10 @@
     <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="WindowStateProjectService">
-    <state x="466" y="134" width="424" height="484" key="FileChooserDialogImpl" timestamp="1604408968472">
+    <state x="466" y="134" width="424" height="484" key="FileChooserDialogImpl" timestamp="1604587254408">
       <screen x="0" y="27" width="1366" height="700" />
     </state>
-    <state x="466" y="134" width="424" height="484" key="FileChooserDialogImpl/0.27.1366.700@0.27.1366.700" timestamp="1604408968472" />
+    <state x="466" y="134" width="424" height="484" key="FileChooserDialogImpl/0.27.1366.700@0.27.1366.700" timestamp="1604587254408" />
     <state width="498" height="446" key="SwitcherDM" timestamp="1603526152528">
       <screen x="0" y="27" width="1366" height="700" />
     </state>
