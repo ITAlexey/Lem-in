@@ -20,8 +20,8 @@
 # include "queue.h"
 # include <SDL2/SDL.h>
 
-# define WINDOW_WIDTH 700
-# define WINDOW_HEIGHT 800
+# define WINDOW_WIDTH 500
+# define WINDOW_HEIGHT 500
 # define MAX1(a, b) (a > b ? a : b)
 # define MOD(a) ((a < 0) ? -a : a)
 # define STR_MSG 0
