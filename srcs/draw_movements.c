@@ -6,7 +6,7 @@
 /*   By: tclarita <tclarita@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/07 15:49:41 by tclarita          #+#    #+#             */
-/*   Updated: 2020/11/07 19:07:32 by tclarita         ###   ########.fr       */
+/*   Updated: 2020/11/09 11:47:49 by tclarita         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,8 +61,6 @@ void	draw_movements(t_sdl *sdl, t_farm *data)
 	{
 		if (((int)(fdf[i].x - fdf[i].x1)) || ((int)(fdf[i].y - fdf[i].y1)))
 		{
-			SDL_SetRenderDrawColor(sdl->render, 255, 0, 130, 255);
-			draw_circle(fdf[i].x, fdf[i].y, radius, sdl);
 			fdf[i].x += fdf[i].x_step;
 			fdf[i].y += fdf[i].y_step;
 		}
@@ -73,6 +71,16 @@ void	draw_movements(t_sdl *sdl, t_farm *data)
 		}
 		if (i == data->ants - 1)
 		{
+			for (int i = 0; i < data->ants; i++)
+			{
+				if (!(i % 3))
+					SDL_SetRenderDrawColor(sdl->render, 230, 0, 0, 255);
+				else if (!(i % 2))
+					SDL_SetRenderDrawColor(sdl->render, 0, 230, 0, 255);	
+				else
+					SDL_SetRenderDrawColor(sdl->render, 0, 0, 230, 255);
+				draw_circle(fdf[i].x, fdf[i].y, radius, sdl);
+			}
 			draw_background(sdl, data);
 			sdl_events(sdl, data);
 			SDL_Delay(3);
