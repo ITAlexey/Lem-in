@@ -6,7 +6,7 @@
 /*   By: tclarita <tclarita@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/15 13:10:00 by dshala            #+#    #+#             */
-/*   Updated: 2020/11/09 10:30:01 by tclarita         ###   ########.fr       */
+/*   Updated: 2020/11/09 18:15:09 by tclarita         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,8 +22,8 @@
 # include <SDL2/SDL_mixer.h>
 # include <SDL2/SDL_ttf.h>
 
-# define WINDOW_WIDTH 1200
-# define WINDOW_HEIGHT 1000
+# define WIDTH 1200
+# define HEIGHT 1000
 # define MAX1(a, b) (a > b ? a : b)
 # define MOD(a) ((a < 0) ? -a : a)
 # define STR_MSG 0
@@ -32,6 +32,17 @@
 # define MIN_STEPS (INT_MAX)
 # define ANTS_REACHED_TO_END 0
 # define MAX_SIZE 6000
+
+typedef struct s_fdf
+{
+	float		x1;
+	float		y1;
+	float		x;
+	float		y;
+	float		x_step;
+	float		y_step;
+	int			draw;
+}				t_fdf;
 
 typedef struct		s_ants
 {
@@ -103,6 +114,9 @@ typedef struct		s_sdl
 	t_farm			*farm;
 	int				start;
 	int				count;
+	int				delay;
+	Mix_Music		*music;
+	int				ant_radius;
 }					t_sdl;
 
 short			parse_input(t_farm *data, short start_msg, short end_msg);

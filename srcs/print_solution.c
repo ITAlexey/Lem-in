@@ -6,7 +6,7 @@
 /*   By: tclarita <tclarita@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/15 13:10:00 by dshala            #+#    #+#             */
-/*   Updated: 2020/11/07 18:20:42 by tclarita         ###   ########.fr       */
+/*   Updated: 2020/11/09 18:16:01 by tclarita         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,7 +73,8 @@ void	print_solution(t_path *data, int ants, int reached, t_sdl *sdl)
 		while (path && id_ant <= ants)
 		{
 			node = path->content;
-			reached += push_ant(&output, (t_table*)node->content, id_ant++, sdl);
+			reached += push_ant(&output, (t_table*)node->content,
+												id_ant++, sdl);
 			path = path->next;
 		}
 		draw_movements(sdl, sdl->farm);

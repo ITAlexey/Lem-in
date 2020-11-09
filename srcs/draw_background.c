@@ -6,7 +6,7 @@
 /*   By: tclarita <tclarita@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/07 15:45:10 by tclarita          #+#    #+#             */
-/*   Updated: 2020/11/09 09:31:42 by tclarita         ###   ########.fr       */
+/*   Updated: 2020/11/09 18:23:46 by tclarita         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,7 @@ void	draw_circle(int x, int y, int radius, t_sdl *sdl)
 		{
 			dx = radius - w;
 			dy = radius - h;
-			if ((dx*dx + dy*dy) <= (radius * radius))
+			if ((dx * dx + dy * dy) <= (radius * radius))
 				SDL_RenderDrawPoint(sdl->render, x + dx, y + dy);
 			h++;
 		}
@@ -63,26 +63,23 @@ void	draw_circle(int x, int y, int radius, t_sdl *sdl)
 
 void	draw_circles(t_sdl *sdl, t_farm *data, int radius)
 {
-	int		x;
-	int		y;
 	t_room	*room;
 	t_room	*sink;
 	t_room	*src;
+	int		i;
 
+	i = 0;
 	src = data->src->value;
 	sink = data->sink->value;
-	int i = 0;
 	while (data->vis[i] != NULL)
 	{
-		SDL_SetRenderDrawColor(sdl->render, 140, 140, 140, 100);
-		room =  data->vis[i]->value;
+		SDL_SetRenderDrawColor(sdl->render, 0, 255, 127, 100);
+		room = data->vis[i]->value;
 		if (room->x == sink->x && room->y == sink->y)
-			SDL_SetRenderDrawColor(sdl->render, 255, 0, 0, 255);
+			SDL_SetRenderDrawColor(sdl->render, 255, 255, 0, 255);
 		if (room->x == src->x && room->y == src->y)
 			SDL_SetRenderDrawColor(sdl->render, 255, 255, 0, 255);
-		x = room->x;
-		y = room->y;
-		draw_circle(x, y, radius, sdl);
+		draw_circle(room->x, room->y, radius, sdl);
 		i++;
 	}
 }
@@ -94,6 +91,15 @@ void	sdl_key_down(t_sdl *sdl, t_farm *data)
 		close_window(sdl, data);
 		exit(0);
 	}
+	if (sdl->event.key.keysym.sym == SDLK_SPACE)
+	{
+		while (1)
+		{
+			SDL_PollEvent(&sdl->event);
+			if (sdl->event.type == SDL_KEYDOWN)
+				return ;
+		}
+	}
 }
 
 void	sdl_events(t_sdl *sdl, t_farm *data)
@@ -103,10 +109,7 @@ void	sdl_events(t_sdl *sdl, t_farm *data)
 		close_window(sdl, data);
 	if (sdl->event.type == SDL_KEYDOWN)
 		sdl_key_down(sdl, data);
-	// if (sdl->event.type == SDL_KEYUP)
-	// 	sdl_key_up(sdl);
 }
-
 
 void	draw_sidebar(t_sdl *sdl, t_farm *data)
 {
@@ -114,9 +117,9 @@ void	draw_sidebar(t_sdl *sdl, t_farm *data)
 	TTF_Font* Sans = TTF_OpenFont("TTF.ttf", 80);
 	SDL_Color white = {255, 255, 255, 255};
 	SDL_Surface *surface = TTF_RenderText_Solid(Sans, "message", white);
-	SDL_Texture* message = SDL_CreateTextureFromSurface(sdl->render, surface);
+	SDL_Texture *message = SDL_CreateTextureFromSurface(sdl->render, surface);
 	SDL_Rect Message_rect;
-	Message_rect.x = 0; 
+	Message_rect.x = 0;
 	Message_rect.y = 0;
 	Message_rect.w = 50;
 	Message_rect.h = 50;
