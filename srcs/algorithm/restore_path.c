@@ -27,10 +27,15 @@ static t_route	*init_route(t_table *to_paste)
 	return (route);
 }
 
-static void		add_new_route(t_table *tail, t_table *cur, t_table *src)
+static void		add_new_route(t_hashmap *rooms, t_table *tail,
+					t_table *cur, t_table *src)
 {
 	t_room	*tmp;
 
+	if (((t_room*)tail->value)->is_dup)
+		tail = get_table(rooms, tail->key + 1);
+	if (((t_room*)cur->value)->is_dup)
+		cur = get_table(rooms, cur->key + 1);
 	tmp = tail->value;
 	if (!tmp->route)
 		tmp->route = init_route(cur);
@@ -47,10 +52,14 @@ static short	is_equal(void *a, void *b)
 	return (((t_link*)a)->linked == (t_table*)b);
 }
 
-static void		lock_passage(t_table *tail, t_table *cur)
+static void		lock_passage(t_hashmap *rooms, t_table *tail, t_table *cur)
 {
 	t_list	*lst;
 
+	if (((t_room*)tail->value)->is_dup)
+		tail = get_table(rooms, tail->key + 1);
+	if (((t_room*)cur->value)->is_dup)
+		cur = get_table(rooms, cur->key + 1);
 	lst = ft_lstfind(((t_room*)tail->value)->neighbors, cur, is_equal);
 	((t_link*)lst->content)->is_lock = true;
 }
@@ -64,8 +73,8 @@ t_path			*restore_path(t_farm *data, t_table *sink)
 	while (((t_room*)cur->value)->member)
 	{
 		tail = ((t_room*)cur->value)->member;
-		lock_passage(tail, cur);
-		add_new_route(tail, cur, data->src);
+		lock_passage(data->rooms, tail, cur);
+		add_new_route(data->rooms, tail, cur, data->src);
 		cur = tail;
 	}
 	data->paths ? optimization(((t_room*)data->src->value)->route) : 0;

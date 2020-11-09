@@ -34,6 +34,7 @@ void			del_dup(void *data)
 	tmp = data;
 	if (((t_room*)tmp->value)->in)
 	{
+		ft_memdel((void**)&((t_room*)tmp->value)->in->key);
 		ft_memdel((void**)&((t_room*)tmp->value)->in->value);
 		ft_memdel((void**)&((t_room*)tmp->value)->in);
 	}

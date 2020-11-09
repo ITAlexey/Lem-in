@@ -6,7 +6,7 @@ CFLAGS := -Wall -Wextra -Werror
 
 CC    := gcc
 
-VPATH = srcs:srcs/validation:srcs/algorithm
+VPATH = srcs:srcs/validation:srcs/algorithm:backup/
 
 LIB   := libft.a
 
@@ -53,7 +53,7 @@ $(NAME): $(OBJS)
 	@echo "$(RED)Project has been successfully built$(RESET)"
 
 $(O_DIR)/%.o: %.c $(INC) $(LIBINC) 
-	@$(CC) $(CFLAGS) -g -o $@ -c $< -I$(INC) -I$(LIBINC)
+	$(CC) $(CFLAGS) -g -o $@ -c $< -I$(INC) -I$(LIBINC)
 
 norm:
 	@$(MAKE) norm -sC $(LIB_DIR)
