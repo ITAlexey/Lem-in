@@ -6,17 +6,17 @@
 /*   By: tclarita <tclarita@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/07 15:48:07 by tclarita          #+#    #+#             */
-/*   Updated: 2020/11/07 16:14:17 by tclarita         ###   ########.fr       */
+/*   Updated: 2020/11/09 18:14:08 by tclarita         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ant_farm.h"
 
-void	fill_ants(t_sdl *sdl, t_farm *data)
-{
-	int     i;
-    t_table *src;
-    t_room  *room;
+	void	fill_ants(t_sdl *sdl, t_farm *data)
+	{
+	int		i;
+	t_table	*src;
+	t_room	*room;
 
 	sdl->ant = (t_ants *)malloc(sizeof(t_ants) * data->ants);
 	i = 0;
@@ -34,13 +34,18 @@ void	fill_ants(t_sdl *sdl, t_farm *data)
 
 int		count_done(t_sdl *sdl, t_farm *data)
 {
-	int i = 0;
-	int res = 0;
+	int i;
+	int res;
+
+	i = 0;
+	res = 0;
 	while (i < data->ants)
 	{
 		if (sdl->ant[i].x == sdl->ant[i].x1 && sdl->ant[i].y == sdl->ant[i].y1)
 			res++;
 		i++;
 	}
-	return (res);
+	if (res != data->ants)
+		return (0);
+	return (1);
 }
