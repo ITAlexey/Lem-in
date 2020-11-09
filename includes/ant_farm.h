@@ -6,7 +6,7 @@
 /*   By: tclarita <tclarita@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/15 13:10:00 by dshala            #+#    #+#             */
-/*   Updated: 2020/11/07 19:14:38 by tclarita         ###   ########.fr       */
+/*   Updated: 2020/11/09 10:30:01 by tclarita         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@
 # include <SDL2/SDL_mixer.h>
 # include <SDL2/SDL_ttf.h>
 
-# define WINDOW_WIDTH 1000
+# define WINDOW_WIDTH 1200
 # define WINDOW_HEIGHT 1000
 # define MAX1(a, b) (a > b ? a : b)
 # define MOD(a) ((a < 0) ? -a : a)
@@ -132,5 +132,6 @@ void			fill_ants(t_sdl *sdl, t_farm *data);
 void			draw_movements(t_sdl *sdl, t_farm *data);
 void			note_movements(t_sdl *sdl, int index, const char *room);
 void			sdl_events(t_sdl *sdl, t_farm *data);
+void			draw_circles(t_sdl *sdl, t_farm *data, int radius);
 
 #endif

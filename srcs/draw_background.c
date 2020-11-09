@@ -6,7 +6,7 @@
 /*   By: tclarita <tclarita@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/07 15:45:10 by tclarita          #+#    #+#             */
-/*   Updated: 2020/11/07 18:28:49 by tclarita         ###   ########.fr       */
+/*   Updated: 2020/11/09 09:31:42 by tclarita         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,12 +71,11 @@ void	draw_circles(t_sdl *sdl, t_farm *data, int radius)
 
 	src = data->src->value;
 	sink = data->sink->value;
-	SDL_SetRenderDrawColor(sdl->render, 255, 255, 255, 255);
 	int i = 0;
 	while (data->vis[i] != NULL)
 	{
+		SDL_SetRenderDrawColor(sdl->render, 140, 140, 140, 100);
 		room =  data->vis[i]->value;
-		SDL_SetRenderDrawColor(sdl->render, 140, 140, 140, 255);
 		if (room->x == sink->x && room->y == sink->y)
 			SDL_SetRenderDrawColor(sdl->render, 255, 0, 0, 255);
 		if (room->x == src->x && room->y == src->y)
@@ -131,7 +130,7 @@ void	draw_background(t_sdl *sdl, t_farm *data)
 	sdl_events(sdl, data);
 	// draw_sidebar(sdl, data);
 	SDL_SetRenderDrawColor(sdl->render, 0, 0, 0, 0);
-	draw_circles(sdl, data, 10);
 	draw_connections(sdl, data);
+	draw_circles(sdl, data, 10);
 	SDL_RenderPresent(sdl->render);
 }

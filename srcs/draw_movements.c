@@ -6,7 +6,7 @@
 /*   By: tclarita <tclarita@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/07 15:49:41 by tclarita          #+#    #+#             */
-/*   Updated: 2020/11/07 19:07:32 by tclarita         ###   ########.fr       */
+/*   Updated: 2020/11/09 09:34:09 by tclarita         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,6 +66,7 @@ void	draw_movements(t_sdl *sdl, t_farm *data)
 			fdf[i].x += fdf[i].x_step;
 			fdf[i].y += fdf[i].y_step;
 		}
+		// draw_circle(sdl->ant[i].x, sdl->ant[i].y, radius, sdl);
 		if (!((int)(fdf[i].x - fdf[i].x1)) && !((int)(fdf[i].y - fdf[i].y1)))
 		{
 			sdl->ant[i].x = sdl->ant[i].x1;
@@ -75,7 +76,7 @@ void	draw_movements(t_sdl *sdl, t_farm *data)
 		{
 			draw_background(sdl, data);
 			sdl_events(sdl, data);
-			SDL_Delay(3);
+			SDL_Delay(1);
 			SDL_RenderPresent(sdl->render);
 			SDL_SetRenderDrawColor(sdl->render, 0, 0, 0, 255);
 			SDL_RenderClear(sdl->render);
