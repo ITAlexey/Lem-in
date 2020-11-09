@@ -20,8 +20,9 @@ static t_table	*clone_room(t_table *src)
 	clone = (t_table*)malloc(sizeof(t_table));
 	IF_FAIL(clone);
 	clone->value = (t_room*)malloc(sizeof(t_room));
-	clone->key = src->key;
 	IF_FAIL(clone->value);
+	clone->key = ft_strjoin("#", src->key);
+	IF_FAIL(clone->key);
 	tmp = clone->value;
 	tmp->member = ((t_room*)src->value)->member;
 	tmp->in = NULL;

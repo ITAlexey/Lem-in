@@ -12,48 +12,62 @@
 
 #include "ant_farm.h"
 
-static inline t_table	*analyse_room(t_table *main, t_table *neighbor)
+static void 			add_inner_room(t_table *inner, t_table *from, t_bfs *bfs)
 {
-	t_room	*main_room;
-	t_room	*link_room;
-
-	main_room = main->value;
-	link_room = neighbor->value;
-	return (!main_room->is_dup && link_room->in ? link_room->in : neighbor);
-}
-
-static void				add_neighbor(t_table *node, t_bfs *bfs)
-{
-	t_list		*tmp;
-	t_table		*cur;
-
-	tmp = ((t_room*)node->value)->neighbors;
-	if (((t_room*)node->value)->in)
-		enqueue(bfs->q, ((t_room*)node->value)->in);
-	while (tmp)
+	if (!get_elem(bfs->visited, inner->key))
 	{
-		cur = ((t_link*)tmp->content)->linked;
-		if (!((t_link*)tmp->content)->is_lock &&
-				!get_elem(bfs->visited, cur->key))
-		{
-			((t_room*)cur->value)->member = node;
-			IF_FAIL(put_elem(&bfs->visited, cur->key, cur->value));
-			enqueue(bfs->q, analyse_room(node, cur));
-		}
-		tmp = tmp->next;
+		if (from)
+			((t_room*)inner->value)->member = from;
+		enqueue(bfs->q, inner);
+		IF_FAIL(put_elem(&bfs->visited, inner->key, inner->value));
 	}
 }
 
-static void				add_dup(t_table *node, t_table *origin, t_bfs *bfs)
+static void 			add_plain_neighbors(t_table *node, t_bfs *bfs)
 {
-	t_table		*member;
+	t_list	*neig;
+	t_table *cur_neig;
 
-	member = ((t_room*)node->value)->member;
-	if (!is_elem_contained(bfs->visited, member->key))
+	neig = ((t_room*)node->value)->neighbors;
+	while (neig)
 	{
-		((t_room*)member->value)->member = origin;
-		enqueue(bfs->q, member);
-		IF_FAIL(put_elem(&bfs->visited, member->key, member->value));
+		cur_neig = ((t_link*)neig->content)->linked;
+		if (!((t_link*)neig->content)->is_lock)
+		{
+			if (((t_room*)cur_neig->value)->in)
+				add_inner_room(((t_room*)cur_neig->value)->in, node, bfs);
+			else if (!get_elem(bfs->visited, cur_neig->key))
+			{
+				((t_room*)cur_neig->value)->member = node;
+				enqueue(bfs->q, cur_neig);
+				IF_FAIL(put_elem(&bfs->visited, cur_neig->key, cur_neig->value));
+			}
+		}
+		neig = neig->next;
+	}
+}
+
+static void				add_neighbor(t_hashmap *rooms, t_table *node, t_bfs *bfs)
+{
+	t_table	*member;
+	t_table	*origin;
+
+	if (((t_room*)node->value)->is_dup)
+	{
+		origin = get_table(rooms, node->key + 1);
+		member = ((t_room*)origin->value)->member;
+		if (!get_elem(bfs->visited, member->key))
+		{
+			((t_room*)member->value)->member = node;
+			enqueue(bfs->q, member);
+			IF_FAIL(put_elem(&bfs->visited, member->key, member->value));
+		}
+	}
+	else
+	{
+		if (((t_room*)node->value)->in)
+			add_inner_room(((t_room*)node->value)->in, NULL, bfs);
+		add_plain_neighbors(node, bfs);
 	}
 }
 
@@ -84,8 +98,7 @@ t_path					*find_path(t_farm *data)
 		cur = dequeue(search->q);
 		if (cur == data->sink && (is_exist = true))
 			break ;
-		!((t_room*)cur->value)->is_dup ? add_neighbor(cur, search) :
-				add_dup(cur, get_table(data->rooms, cur->key), search);
+		add_neighbor(data->rooms, cur, search);
 	}
 	remove_hashmap(search->visited);
 	remove_queue(search->q);
