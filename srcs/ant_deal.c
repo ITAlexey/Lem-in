@@ -6,14 +6,14 @@
 /*   By: tclarita <tclarita@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/07 15:48:07 by tclarita          #+#    #+#             */
-/*   Updated: 2020/11/09 18:14:08 by tclarita         ###   ########.fr       */
+/*   Updated: 2020/11/10 11:18:07 by tclarita         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ant_farm.h"
 
-	void	fill_ants(t_sdl *sdl, t_farm *data)
-	{
+void	fill_ants(t_sdl *sdl, t_farm *data)
+{
 	int		i;
 	t_table	*src;
 	t_room	*room;

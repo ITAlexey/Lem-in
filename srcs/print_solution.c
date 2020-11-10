@@ -6,7 +6,7 @@
 /*   By: tclarita <tclarita@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/15 13:10:00 by dshala            #+#    #+#             */
-/*   Updated: 2020/11/09 18:16:01 by tclarita         ###   ########.fr       */
+/*   Updated: 2020/11/10 09:40:54 by tclarita         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,7 +77,7 @@ void	print_solution(t_path *data, int ants, int reached, t_sdl *sdl)
 												id_ant++, sdl);
 			path = path->next;
 		}
-		draw_movements(sdl, sdl->farm);
+		draw_movements(sdl, sdl->farm, output);
 		ft_putchar('\n');
 	}
 	remove_hashmap(output);

@@ -6,7 +6,7 @@
 /*   By: tclarita <tclarita@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/07 15:49:41 by tclarita          #+#    #+#             */
-/*   Updated: 2020/11/09 18:18:30 by tclarita         ###   ########.fr       */
+/*   Updated: 2020/11/10 11:19:29 by tclarita         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,7 +65,7 @@ void	fill_fdf(t_fdf *fdf, t_sdl *sdl, int i)
 	}
 }
 
-void	fill_render(t_sdl *sdl, t_farm *data, t_fdf *fdf)
+void	fill_render(t_sdl *sdl, t_farm *data, t_fdf *fdf, t_hashmap *output)
 {
 	int i;
 
@@ -84,15 +84,15 @@ void	fill_render(t_sdl *sdl, t_farm *data, t_fdf *fdf)
 		}
 		i++;
 	}
-	draw_background(sdl, data);
-	sdl_events(sdl, data);
-	SDL_Delay(1);
+	draw_background(sdl, data, output);
+	sdl_events(sdl, data, output);
+	SDL_Delay(sdl->delay);
 	SDL_RenderPresent(sdl->render);
 	SDL_SetRenderDrawColor(sdl->render, 0, 0, 0, 255);
 	SDL_RenderClear(sdl->render);
 }
 
-void	draw_movements(t_sdl *sdl, t_farm *data)
+void	draw_movements(t_sdl *sdl, t_farm *data, t_hashmap *output)
 {
 	t_fdf	fdf[data->ants];
 	int		i;
@@ -103,7 +103,7 @@ void	draw_movements(t_sdl *sdl, t_farm *data)
 	{
 		fill_fdf(fdf, sdl, i);
 		if (i == data->ants - 1)
-			fill_render(sdl, data, fdf);
+			fill_render(sdl, data, fdf, output);
 		if (i == data->ants - 1 && !count_done(sdl, data))
 			i = -1;
 		i++;

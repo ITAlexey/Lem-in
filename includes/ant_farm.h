@@ -6,7 +6,7 @@
 /*   By: tclarita <tclarita@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/15 13:10:00 by dshala            #+#    #+#             */
-/*   Updated: 2020/11/09 18:15:09 by tclarita         ###   ########.fr       */
+/*   Updated: 2020/11/10 10:32:09 by tclarita         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -117,6 +117,8 @@ typedef struct		s_sdl
 	int				delay;
 	Mix_Music		*music;
 	int				ant_radius;
+	int				room_radius;
+	int				done;
 }					t_sdl;
 
 short			parse_input(t_farm *data, short start_msg, short end_msg);
@@ -138,14 +140,15 @@ void			clear_paths(t_path *paths);
 void			del_value(void *val);
 
 void			init_sdl(t_sdl *sdl);
-void			close_window(t_sdl *sdl, t_farm *data);
-void			draw_background(t_sdl *sdl, t_farm *data);
+void			close_window(t_sdl *sdl, t_farm *data, t_hashmap *output);
+void			draw_background(t_sdl *sdl, t_farm *data, t_hashmap	*output);
 void			draw_circle(int x, int y, int radius, t_sdl *sdl);
 int				count_done(t_sdl *sdl, t_farm *data);
 void			fill_ants(t_sdl *sdl, t_farm *data);
-void			draw_movements(t_sdl *sdl, t_farm *data);
+void			draw_movements(t_sdl *sdl, t_farm *data, t_hashmap *output);
 void			note_movements(t_sdl *sdl, int index, const char *room);
-void			sdl_events(t_sdl *sdl, t_farm *data);
+void			sdl_events(t_sdl *sdl, t_farm *data, t_hashmap	*output);
 void			draw_circles(t_sdl *sdl, t_farm *data, int radius);
+void			draw_connections(t_sdl *sdl, t_farm *data);
 
 #endif
