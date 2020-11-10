@@ -6,7 +6,7 @@ CFLAGS := -Wall -Wextra -Werror
 
 CC    := gcc
 
-VPATH = srcs:srcs/validation:srcs/algorithm:backup/
+VPATH = srcs:srcs/validation:srcs/algorithm:backup/visual:srcs/
 
 LIB   := libft.a
 

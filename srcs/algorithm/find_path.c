@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   find_path.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dshala <marvin@42.fr>                      +#+  +:+       +#+        */
+/*   By: tclarita <tclarita@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/15 13:10:00 by dshala            #+#    #+#             */
-/*   Updated: 2020/10/15 15:07:37 by dshala           ###   ########.fr       */
+/*   Updated: 2020/11/10 13:00:21 by tclarita         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ant_farm.h"
 
-static void 			add_inner_room(t_table *inner, t_table *from, t_bfs *bfs)
+static void		add_inner_room(t_table *inner, t_table *from, t_bfs *bfs)
 {
 	if (!get_elem(bfs->visited, inner->key))
 	{
@@ -23,7 +23,7 @@ static void 			add_inner_room(t_table *inner, t_table *from, t_bfs *bfs)
 	}
 }
 
-static void 			add_plain_neighbors(t_table *node, t_bfs *bfs)
+static void		add_plain_neighbors(t_table *node, t_bfs *bfs)
 {
 	t_list	*neig;
 	t_table *cur_neig;
@@ -40,14 +40,15 @@ static void 			add_plain_neighbors(t_table *node, t_bfs *bfs)
 			{
 				((t_room*)cur_neig->value)->member = node;
 				enqueue(bfs->q, cur_neig);
-				IF_FAIL(put_elem(&bfs->visited, cur_neig->key, cur_neig->value));
+				IF_FAIL(put_elem(&bfs->visited, cur_neig->key,
+								cur_neig->value));
 			}
 		}
 		neig = neig->next;
 	}
 }
 
-static void				add_neighbor(t_hashmap *rooms, t_table *node, t_bfs *bfs)
+static void		add_neighbor(t_hashmap *rooms, t_table *node, t_bfs *bfs)
 {
 	t_table	*member;
 	t_table	*origin;
@@ -71,7 +72,7 @@ static void				add_neighbor(t_hashmap *rooms, t_table *node, t_bfs *bfs)
 	}
 }
 
-static t_bfs			*init_bfs(t_table *src)
+static t_bfs		*init_bfs(t_table *src)
 {
 	t_bfs	*search;
 
@@ -84,7 +85,7 @@ static t_bfs			*init_bfs(t_table *src)
 	return (search);
 }
 
-t_path					*find_path(t_farm *data)
+t_path		*find_path(t_farm *data)
 {
 	t_bfs		*search;
 	t_table		*cur;
