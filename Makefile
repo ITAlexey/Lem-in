@@ -6,7 +6,7 @@ CFLAGS := -Wall -Wextra -Werror
 
 CC    := gcc
 
-VPATH = srcs:srcs/validation:srcs/algorithm:backup/
+VPATH = srcs:srcs/validation:srcs/algorithm:backup/visual:srcs/
 
 LIB   := libft.a
 
@@ -36,6 +36,7 @@ SRC   := define_link \
 		draw_background \
 		ant_deal \
 		draw_movements \
+		sdl_events \
 
 OBJS  := $(addsuffix .o, $(addprefix $(O_DIR)/, $(SRC)))
 

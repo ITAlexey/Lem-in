@@ -6,7 +6,7 @@
 /*   By: tclarita <tclarita@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/07 15:40:39 by tclarita          #+#    #+#             */
-/*   Updated: 2020/11/09 18:15:20 by tclarita         ###   ########.fr       */
+/*   Updated: 2020/11/10 11:12:27 by tclarita         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,10 +19,16 @@ void	open_music(t_sdl *sdl)
 	Mix_OpenAudio(22050, MIX_DEFAULT_FORMAT, 2, 1024);
 	sdl->music = Mix_LoadMUS("music.mp3");
 	Mix_PlayMusic(sdl->music, -1);
+	sdl->delay = 1;
+	sdl->ant_radius = 7;
+	sdl->room_radius = 10;
+	sdl->start = 0;
 }
 
-void	close_window(t_sdl *sdl, t_farm *data)
+void	close_window(t_sdl *sdl, t_farm *data, t_hashmap *output)
 {
+	if (output != NULL)
+		remove_hashmap(output);
 	Mix_CloseAudio();
 	clear_paths(data->paths);
 	remove_hashmap(data->rooms);
@@ -30,12 +36,11 @@ void	close_window(t_sdl *sdl, t_farm *data)
 	SDL_DestroyRenderer(sdl->render);
 	SDL_DestroyWindow(sdl->window);
 	SDL_Quit();
+	exit(0);
 }
 
 void	init_sdl(t_sdl *sdl)
 {
-	// TTF_Init();
-	sdl->start = 0;
 	if (SDL_Init(SDL_INIT_EVERYTHING) != 0)
 	{
 		ft_putstr("Error init_SDL\n");
@@ -55,7 +60,5 @@ void	init_sdl(t_sdl *sdl)
 		exit(1);
 	}
 	SDL_SetRenderDrawBlendMode(sdl->render, SDL_BLENDMODE_BLEND);
-	sdl->delay = 1;
-	sdl->ant_radius = 7;
 	open_music(sdl);
 }

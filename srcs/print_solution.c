@@ -6,7 +6,7 @@
 /*   By: tclarita <tclarita@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/15 13:10:00 by dshala            #+#    #+#             */
-/*   Updated: 2020/11/09 18:16:01 by tclarita         ###   ########.fr       */
+/*   Updated: 2020/11/10 12:49:35 by tclarita         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,8 @@ int		move_ant(t_hashmap **data, int reached, int ants, t_sdl *sdl)
 			nbr++;
 		else
 			IF_FAIL(put_elem(data, ant_name, tmp));
-		note_movements(sdl, reached, tmp->key);
+		if (sdl->farm->visual)
+			note_movements(sdl, reached, tmp->key);
 		ft_printf("L%d-%s ", reached++, tmp->key);
 		free(ant_name);
 	}
@@ -51,7 +52,8 @@ int		push_ant(t_hashmap **data, t_table *node, int id_ant, t_sdl *sdl)
 	}
 	else
 		nbr++;
-	note_movements(sdl, id_ant, node->key);
+	if (sdl->farm->visual)
+		note_movements(sdl, id_ant, node->key);
 	ft_printf("L%d-%s ", id_ant, node->key);
 	return (nbr);
 }
@@ -65,7 +67,8 @@ void	print_solution(t_path *data, int ants, int reached, t_sdl *sdl)
 
 	id_ant = 1;
 	output = init_hashmap(MAX_SIZE / 3, NULL);
-	fill_ants(sdl, sdl->farm);
+	if (sdl->farm->visual)
+		fill_ants(sdl, sdl->farm);
 	while (reached < ants)
 	{
 		path = data->all;
@@ -77,7 +80,8 @@ void	print_solution(t_path *data, int ants, int reached, t_sdl *sdl)
 												id_ant++, sdl);
 			path = path->next;
 		}
-		draw_movements(sdl, sdl->farm);
+		if (sdl->farm->visual)
+			draw_movements(sdl, sdl->farm, output);
 		ft_putchar('\n');
 	}
 	remove_hashmap(output);
