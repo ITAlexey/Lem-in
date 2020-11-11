@@ -24,8 +24,6 @@
 
 # define WIDTH 1200
 # define HEIGHT 1000
-# define MAX1(a, b) (a > b ? a : b)
-# define MOD(a) ((a < 0) ? -a : a)
 # define STR_MSG 0
 # define END_MSG 0
 # define STDIN 0

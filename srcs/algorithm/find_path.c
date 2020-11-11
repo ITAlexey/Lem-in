@@ -72,7 +72,7 @@ static void		add_neighbor(t_hashmap *rooms, t_table *node, t_bfs *bfs)
 	}
 }
 
-static t_bfs		*init_bfs(t_table *src)
+static t_bfs	*init_bfs(t_table *src)
 {
 	t_bfs	*search;
 
@@ -85,7 +85,7 @@ static t_bfs		*init_bfs(t_table *src)
 	return (search);
 }
 
-t_path		*find_path(t_farm *data)
+t_path			*find_path(t_farm *data)
 {
 	t_bfs		*search;
 	t_table		*cur;
