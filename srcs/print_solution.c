@@ -29,13 +29,14 @@ int		move_ant(t_hashmap **data, int ants, char *ant_name)
 			tmp = ((t_room*)tmp->value)->route->cur->head->content;
 			if (!((t_room*)tmp->value)->route)
 			{
-				//remove_elem(*data, ant_name);
+				remove_elem(*data, ant_name);
 				nbr++;
 			}
 			else
 				IF_FAIL(put_elem(data, ant_name, tmp));
-			ft_printf("L%d-%s ", idx++, tmp->key);
+			ft_printf("L%d-%s ", idx, tmp->key);
 		}
+		idx++;
 		free(ant_name);
 	}
 	return (nbr);
@@ -53,26 +54,6 @@ void		push_ant(t_hashmap **data, t_table *node, int id_ant)
 		free(ant_name);
 	}
 	ft_printf("L%d-%s ", id_ant, node->key);
-}
-
-void print_hm(t_hashmap *output)
-{
-	ft_putstr("\n===hashmap===\n");
-	for (int i = 0; i < output->size; i++)
-	{
-		t_list *cur;
-		cur = &output->arr[i];
-		ft_printf("%d\t", i);
-		while (cur)
-		{
-			if (cur->content_size != 0)
-				ft_printf("[%s]->", ((t_table*)cur->content)->key);
-			else
-				ft_putstr("[-]");
-			cur = cur->next;
-		}
-		ft_putchar('\n');
-	}
 }
 
 void	print_solution(t_path *data, int ants, int reached)
@@ -96,6 +77,5 @@ void	print_solution(t_path *data, int ants, int reached)
 		}
 		ft_putchar('\n');
 	}
-	//print_hm(output);
 	remove_hashmap(output);
 }
