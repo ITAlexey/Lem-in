@@ -13,57 +13,69 @@
 #include "hashmap.h"
 #include "libft.h"
 
-static void		del_finded(t_list **head, t_list *current)
-{
-	(*head)->next = current->next;
-	ft_memdel((void**)&current);
-}
-
-static short	delete_lst(t_list **head, t_list *lst,
-				char const *to_find, void (*del)(void *))
+static void	delete_lst(t_hashmap *data, char const *key, int place)
 {
 	t_list	*prev;
 	t_list	*cur;
 
+	cur = data->arr[place].next;
 	prev = NULL;
-	cur = lst;
 	while (cur)
 	{
-		if (!ft_strcmp(((t_table*)cur->content)->key, to_find))
+		if (!ft_strcmp(((t_table*)cur->content)->key, key))
 		{
-			remove_table((t_table*)cur->content, del);
-			del_finded(prev ? &prev : head, cur);
-			return (1);
+			remove_table((t_table*)cur->content, data->del);
+			if (prev)
+				prev->next = cur->next;
+			else
+				data->arr[place].next = cur->next;
+			ft_memdel((void**)cur);
+			data->occupied_cells--;
 		}
 		prev = cur;
 		cur = cur->next;
 	}
-	return (0);
+}
+
+static void 	delete_head(t_hashmap *data, int place)
+{
+	t_list	*cur;
+	t_list	*to_delete;
+
+	cur = &data->arr[place];
+	to_delete = cur->next;
+	remove_table((t_table*)cur->content, data->del);
+	if (to_delete)
+	{
+		cur->content = to_delete->content;
+		cur->next = to_delete->next;
+		cur->content_size = to_delete->content_size;
+		ft_memdel((void**)&to_delete);
+	}
+	else
+	{
+		cur->content = NULL;
+		cur->content_size = 0;
+	}
+	data->occupied_cells--;
 }
 
 void			remove_elem(t_hashmap *data, char const *key)
 {
-	unsigned int	hash_code;
 	int				place;
-	t_list			*current;
+	t_list			*cur;
 
 	if (data != NULL && key != NULL)
 	{
-		hash_code = get_hashcode(key);
-		place = hash_code % data->size;
-		current = &data->arr[place];
-		if (current->content_size != 0)
+		place = get_hashcode(key) % data->size;
+		cur = &data->arr[place];
+		if (cur->content_size != 0)
 		{
-			if (!ft_strcmp(((t_table*)current->content)->key, key))
-			{
-				current->content_size = 0;
-				remove_table((t_table*)current->content, data->del);
-				data->occupied_cells--;
-			}
+			if (!ft_strcmp(((t_table*)cur->content)->key, key))
+				delete_head(data, place);
 			else
-				data->occupied_cells -= delete_lst(&current,
-						current->next, key, data->del);
+				delete_lst(data, key, place);
+			data->load_factor = data->occupied_cells / (float)data->size;
 		}
-		data->load_factor = data->occupied_cells / (float)data->size;
 	}
 }

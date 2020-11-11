@@ -13,20 +13,25 @@
 #include "hashmap.h"
 #include "libft.h"
 
-static t_list	*append_table(t_list *lst, t_table *table)
+static short	is_collision(t_hashmap *data, t_table *table, int idx, short c)
 {
-	lst->content_size = sizeof(*table);
-	lst->content = table;
-	return (lst);
-}
+	t_list *cur;
 
-static t_list	*init_newlst(t_table *table)
-{
-	t_list	*lst;
-
-	lst = (t_list*)ft_memalloc(sizeof(t_list));
-	ISNULL(lst);
-	return (append_table(lst, table));
+	cur = &data->arr[idx];
+	while (cur)
+	{
+		if (ft_strequ(table->key, ((t_table*)cur->content)->key))
+		{
+			c = 0;
+			remove_table((t_table*)cur->content, data->del);
+			cur->content = table;
+			break ;
+		}
+		cur = cur->next;
+	}
+	if (c)
+		ft_lstpushback(&data->arr[idx], ft_lstcreate(table, sizeof(t_table)));
+	return (c);
 }
 
 static void		*define_case(t_hashmap *data, t_table *table)
@@ -36,19 +41,12 @@ static void		*define_case(t_hashmap *data, t_table *table)
 	idx = table->hash_code % data->size;
 	if (data->arr[idx].content_size == 0)
 	{
-		ISNULL(append_table(&data->arr[idx], table));
-		data->occupied_cells++;
-	}
-	else if (!ft_strcmp(table->key, ((t_table*)data->arr[idx].content)->key))
-	{
-		remove_table((t_table*)data->arr[idx].content, data->del);
 		data->arr[idx].content = table;
+		data->arr[idx].content_size = sizeof(*table);
+		data->occupied_cells++;
 	}
 	else
-	{
-		ISNULL(ft_lstpushback(&data->arr[idx], init_newlst(table)));
-		data->occupied_cells++;
-	}
+		data->occupied_cells += is_collision(data, table, idx, 1);
 	data->load_factor = data->occupied_cells / (float)data->size;
 	return ((void*)table);
 }

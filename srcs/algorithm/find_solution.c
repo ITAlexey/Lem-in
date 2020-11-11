@@ -12,7 +12,7 @@
 
 #include "ant_farm.h"
 
-static int		update_distance(t_path *path, int ants)
+static int		update_distance(int size, int *arr, int ants)
 {
 	int	cur_steps;
 	int	min_steps;
@@ -22,9 +22,9 @@ static int		update_distance(t_path *path, int ants)
 	idx = 0;
 	sum = 0;
 	min_steps = INT_MAX;
-	while (idx < path->found)
+	while (idx < size)
 	{
-		sum += path->lengths[idx] - 1;
+		sum += arr[idx] - 1;
 		cur_steps = (ants + sum + idx) / (idx + 1) - 1;
 		if (cur_steps >= min_steps)
 			break ;
@@ -73,7 +73,7 @@ void			find_solution(t_farm *data, int min_steps)
 
 	while (data->max_paths && (new = find_path(data)))
 	{
-		nbr_steps = update_distance(new, data->ants);
+		nbr_steps = update_distance(new->found, new->lengths, data->ants);
 		if (!data->paths || (nbr_steps < min_steps))
 		{
 			clear_paths(data->paths);
