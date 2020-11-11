@@ -11,8 +11,9 @@
 /* ************************************************************************** */
 
 #include "ant_farm.h"
+#include "visual.h"
 
-void	draw_connections(t_sdl *sdl, t_farm *data)
+void	draw_connections(t_sdl *sdl, t_farm data)
 {
 	int		i;
 	t_room	*room;
@@ -22,9 +23,9 @@ void	draw_connections(t_sdl *sdl, t_farm *data)
 
 	i = 0;
 	SDL_SetRenderDrawColor(sdl->render, 255, 255, 255, 255);
-	while (data->vis[i] != NULL)
+	while (data.arr[i] != NULL)
 	{
-		room = data->vis[i]->value;
+		room = data.arr[i]->value;
 		neighbors = room->neighbors;
 		while (neighbors != NULL)
 		{
@@ -61,7 +62,7 @@ void	draw_circle(int x, int y, int radius, t_sdl *sdl)
 	}
 }
 
-void	draw_circles(t_sdl *sdl, t_farm *data, int radius)
+void	draw_circles(t_sdl *sdl, t_farm data, int radius)
 {
 	t_room	*room;
 	t_room	*sink;
@@ -69,12 +70,12 @@ void	draw_circles(t_sdl *sdl, t_farm *data, int radius)
 	int		i;
 
 	i = 0;
-	src = data->src->value;
-	sink = data->sink->value;
-	while (data->vis[i] != NULL)
+	src = data.src->value;
+	sink = data.sink->value;
+	while (data.arr[i] != NULL)
 	{
 		SDL_SetRenderDrawColor(sdl->render, 0, 255, 127, 100);
-		room = data->vis[i]->value;
+		room = data.arr[i]->value;
 		if (room->x == sink->x && room->y == sink->y)
 			SDL_SetRenderDrawColor(sdl->render, 255, 255, 0, 255);
 		if (room->x == src->x && room->y == src->y)
@@ -84,9 +85,9 @@ void	draw_circles(t_sdl *sdl, t_farm *data, int radius)
 	}
 }
 
-void	draw_background(t_sdl *sdl, t_farm *data, t_hashmap *output)
+void	draw_background(t_sdl *sdl, t_farm data)
 {
-	sdl_events(sdl, data, output);
+	sdl_events(sdl, data);
 	SDL_SetRenderDrawColor(sdl->render, 0, 0, 0, 0);
 	draw_connections(sdl, data);
 	draw_circles(sdl, data, sdl->room_radius);

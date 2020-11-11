@@ -40,29 +40,19 @@ static void		define_comment(t_farm *data, short *start, short *end)
 		(*start)++;
 	else if (!ft_strcmp("##end", data->line))
 		(*end)++;
-	else if (!ft_strcmp("#visual", data->line))
-		data->visual = 1;
 	data->err = *start > 1 || *end > 1 ? ERR_CMD : -1;
 }
 
 static void		init_farm(t_farm *data)
 {
-	int i;
-
-	i = 0;
 	data->ants = 0;
 	data->nbr_edges = 0;
 	data->paths = NULL;
 	data->src = NULL;
 	data->sink = NULL;
 	data->err = -1;
+	data->arr = NULL;
 	data->rooms = init_hashmap(TABLE_SIZE, del_value);
-	data->pos = 0;
-	while (i < 200)
-	{
-		data->vis[i] = NULL;
-		i++;
-	}
 	IF_FAIL(data->rooms);
 }
 

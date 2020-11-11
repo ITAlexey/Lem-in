@@ -11,18 +11,19 @@
 /* ************************************************************************** */
 
 #include "ant_farm.h"
+#include "visual.h"
 
-void	fill_ants(t_sdl *sdl, t_farm *data)
+void	fill_ants(t_sdl *sdl, t_farm data)
 {
 	int		i;
 	t_table	*src;
 	t_room	*room;
 
-	sdl->ant = (t_ants *)malloc(sizeof(t_ants) * data->ants);
+	sdl->ant = (t_ants *)malloc(sizeof(t_ants) * data.ants);
 	i = 0;
-	src = data->src;
+	src = data.src;
 	room = (t_room *)src->value;
-	while (i < data->ants)
+	while (i < data.ants)
 	{
 		sdl->ant[i].x = room->x;
 		sdl->ant[i].y = room->y;
@@ -32,20 +33,20 @@ void	fill_ants(t_sdl *sdl, t_farm *data)
 	}
 }
 
-int		count_done(t_sdl *sdl, t_farm *data)
+int		count_done(t_sdl *sdl, t_farm data)
 {
 	int i;
 	int res;
 
 	i = 0;
 	res = 0;
-	while (i < data->ants)
+	while (i < data.ants)
 	{
 		if (sdl->ant[i].x == sdl->ant[i].x1 && sdl->ant[i].y == sdl->ant[i].y1)
 			res++;
 		i++;
 	}
-	if (res != data->ants)
+	if (res != data.ants)
 		return (0);
 	return (1);
 }

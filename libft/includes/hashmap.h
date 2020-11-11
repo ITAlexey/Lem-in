@@ -45,5 +45,6 @@ void				remove_hashmap(t_hashmap *data);
 void				*resize_hashmap(t_hashmap **data);
 void				iterate_hashmap(t_hashmap *data, void (*fun)(t_list *));
 t_table				*get_table(t_hashmap *data, char const *key);
+t_table				**cast_to_array(t_hashmap *data);
 
 #endif

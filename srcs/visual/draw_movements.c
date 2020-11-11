@@ -11,30 +11,15 @@
 /* ************************************************************************** */
 
 #include "ant_farm.h"
+#include "visual.h"
 
-void	note_movements(t_sdl *sdl, int index, const char *room)
-{
-	int		i;
-	t_room	*res;
-
-	i = 0;
-	sdl->start = 1;
-	while (ft_strcmp(room, sdl->farm->vis[i]->key))
-		i++;
-	if (sdl->farm->vis[i]->key == NULL)
-		return ;
-	res = sdl->farm->vis[i]->value;
-	sdl->ant[index - 1].x1 = res->x;
-	sdl->ant[index - 1].y1 = res->y;
-}
-
-void	init_fdf(t_fdf *fdf, t_sdl *sdl, t_farm *data)
+void	init_fdf(t_fdf *fdf, t_sdl *sdl, t_farm data)
 {
 	int	i;
 	int max;
 
 	i = 0;
-	while (i < data->ants)
+	while (i < data.ants)
 	{
 		fdf[i].x = sdl->ant[i].x;
 		fdf[i].x1 = sdl->ant[i].x1;
@@ -65,12 +50,12 @@ void	fill_fdf(t_fdf *fdf, t_sdl *sdl, int i)
 	}
 }
 
-void	fill_render(t_sdl *sdl, t_farm *data, t_fdf *fdf, t_hashmap *output)
+void	fill_render(t_sdl *sdl, t_farm data, t_fdf *fdf)
 {
 	int i;
 
 	i = 0;
-	while (i < data->ants)
+	while (i < data.ants)
 	{
 		if (fdf[i].draw == 1)
 		{
@@ -84,27 +69,27 @@ void	fill_render(t_sdl *sdl, t_farm *data, t_fdf *fdf, t_hashmap *output)
 		}
 		i++;
 	}
-	draw_background(sdl, data, output);
-	sdl_events(sdl, data, output);
+	draw_background(sdl, data);
+	sdl_events(sdl, data);
 	SDL_Delay(sdl->delay);
 	SDL_RenderPresent(sdl->render);
 	SDL_SetRenderDrawColor(sdl->render, 0, 0, 0, 255);
 	SDL_RenderClear(sdl->render);
 }
 
-void	draw_movements(t_sdl *sdl, t_farm *data, t_hashmap *output)
+void	draw_movements(t_sdl *sdl, t_farm data)
 {
-	t_fdf	fdf[data->ants];
+	t_fdf	fdf[data.ants];
 	int		i;
 
 	i = 0;
 	init_fdf(fdf, sdl, data);
-	while (i < data->ants)
+	while (i < data.ants)
 	{
 		fill_fdf(fdf, sdl, i);
-		if (i == data->ants - 1)
-			fill_render(sdl, data, fdf, output);
-		if (i == data->ants - 1 && !count_done(sdl, data))
+		if (i == data.ants - 1)
+			fill_render(sdl, data, fdf);
+		if (i == data.ants - 1 && !count_done(sdl, data))
 			i = -1;
 		i++;
 	}

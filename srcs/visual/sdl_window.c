@@ -11,6 +11,7 @@
 /* ************************************************************************** */
 
 #include "ant_farm.h"
+#include "visual.h"
 
 void	open_music(t_sdl *sdl)
 {
@@ -22,16 +23,12 @@ void	open_music(t_sdl *sdl)
 	sdl->delay = 1;
 	sdl->ant_radius = 7;
 	sdl->room_radius = 10;
-	sdl->start = 0;
 }
 
-void	close_window(t_sdl *sdl, t_farm *data, t_hashmap *output)
+void	close_window(t_sdl *sdl, t_farm data)
 {
-	if (output != NULL)
-		remove_hashmap(output);
+	(void)data;
 	Mix_CloseAudio();
-	clear_paths(data->paths);
-	remove_hashmap(data->rooms);
 	SDL_RenderClear(sdl->render);
 	SDL_DestroyRenderer(sdl->render);
 	SDL_DestroyWindow(sdl->window);

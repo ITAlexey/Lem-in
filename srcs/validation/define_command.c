@@ -40,7 +40,6 @@ void			record_room(t_farm *data, char **room_data,
 		data->src = get_table(data->rooms, room_data[0]);
 	else if (*end && !data->sink)
 		data->sink = get_table(data->rooms, room_data[0]);
-	data->vis[data->pos++] = get_table(data->rooms, room_data[0]);
 }
 
 static void		define_room(t_farm *data, short *start, short *end)

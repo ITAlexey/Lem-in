@@ -11,11 +11,12 @@
 /* ************************************************************************** */
 
 #include "ant_farm.h"
+#include "visual.h"
 
-void	sdl_key_down_2(t_sdl *sdl, t_farm *data, t_hashmap *output)
+void	sdl_key_down_2(t_sdl *sdl, t_farm data)
 {
 	if (sdl->event.key.keysym.sym == SDLK_ESCAPE)
-		close_window(sdl, data, output);
+		close_window(sdl, data);
 	if (sdl->event.key.keysym.sym == SDLK_UP)
 	{
 		if (sdl->ant_radius < 40)
@@ -36,9 +37,9 @@ void	sdl_key_down_2(t_sdl *sdl, t_farm *data, t_hashmap *output)
 	}
 }
 
-void	sdl_key_down(t_sdl *sdl, t_farm *data, t_hashmap *output)
+void	sdl_key_down(t_sdl *sdl, t_farm data)
 {
-	sdl_key_down_2(sdl, data, output);
+	sdl_key_down_2(sdl, data);
 	if (sdl->event.key.keysym.sym == SDLK_DOWN)
 	{
 		if (sdl->ant_radius > 3)
@@ -65,11 +66,11 @@ void	sdl_key_down(t_sdl *sdl, t_farm *data, t_hashmap *output)
 	}
 }
 
-void	sdl_events(t_sdl *sdl, t_farm *data, t_hashmap *output)
+void	sdl_events(t_sdl *sdl, t_farm data)
 {
 	SDL_PollEvent(&sdl->event);
 	if (sdl->event.type == SDL_QUIT)
-		close_window(sdl, data, output);
+		close_window(sdl, data);
 	if (sdl->event.type == SDL_KEYDOWN)
-		sdl_key_down(sdl, data, output);
+		sdl_key_down(sdl, data);
 }
