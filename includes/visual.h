@@ -1,6 +1,14 @@
-//
-// Created by alexey on 11.11.2020.
-//
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   visual.h                                           :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: tclarita <tclarita@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2020/11/11 18:36:07 by tclarita          #+#    #+#             */
+/*   Updated: 2020/11/11 18:36:17 by tclarita         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
 #ifndef VISUAL_H
 # define VISUAL_H
@@ -39,14 +47,12 @@ typedef struct		s_sdl
 	SDL_Renderer	*render;
 	SDL_Event		event;
 	t_ants			*ant;
-	int				start;
 	int				count;
-	int				delay;
+	short			delay;
 	Mix_Music		*music;
 	int				ant_radius;
 	int				room_radius;
-	int				done;
-	int				visual;
+	bool			done;
 }					t_sdl;
 
 void				init_sdl(t_sdl *sdl);
@@ -56,9 +62,11 @@ void				draw_circle(int x, int y, int radius, t_sdl *sdl);
 int					count_done(t_sdl *sdl, t_farm data);
 void				fill_ants(t_sdl *sdl, t_farm data);
 void				draw_movements(t_sdl *sdl, t_farm data);
-void				note_movements(t_sdl *sdl, int index, const char *room, t_farm data);
+void				note_movements(t_sdl *sdl, int index, const char *room,
+									t_farm data);
 void				sdl_events(t_sdl *sdl, t_farm data);
 void				draw_circles(t_sdl *sdl, t_farm data, int radius);
 void				draw_connections(t_sdl *sdl, t_farm data);
+void				visualisation(t_farm farm, char *path);
 
 #endif

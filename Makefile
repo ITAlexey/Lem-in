@@ -37,6 +37,7 @@ SRC   := define_link \
 		ant_deal \
 		draw_movements \
 		sdl_events \
+		visualisation \
 
 OBJS  := $(addsuffix .o, $(addprefix $(O_DIR)/, $(SRC)))
 

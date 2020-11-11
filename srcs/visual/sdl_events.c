@@ -6,7 +6,7 @@
 /*   By: tclarita <tclarita@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/10 11:12:51 by tclarita          #+#    #+#             */
-/*   Updated: 2020/11/10 11:19:50 by tclarita         ###   ########.fr       */
+/*   Updated: 2020/11/11 18:29:08 by tclarita         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,10 @@ void	sdl_key_down_2(t_sdl *sdl, t_farm data)
 			sdl->room_radius--;
 		SDL_Delay(4);
 	}
+	if (sdl->event.key.keysym.sym == SDLK_1)
+		sdl->delay = 1;
+	if (sdl->event.key.keysym.sym == SDLK_2)
+		sdl->delay = 5;
 }
 
 void	sdl_key_down(t_sdl *sdl, t_farm data)
@@ -46,10 +50,6 @@ void	sdl_key_down(t_sdl *sdl, t_farm data)
 			sdl->ant_radius -= 1;
 		SDL_Delay(4);
 	}
-	if (sdl->event.key.keysym.sym == SDLK_1)
-		sdl->delay = 1;
-	if (sdl->event.key.keysym.sym == SDLK_2)
-		sdl->delay = 5;
 	if (sdl->event.key.keysym.sym == SDLK_3)
 		sdl->delay = 15;
 	if (sdl->event.key.keysym.sym == SDLK_SPACE)
@@ -59,6 +59,8 @@ void	sdl_key_down(t_sdl *sdl, t_farm data)
 			SDL_PollEvent(&sdl->event);
 			if (sdl->event.type == SDL_KEYDOWN)
 			{
+				if (sdl->event.key.keysym.sym == SDLK_ESCAPE)
+					sdl_key_down_2(sdl, data);
 				if (sdl->event.key.keysym.sym == SDLK_SPACE)
 					return ;
 			}
