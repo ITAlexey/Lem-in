@@ -10,8 +10,8 @@
 # include <SDL2/SDL_ttf.h>
 # include "ant_farm.h"
 
-# define WIDTH 1200
-# define HEIGHT 1000
+# define WIDTH 1000
+# define HEIGHT 800
 
 typedef struct		s_fdf
 {
