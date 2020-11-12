@@ -6,7 +6,7 @@
 /*   By: tclarita <tclarita@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/11 18:36:07 by tclarita          #+#    #+#             */
-/*   Updated: 2020/11/12 10:10:49 by tclarita         ###   ########.fr       */
+/*   Updated: 2020/11/12 10:58:39 by tclarita         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,15 +56,15 @@ typedef struct		s_sdl
 }					t_sdl;
 
 void				init_sdl(t_sdl *sdl);
-void				close_window(t_sdl *sdl, t_farm data);
+void				close_window(t_sdl *sdl);
 void				draw_background(t_sdl *sdl, t_farm data);
 void				draw_circle(int x, int y, int radius, t_sdl *sdl);
-int					count_done(t_sdl *sdl, t_farm data);
+int					count_done(t_sdl *sdl, int ants);
 void				fill_ants(t_sdl *sdl, t_farm data);
 void				draw_movements(t_sdl *sdl, t_farm data);
 void				note_movements(t_sdl *sdl, int index, const char *room,
 									t_farm data);
-void				sdl_events(t_sdl *sdl, t_farm data);
+void				sdl_events(t_sdl *sdl);
 void				draw_circles(t_sdl *sdl, t_farm data, int radius);
 void				draw_connections(t_sdl *sdl, t_farm data);
 void				visualisation(t_farm farm, char *path);

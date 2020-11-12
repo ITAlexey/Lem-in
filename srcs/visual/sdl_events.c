@@ -6,17 +6,17 @@
 /*   By: tclarita <tclarita@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/10 11:12:51 by tclarita          #+#    #+#             */
-/*   Updated: 2020/11/11 18:29:08 by tclarita         ###   ########.fr       */
+/*   Updated: 2020/11/12 10:55:26 by tclarita         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ant_farm.h"
 #include "visual.h"
 
-void	sdl_key_down_2(t_sdl *sdl, t_farm data)
+void	sdl_key_down_2(t_sdl *sdl)
 {
 	if (sdl->event.key.keysym.sym == SDLK_ESCAPE)
-		close_window(sdl, data);
+		close_window(sdl);
 	if (sdl->event.key.keysym.sym == SDLK_UP)
 	{
 		if (sdl->ant_radius < 40)
@@ -41,9 +41,9 @@ void	sdl_key_down_2(t_sdl *sdl, t_farm data)
 		sdl->delay = 5;
 }
 
-void	sdl_key_down(t_sdl *sdl, t_farm data)
+void	sdl_key_down(t_sdl *sdl)
 {
-	sdl_key_down_2(sdl, data);
+	sdl_key_down_2(sdl);
 	if (sdl->event.key.keysym.sym == SDLK_DOWN)
 	{
 		if (sdl->ant_radius > 3)
@@ -60,7 +60,7 @@ void	sdl_key_down(t_sdl *sdl, t_farm data)
 			if (sdl->event.type == SDL_KEYDOWN)
 			{
 				if (sdl->event.key.keysym.sym == SDLK_ESCAPE)
-					sdl_key_down_2(sdl, data);
+					sdl_key_down_2(sdl);
 				if (sdl->event.key.keysym.sym == SDLK_SPACE)
 					return ;
 			}
@@ -68,11 +68,11 @@ void	sdl_key_down(t_sdl *sdl, t_farm data)
 	}
 }
 
-void	sdl_events(t_sdl *sdl, t_farm data)
+void	sdl_events(t_sdl *sdl)
 {
 	SDL_PollEvent(&sdl->event);
 	if (sdl->event.type == SDL_QUIT)
-		close_window(sdl, data);
+		close_window(sdl);
 	if (sdl->event.type == SDL_KEYDOWN)
-		sdl_key_down(sdl, data);
+		sdl_key_down(sdl);
 }

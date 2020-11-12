@@ -6,20 +6,20 @@
 /*   By: tclarita <tclarita@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/07 15:49:41 by tclarita          #+#    #+#             */
-/*   Updated: 2020/11/10 11:19:29 by tclarita         ###   ########.fr       */
+/*   Updated: 2020/11/12 10:58:28 by tclarita         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ant_farm.h"
 #include "visual.h"
 
-void	init_fdf(t_fdf *fdf, t_sdl *sdl, t_farm data)
+void	init_fdf(t_fdf *fdf, t_sdl *sdl, int ants)
 {
 	int	i;
 	int max;
 
 	i = 0;
-	while (i < data.ants)
+	while (i < ants)
 	{
 		fdf[i].x = sdl->ant[i].x;
 		fdf[i].x1 = sdl->ant[i].x1;
@@ -70,7 +70,7 @@ void	fill_render(t_sdl *sdl, t_farm data, t_fdf *fdf)
 		i++;
 	}
 	draw_background(sdl, data);
-	sdl_events(sdl, data);
+	sdl_events(sdl);
 	SDL_Delay(sdl->delay);
 	SDL_RenderPresent(sdl->render);
 	SDL_SetRenderDrawColor(sdl->render, 0, 0, 0, 255);
@@ -83,13 +83,13 @@ void	draw_movements(t_sdl *sdl, t_farm data)
 	int		i;
 
 	i = 0;
-	init_fdf(fdf, sdl, data);
+	init_fdf(fdf, sdl, data.ants);
 	while (i < data.ants)
 	{
 		fill_fdf(fdf, sdl, i);
 		if (i == data.ants - 1)
 			fill_render(sdl, data, fdf);
-		if (i == data.ants - 1 && !count_done(sdl, data))
+		if (i == data.ants - 1 && !count_done(sdl, data.ants))
 			i = -1;
 		i++;
 	}

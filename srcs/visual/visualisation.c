@@ -6,7 +6,7 @@
 /*   By: tclarita <tclarita@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/11 18:13:40 by tclarita          #+#    #+#             */
-/*   Updated: 2020/11/12 10:09:16 by tclarita         ###   ########.fr       */
+/*   Updated: 2020/11/12 10:17:19 by tclarita         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,8 @@ void	get_steps(char *line, t_sdl *sdl, t_farm farm)
 	char	**res;
 	int		i;
 
+	tmp = NULL;
+	res = NULL;
 	tmp = ft_strsplit(line, ' ');
 	i = 0;
 	while (tmp[i])
@@ -54,6 +56,7 @@ void	visualisation(t_farm farm, char *path)
 	char	*line;
 	int		fd;
 
+	line = NULL;
 	init_sdl(sdl);
 	fill_ants(sdl, farm);
 	fd = open(path, O_RDONLY);

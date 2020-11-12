@@ -6,7 +6,7 @@
 /*   By: tclarita <tclarita@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/07 15:40:39 by tclarita          #+#    #+#             */
-/*   Updated: 2020/11/10 11:12:27 by tclarita         ###   ########.fr       */
+/*   Updated: 2020/11/12 10:53:15 by tclarita         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,9 +25,8 @@ void	open_music(t_sdl *sdl)
 	sdl->room_radius = 10;
 }
 
-void	close_window(t_sdl *sdl, t_farm data)
+void	close_window(t_sdl *sdl)
 {
-	(void)data;
 	Mix_CloseAudio();
 	SDL_RenderClear(sdl->render);
 	SDL_DestroyRenderer(sdl->render);
@@ -38,6 +37,7 @@ void	close_window(t_sdl *sdl, t_farm data)
 
 void	init_sdl(t_sdl *sdl)
 {
+	sdl->window = NULL;
 	if (SDL_Init(SDL_INIT_EVERYTHING) != 0)
 	{
 		ft_putstr("Error init_SDL\n");
@@ -50,6 +50,7 @@ void	init_sdl(t_sdl *sdl)
 		ft_putstr("Window Error\n");
 		exit(1);
 	}
+	sdl->render = NULL;
 	sdl->render = SDL_CreateRenderer(sdl->window, -1, 0);
 	if (!sdl->render)
 	{

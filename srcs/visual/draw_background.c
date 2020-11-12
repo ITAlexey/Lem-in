@@ -6,7 +6,7 @@
 /*   By: tclarita <tclarita@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/07 15:45:10 by tclarita          #+#    #+#             */
-/*   Updated: 2020/11/10 11:18:36 by tclarita         ###   ########.fr       */
+/*   Updated: 2020/11/12 10:54:35 by tclarita         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,7 +87,7 @@ void	draw_circles(t_sdl *sdl, t_farm data, int radius)
 
 void	draw_background(t_sdl *sdl, t_farm data)
 {
-	sdl_events(sdl, data);
+	sdl_events(sdl);
 	SDL_SetRenderDrawColor(sdl->render, 0, 0, 0, 0);
 	draw_connections(sdl, data);
 	draw_circles(sdl, data, sdl->room_radius);
