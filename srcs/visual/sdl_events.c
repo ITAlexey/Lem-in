@@ -6,12 +6,20 @@
 /*   By: tclarita <tclarita@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/10 11:12:51 by tclarita          #+#    #+#             */
-/*   Updated: 2020/11/12 10:55:26 by tclarita         ###   ########.fr       */
+/*   Updated: 2020/11/12 12:33:42 by tclarita         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ant_farm.h"
 #include "visual.h"
+
+void	sdl_key_down_3(t_sdl *sdl)
+{
+	if (sdl->event.key.keysym.sym == SDLK_4)
+		sdl->new_year = 1;
+	if (sdl->event.key.keysym.sym == SDLK_5)
+		sdl->new_year = 0;
+}
 
 void	sdl_key_down_2(t_sdl *sdl)
 {
@@ -39,6 +47,7 @@ void	sdl_key_down_2(t_sdl *sdl)
 		sdl->delay = 1;
 	if (sdl->event.key.keysym.sym == SDLK_2)
 		sdl->delay = 5;
+	sdl_key_down_3(sdl);
 }
 
 void	sdl_key_down(t_sdl *sdl)

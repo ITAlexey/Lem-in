@@ -6,7 +6,7 @@
 /*   By: tclarita <tclarita@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/11 18:36:07 by tclarita          #+#    #+#             */
-/*   Updated: 2020/11/12 10:58:39 by tclarita         ###   ########.fr       */
+/*   Updated: 2020/11/12 12:30:38 by tclarita         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,12 +47,13 @@ typedef struct		s_sdl
 	SDL_Renderer	*render;
 	SDL_Event		event;
 	t_ants			*ant;
+	Mix_Music		*music;
 	int				count;
 	short			delay;
-	Mix_Music		*music;
 	short			ant_radius;
 	short			room_radius;
 	bool			done;
+	bool			new_year;
 }					t_sdl;
 
 void				init_sdl(t_sdl *sdl);
@@ -68,5 +69,6 @@ void				sdl_events(t_sdl *sdl);
 void				draw_circles(t_sdl *sdl, t_farm data, int radius);
 void				draw_connections(t_sdl *sdl, t_farm data);
 void				visualisation(t_farm farm, char *path);
+void				init_fdf(t_fdf *fdf, t_sdl *sdl, int ants);
 
 #endif
