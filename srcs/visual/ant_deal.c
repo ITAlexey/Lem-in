@@ -6,12 +6,34 @@
 /*   By: tclarita <tclarita@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/07 15:48:07 by tclarita          #+#    #+#             */
-/*   Updated: 2020/11/10 11:18:07 by tclarita         ###   ########.fr       */
+/*   Updated: 2020/11/12 12:30:28 by tclarita         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ant_farm.h"
 #include "visual.h"
+
+void	init_fdf(t_fdf *fdf, t_sdl *sdl, int ants)
+{
+	int	i;
+	int max;
+
+	i = 0;
+	while (i < ants)
+	{
+		fdf[i].x = sdl->ant[i].x;
+		fdf[i].x1 = sdl->ant[i].x1;
+		fdf[i].y = sdl->ant[i].y;
+		fdf[i].y1 = sdl->ant[i].y1;
+		fdf[i].x_step = fdf[i].x1 - fdf[i].x;
+		fdf[i].y_step = fdf[i].y1 - fdf[i].y;
+		max = MAX(ABC(fdf[i].x_step), ABC(fdf[i].y_step));
+		fdf[i].x_step /= max;
+		fdf[i].y_step /= max;
+		fdf[i].draw = 0;
+		i++;
+	}
+}
 
 void	fill_ants(t_sdl *sdl, t_farm data)
 {
@@ -33,20 +55,20 @@ void	fill_ants(t_sdl *sdl, t_farm data)
 	}
 }
 
-int		count_done(t_sdl *sdl, t_farm data)
+int		count_done(t_sdl *sdl, int ants)
 {
 	int i;
 	int res;
 
 	i = 0;
 	res = 0;
-	while (i < data.ants)
+	while (i < ants)
 	{
 		if (sdl->ant[i].x == sdl->ant[i].x1 && sdl->ant[i].y == sdl->ant[i].y1)
 			res++;
 		i++;
 	}
-	if (res != data.ants)
+	if (res != ants)
 		return (0);
 	return (1);
 }

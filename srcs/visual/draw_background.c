@@ -6,7 +6,7 @@
 /*   By: tclarita <tclarita@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/07 15:45:10 by tclarita          #+#    #+#             */
-/*   Updated: 2020/11/10 11:18:36 by tclarita         ###   ########.fr       */
+/*   Updated: 2020/11/12 12:26:00 by tclarita         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ void	draw_connections(t_sdl *sdl, t_farm data)
 	t_room	*room2;
 
 	i = 0;
-	SDL_SetRenderDrawColor(sdl->render, 255, 255, 255, 255);
+	SDL_SetRenderDrawColor(sdl->render, 0, 0, 0, 255);
 	while (data.arr[i] != NULL)
 	{
 		room = data.arr[i]->value;
@@ -74,7 +74,7 @@ void	draw_circles(t_sdl *sdl, t_farm data, int radius)
 	sink = data.sink->value;
 	while (data.arr[i] != NULL)
 	{
-		SDL_SetRenderDrawColor(sdl->render, 0, 255, 127, 100);
+		SDL_SetRenderDrawColor(sdl->render, 64, 64, 64, 200);
 		room = data.arr[i]->value;
 		if (room->x == sink->x && room->y == sink->y)
 			SDL_SetRenderDrawColor(sdl->render, 255, 255, 0, 255);
@@ -87,7 +87,7 @@ void	draw_circles(t_sdl *sdl, t_farm data, int radius)
 
 void	draw_background(t_sdl *sdl, t_farm data)
 {
-	sdl_events(sdl, data);
+	sdl_events(sdl);
 	SDL_SetRenderDrawColor(sdl->render, 0, 0, 0, 0);
 	draw_connections(sdl, data);
 	draw_circles(sdl, data, sdl->room_radius);

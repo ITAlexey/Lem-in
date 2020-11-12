@@ -1,6 +1,14 @@
-//
-// Created by alexey on 11.11.2020.
-//
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   visual.h                                           :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: tclarita <tclarita@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2020/11/11 18:36:07 by tclarita          #+#    #+#             */
+/*   Updated: 2020/11/12 12:30:38 by tclarita         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
 #ifndef VISUAL_H
 # define VISUAL_H
@@ -21,7 +29,7 @@ typedef struct		s_fdf
 	float			y;
 	float			x_step;
 	float			y_step;
-	int				draw;
+	bool			draw;
 }					t_fdf;
 
 typedef struct		s_ants
@@ -30,7 +38,7 @@ typedef struct		s_ants
 	int				y;
 	int				x1;
 	int				y1;
-	int				done;
+	bool			done;
 }					t_ants;
 
 typedef struct		s_sdl
@@ -39,26 +47,28 @@ typedef struct		s_sdl
 	SDL_Renderer	*render;
 	SDL_Event		event;
 	t_ants			*ant;
-	int				start;
-	int				count;
-	int				delay;
 	Mix_Music		*music;
-	int				ant_radius;
-	int				room_radius;
-	int				done;
-	int				visual;
+	int				count;
+	short			delay;
+	short			ant_radius;
+	short			room_radius;
+	bool			done;
+	bool			new_year;
 }					t_sdl;
 
 void				init_sdl(t_sdl *sdl);
-void				close_window(t_sdl *sdl, t_farm data);
+void				close_window(t_sdl *sdl);
 void				draw_background(t_sdl *sdl, t_farm data);
 void				draw_circle(int x, int y, int radius, t_sdl *sdl);
-int					count_done(t_sdl *sdl, t_farm data);
+int					count_done(t_sdl *sdl, int ants);
 void				fill_ants(t_sdl *sdl, t_farm data);
 void				draw_movements(t_sdl *sdl, t_farm data);
-void				note_movements(t_sdl *sdl, int index, const char *room, t_farm data);
-void				sdl_events(t_sdl *sdl, t_farm data);
+void				note_movements(t_sdl *sdl, int index, const char *room,
+									t_farm data);
+void				sdl_events(t_sdl *sdl);
 void				draw_circles(t_sdl *sdl, t_farm data, int radius);
 void				draw_connections(t_sdl *sdl, t_farm data);
+void				visualisation(t_farm farm, char *path);
+void				init_fdf(t_fdf *fdf, t_sdl *sdl, int ants);
 
 #endif
