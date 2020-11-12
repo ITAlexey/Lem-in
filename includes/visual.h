@@ -6,7 +6,7 @@
 /*   By: tclarita <tclarita@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/11 18:36:07 by tclarita          #+#    #+#             */
-/*   Updated: 2020/11/11 18:36:17 by tclarita         ###   ########.fr       */
+/*   Updated: 2020/11/12 10:09:11 by tclarita         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,8 +50,8 @@ typedef struct		s_sdl
 	int				count;
 	short			delay;
 	Mix_Music		*music;
-	int				ant_radius;
-	int				room_radius;
+	short			ant_radius;
+	short			room_radius;
 	bool			done;
 }					t_sdl;
 

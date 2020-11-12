@@ -6,7 +6,7 @@
 /*   By: tclarita <tclarita@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/11 18:13:40 by tclarita          #+#    #+#             */
-/*   Updated: 2020/11/11 18:33:46 by tclarita         ###   ########.fr       */
+/*   Updated: 2020/11/12 10:09:16 by tclarita         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,6 @@ void	note_movements(t_sdl *sdl, int index, const char *room, t_farm data)
 	t_room	*res;
 
 	i = 0;
-	sdl->start = 1;
 	while (ft_strcmp(room, data.arr[i]->key))
 		i++;
 	if (data.arr[i]->key == NULL)
