@@ -19,24 +19,20 @@ int		move_ant(t_hashmap **data, int ants, char *ant_name)
 	int 	idx;
 
 	nbr = 0;
-	idx = 1;
-	while (idx < ants)
+	idx = 0;
+	while (++idx < ants)
 	{
 		ant_name = ft_itoa(idx);
 		IF_FAIL(ant_name);
 		if ((tmp = get_elem(*data, ant_name)) != NULL)
 		{
 			tmp = ((t_room*)tmp->value)->route->cur->head->content;
-			if (!((t_room*)tmp->value)->route)
-			{
+			if (!((t_room*)tmp->value)->route && ++nbr)
 				remove_elem(*data, ant_name);
-				nbr++;
-			}
 			else
 				IF_FAIL(put_elem(data, ant_name, tmp));
 			ft_printf("L%d-%s ", idx, tmp->key);
 		}
-		idx++;
 		free(ant_name);
 	}
 	return (nbr);
@@ -64,7 +60,7 @@ void	print_solution(t_path *data, int ants, int reached)
 	t_list		*node;
 
 	id_ant = 1;
-	output = init_hashmap(15, NULL);
+	output = init_hashmap(MAX_SIZE / 3, NULL);
 	while (reached < ants)
 	{
 		path = data->all;
