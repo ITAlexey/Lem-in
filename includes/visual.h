@@ -6,7 +6,7 @@
 /*   By: tclarita <tclarita@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/11 18:36:07 by tclarita          #+#    #+#             */
-/*   Updated: 2020/11/12 10:09:11 by tclarita         ###   ########.fr       */
+/*   Updated: 2020/11/12 10:10:49 by tclarita         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ typedef struct		s_fdf
 	float			y;
 	float			x_step;
 	float			y_step;
-	int				draw;
+	bool			draw;
 }					t_fdf;
 
 typedef struct		s_ants
@@ -38,7 +38,7 @@ typedef struct		s_ants
 	int				y;
 	int				x1;
 	int				y1;
-	int				done;
+	bool			done;
 }					t_ants;
 
 typedef struct		s_sdl
