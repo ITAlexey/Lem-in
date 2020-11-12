@@ -1,22 +1,22 @@
-==22272== Memcheck, a memory error detector
-==22272== Copyright (C) 2002-2017, and GNU GPL'd, by Julian Seward et al.
-==22272== Using Valgrind-3.13.0 and LibVEX; rerun with -h for copyright info
-==22272== Command: ./lem-in
-==22272== Parent PID: 22251
-==22272== 
-==22272== 
-==22272== HEAP SUMMARY:
-==22272==     in use at exit: 18,700 bytes in 8 blocks
-==22272==   total heap usage: 54,113 allocs, 54,105 frees, 4,113,608 bytes allocated
-==22272== 
-==22272== LEAK SUMMARY:
-==22272==    definitely lost: 0 bytes in 0 blocks
-==22272==    indirectly lost: 0 bytes in 0 blocks
-==22272==      possibly lost: 0 bytes in 0 blocks
-==22272==    still reachable: 18,700 bytes in 8 blocks
-==22272==         suppressed: 0 bytes in 0 blocks
-==22272== Reachable blocks (those to which a pointer was found) are not shown.
-==22272== To see them, rerun with: --leak-check=full --show-leak-kinds=all
-==22272== 
-==22272== For counts of detected and suppressed errors, rerun with: -v
-==22272== ERROR SUMMARY: 0 errors from 0 contexts (suppressed: 0 from 0)
+==27182== Memcheck, a memory error detector
+==27182== Copyright (C) 2002-2017, and GNU GPL'd, by Julian Seward et al.
+==27182== Using Valgrind-3.13.0 and LibVEX; rerun with -h for copyright info
+==27182== Command: ./lem-in
+==27182== Parent PID: 27158
+==27182== 
+==27182== 
+==27182== HEAP SUMMARY:
+==27182==     in use at exit: 18,700 bytes in 8 blocks
+==27182==   total heap usage: 50,221 allocs, 50,213 frees, 4,494,054 bytes allocated
+==27182== 
+==27182== LEAK SUMMARY:
+==27182==    definitely lost: 0 bytes in 0 blocks
+==27182==    indirectly lost: 0 bytes in 0 blocks
+==27182==      possibly lost: 0 bytes in 0 blocks
+==27182==    still reachable: 18,700 bytes in 8 blocks
+==27182==         suppressed: 0 bytes in 0 blocks
+==27182== Reachable blocks (those to which a pointer was found) are not shown.
+==27182== To see them, rerun with: --leak-check=full --show-leak-kinds=all
+==27182== 
+==27182== For counts of detected and suppressed errors, rerun with: -v
+==27182== ERROR SUMMARY: 0 errors from 0 contexts (suppressed: 0 from 0)

@@ -37,7 +37,7 @@ static void	delete_lst(t_hashmap *data, char const *key, int place)
 	}
 }
 
-static void 	delete_head(t_hashmap *data, int place)
+static void	delete_head(t_hashmap *data, int place)
 {
 	t_list	*cur;
 	t_list	*to_delete;
@@ -60,7 +60,7 @@ static void 	delete_head(t_hashmap *data, int place)
 	data->occupied_cells--;
 }
 
-void			remove_elem(t_hashmap *data, char const *key)
+void		remove_elem(t_hashmap *data, char const *key)
 {
 	int				place;
 	t_list			*cur;

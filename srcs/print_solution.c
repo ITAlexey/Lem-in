@@ -12,7 +12,7 @@
 
 #include "ant_farm.h"
 
-int		move_ant(t_hashmap **data, int ants, char *ant_name)
+int		move_ants(t_hashmap **data, int ants, char *ant_name)
 {
 	int		nbr;
 	t_table	*tmp;
@@ -38,21 +38,26 @@ int		move_ant(t_hashmap **data, int ants, char *ant_name)
 	return (nbr);
 }
 
-void		push_ant(t_hashmap **data, t_table *node, int id_ant)
+static t_list	*push_ant(t_hashmap **data, t_list *path, int id_ant)
 {
 	char	*ant_name;
+	t_list	*node;
+	t_table	*tmp;
 
-	if (((t_room*)node->value)->route)
+	node = path->content;
+	tmp = node->content;
+	if (((t_room*)tmp->value)->route)
 	{
 		ant_name = ft_itoa(id_ant);
 		IF_FAIL(ant_name);
-		IF_FAIL(put_elem(data, ant_name, node));
+		IF_FAIL(put_elem(data, ant_name, tmp));
 		free(ant_name);
 	}
-	ft_printf("L%d-%s ", id_ant, node->key);
+	ft_printf("L%d-%s ", id_ant, tmp->key);
+	return (path->next);
 }
 
-bool 	func(int remain_ants, int *arr, int cur)
+static bool 	is_passed(int remain_ants, int *arr, int cur)
 {
 	int 	result;
 	int 	idx;
@@ -73,24 +78,19 @@ void	print_solution(t_path *data, int ants, int reached)
 	int			id_ant;
 	t_hashmap	*output;
 	t_list		*path;
-	t_list		*node;
 	int 		idx;
 
 	id_ant = 1;
 	output = init_hashmap(MAX_SIZE / 2, NULL);
 	while (reached < ants)
 	{
-		path = data->all;
 		idx = 0;
-		reached += move_ant(&output, id_ant, NULL);
+		path = data->all;
+		reached += move_ants(&output, id_ant, NULL);
 		while (path && id_ant <= ants)
 		{
-			if (func(ants - id_ant + 1, data->lengths, idx++))
-			{
-				node = path->content;
-				push_ant(&output, (t_table*)node->content, id_ant++);
-				path = path->next;
-			}
+			if (is_passed(ants - id_ant + 1, data->lengths, idx++))
+				path = push_ant(&output, path, id_ant++);
 			else
 				break ;
 		}
