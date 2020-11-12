@@ -52,24 +52,47 @@ void		push_ant(t_hashmap **data, t_table *node, int id_ant)
 	ft_printf("L%d-%s ", id_ant, node->key);
 }
 
+bool 	func(int remain_ants, int *arr, int cur)
+{
+	int 	result;
+	int 	idx;
+
+	idx = 0;
+	result = 0;
+	while (idx < cur)
+	{
+		result += arr[cur] - arr[idx++];
+		if (remain_ants <= result)
+			return (false);
+	}
+	return (true);
+}
+
 void	print_solution(t_path *data, int ants, int reached)
 {
 	int			id_ant;
 	t_hashmap	*output;
 	t_list		*path;
 	t_list		*node;
+	int 		idx;
 
 	id_ant = 1;
 	output = init_hashmap(MAX_SIZE / 3, NULL);
 	while (reached < ants)
 	{
 		path = data->all;
+		idx = 0;
 		reached += move_ant(&output, id_ant, NULL);
 		while (path && id_ant <= ants)
 		{
-			node = path->content;
-			push_ant(&output, (t_table*)node->content, id_ant++);
-			path = path->next;
+			if (func(ants - id_ant + 1, data->lengths, idx++))
+			{
+				node = path->content;
+				push_ant(&output, (t_table*)node->content, id_ant++);
+				path = path->next;
+			}
+			else
+				break ;
 		}
 		ft_putchar('\n');
 	}
