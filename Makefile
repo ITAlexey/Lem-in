@@ -66,6 +66,9 @@ norm:
 test: all
 	@./checker.sh
 
+vis:
+	@./vis_help.sh
+
 clean:
 	@$(MAKE) clean -sC $(LIB_DIR)
 	@rm -rf $(O_DIR)
@@ -77,4 +80,4 @@ fclean: clean
 
 re: fclean all
 
-.PHONY: all, folder, re, clean, fclean, norm, test
+.PHONY: all, folder, re, clean, fclean, norm, test, vis
