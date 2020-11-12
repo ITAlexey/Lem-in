@@ -1,14 +1,22 @@
-//
-// Created by alexey on 11.11.2020.
-//
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   cast_to_array.c                                    :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: dshala <marvin@42.fr>                      +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2020/08/15 13:10:00 by dshala            #+#    #+#             */
+/*   Updated: 2020/08/15 15:07:37 by dshala           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
 #include "hashmap.h"
 
-t_table 	**cast_to_array(t_hashmap *map)
+t_table	**cast_to_array(t_hashmap *map)
 {
-	t_table **arr;
+	t_table	**arr;
 	int		idx;
-	int 	i;
+	int		i;
 	t_list	*cur;
 
 	i = 0;
