@@ -72,6 +72,7 @@ static void		init_errors(char *err_lst[])
 	err_lst[6] = "Non-existent room name.";
 	err_lst[7] = "Empty lines are forbidden.";
 	err_lst[8] = "Paths are not exist.";
+	err_lst[9] = "Duplicate room name.";
 }
 
 void			throw_error(t_farm data)

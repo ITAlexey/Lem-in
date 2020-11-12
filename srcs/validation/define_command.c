@@ -50,10 +50,11 @@ static void		define_room(t_farm *data, short *start, short *end)
 	IF_FAIL(data_room);
 	if (*(data_room[0]) != 'L'
 			&& ft_ispositive_nbr(data_room[1])
-			&& ft_ispositive_nbr(data_room[2]))
+			&& ft_ispositive_nbr(data_room[2])
+			&& !get_table(data->rooms, data_room[0]))
 		record_room(data, data_room, start, end);
 	else
-		data->err = ERR_ROOM;
+		data->err = get_table(data->rooms, data_room[0]) ? ERR_DUP : ERR_ROOM;
 	ft_free2darray((void**)data_room);
 }
 

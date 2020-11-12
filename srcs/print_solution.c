@@ -12,11 +12,11 @@
 
 #include "ant_farm.h"
 
-int		move_ants(t_hashmap **data, int ants, char *ant_name)
+static int		move_ants(t_hashmap **data, int ants, char *ant_name)
 {
 	int		nbr;
 	t_table	*tmp;
-	int 	idx;
+	int		idx;
 
 	nbr = 0;
 	idx = 0;
@@ -57,10 +57,10 @@ static t_list	*push_ant(t_hashmap **data, t_list *path, int id_ant)
 	return (path->next);
 }
 
-static bool 	is_passed(int remain_ants, int *arr, int cur)
+static bool		is_passed(int remain_ants, int *arr, int cur)
 {
-	int 	result;
-	int 	idx;
+	int	result;
+	int	idx;
 
 	idx = 0;
 	result = 0;
@@ -73,12 +73,12 @@ static bool 	is_passed(int remain_ants, int *arr, int cur)
 	return (true);
 }
 
-void	print_solution(t_path *data, int ants, int reached)
+void			print_solution(t_path *data, int ants, int reached)
 {
 	int			id_ant;
 	t_hashmap	*output;
 	t_list		*path;
-	int 		idx;
+	int			idx;
 
 	id_ant = 1;
 	output = init_hashmap(MAX_SIZE / 2, NULL);
