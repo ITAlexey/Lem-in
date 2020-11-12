@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   cast_to_array.c                                    :+:      :+:    :+:   */
+/*   cast_to_array.h                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dshala <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -14,7 +14,7 @@
 
 t_table	**cast_to_array(t_hashmap *map)
 {
-	t_table	**arr;
+	t_table **arr;
 	int		idx;
 	int		i;
 	t_list	*cur;

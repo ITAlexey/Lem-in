@@ -29,8 +29,9 @@ static void	delete_lst(t_hashmap *data, char const *key, int place)
 				prev->next = cur->next;
 			else
 				data->arr[place].next = cur->next;
-			ft_memdel((void**)cur);
+			ft_memdel((void**)&cur);
 			data->occupied_cells--;
+			break ;
 		}
 		prev = cur;
 		cur = cur->next;
