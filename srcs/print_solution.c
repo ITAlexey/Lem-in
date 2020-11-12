@@ -81,7 +81,7 @@ void			print_solution(t_path *data, int ants, int reached)
 	int			idx;
 
 	id_ant = 1;
-	output = init_hashmap(MAX_SIZE / 2, NULL);
+	output = init_hashmap(MAX_SIZE / 3, NULL);
 	while (reached < ants)
 	{
 		idx = 0;
