@@ -49,7 +49,7 @@ void	fill_render(t_sdl *sdl, t_farm data, t_fdf *fdf)
 	while (i < data.ants)
 	{
 		if (fdf[i].draw == 1)
-				draw_typical(fdf, sdl, i);
+			draw_typical(fdf, sdl, i);
 		i++;
 	}
 	draw_background(sdl, data);
