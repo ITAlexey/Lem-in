@@ -6,7 +6,7 @@
 /*   By: tclarita <tclarita@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/07 15:45:10 by tclarita          #+#    #+#             */
-/*   Updated: 2020/11/12 12:26:00 by tclarita         ###   ########.fr       */
+/*   Updated: 2020/11/13 12:07:26 by tclarita         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ void	draw_connections(t_sdl *sdl, t_farm data)
 	t_room	*room2;
 
 	i = 0;
-	SDL_SetRenderDrawColor(sdl->render, 0, 0, 0, 255);
+	SDL_SetRenderDrawColor(sdl->render, 255, 255, 255, 255);
 	while (data.arr[i] != NULL)
 	{
 		room = data.arr[i]->value;

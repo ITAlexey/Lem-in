@@ -6,7 +6,7 @@
 /*   By: tclarita <tclarita@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/07 15:49:41 by tclarita          #+#    #+#             */
-/*   Updated: 2020/11/12 12:31:37 by tclarita         ###   ########.fr       */
+/*   Updated: 2020/11/13 12:07:14 by tclarita         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,32 +26,6 @@ void	fill_fdf(t_fdf *fdf, t_sdl *sdl, int i)
 		sdl->ant[i].x = sdl->ant[i].x1;
 		sdl->ant[i].y = sdl->ant[i].y1;
 	}
-}
-
-void	draw_new_year(t_fdf *fdf, t_sdl *sdl, int i)
-{
-	int color;
-
-	color = rand() % 9 + 1;
-	if (!(color % 9))
-		SDL_SetRenderDrawColor(sdl->render, 243, 243, 243, 255);
-	else if (!(color % 8))
-		SDL_SetRenderDrawColor(sdl->render, 225, 74, 154, 255);
-	else if (!(color % 7))
-		SDL_SetRenderDrawColor(sdl->render, 189, 213, 65, 255);
-	else if (!(color % 6))
-		SDL_SetRenderDrawColor(sdl->render, 68, 202, 117, 255);
-	else if (!(color % 5))
-		SDL_SetRenderDrawColor(sdl->render, 164, 225, 235, 255);
-	else if (!(color % 4))
-		SDL_SetRenderDrawColor(sdl->render, 0, 102, 102, 255);
-	else if (!(color % 3))
-		SDL_SetRenderDrawColor(sdl->render, 255, 0, 0, 255);
-	else if (!(color % 2))
-		SDL_SetRenderDrawColor(sdl->render, 0, 255, 0, 255);
-	else
-		SDL_SetRenderDrawColor(sdl->render, 0, 0, 255, 255);
-	draw_circle(fdf[i].x, fdf[i].y, sdl->ant_radius, sdl);
 }
 
 void	draw_typical(t_fdf *fdf, t_sdl *sdl, int i)
@@ -75,20 +49,16 @@ void	fill_render(t_sdl *sdl, t_farm data, t_fdf *fdf)
 	while (i < data.ants)
 	{
 		if (fdf[i].draw == 1)
-		{
-			if (sdl->new_year)
-				draw_new_year(fdf, sdl, i);
-			else
 				draw_typical(fdf, sdl, i);
-		}
 		i++;
 	}
 	draw_background(sdl, data);
 	sdl_events(sdl);
 	SDL_Delay(sdl->delay);
 	SDL_RenderPresent(sdl->render);
-	SDL_SetRenderDrawColor(sdl->render, 255, 109, 20, 255);
-	SDL_RenderClear(sdl->render);
+	SDL_SetRenderDrawColor(sdl->render, 0, 0, 0, 255);
+	if (sdl->clear)
+		SDL_RenderClear(sdl->render);
 }
 
 void	draw_movements(t_sdl *sdl, t_farm data)
@@ -107,4 +77,8 @@ void	draw_movements(t_sdl *sdl, t_farm data)
 			i = -1;
 		i++;
 	}
+	if (sdl->clear)
+		sdl->clear = 0;
+	else
+		sdl->clear = 1;
 }
