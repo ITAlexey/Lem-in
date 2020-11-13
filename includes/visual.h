@@ -6,7 +6,7 @@
 /*   By: tclarita <tclarita@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/11 18:36:07 by tclarita          #+#    #+#             */
-/*   Updated: 2020/11/13 12:04:57 by tclarita         ###   ########.fr       */
+/*   Updated: 2020/11/13 12:30:29 by tclarita         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,7 @@ typedef struct		s_sdl
 	short			ant_radius;
 	short			room_radius;
 	bool			done;
-	bool			clear;
+	bool			new_year;
 }					t_sdl;
 
 void				init_sdl(t_sdl *sdl);

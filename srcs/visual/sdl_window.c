@@ -6,7 +6,7 @@
 /*   By: tclarita <tclarita@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/07 15:40:39 by tclarita          #+#    #+#             */
-/*   Updated: 2020/11/13 12:06:55 by tclarita         ###   ########.fr       */
+/*   Updated: 2020/11/13 12:31:37 by tclarita         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ void	open_music(t_sdl *sdl)
 	sdl->delay = 1;
 	sdl->ant_radius = 7;
 	sdl->room_radius = 10;
-	sdl->clear = 1;
+	sdl->new_year = 0;
 }
 
 void	close_window(t_sdl *sdl)

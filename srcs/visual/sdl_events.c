@@ -6,7 +6,7 @@
 /*   By: tclarita <tclarita@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/10 11:12:51 by tclarita          #+#    #+#             */
-/*   Updated: 2020/11/13 12:06:27 by tclarita         ###   ########.fr       */
+/*   Updated: 2020/11/13 12:31:19 by tclarita         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,9 +16,9 @@
 void	sdl_key_down_3(t_sdl *sdl)
 {
 	if (sdl->event.key.keysym.sym == SDLK_4)
-		sdl->clear = 1;
+		sdl->new_year = 1;
 	if (sdl->event.key.keysym.sym == SDLK_5)
-		sdl->clear = 0;
+		sdl->new_year = 0;
 }
 
 void	sdl_key_down_2(t_sdl *sdl)
