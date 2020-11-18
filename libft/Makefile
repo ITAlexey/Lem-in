@@ -50,14 +50,14 @@ VPATH = srcs/bool:\
 		srcs/hashmap:\
 		srcs/queue\
 
-all: objects $(LIB_OBJ) $(NAME)
-	@ar rcs $(NAME) $(LIB_OBJ)
-	@echo "$(RED)libft has successfully created!\n$(RESET)"
+all: objects $(NAME)
 
 $(NAME): $(LIB_OBJ)
+	@echo "$(CYAN)Creating library ...$(RESET)"
+	@ar rcs $@ $(LIB_OBJ)
+	@echo "$(RED)libft has successfully created!\n$(RESET)"
 
 objects:
-	@echo "$(CYAN)Creating library ...$(RESET)"
 	@mkdir -p $(OBJ_DIR)
 
 $(OBJ_DIR)/%.o: %.c $(addprefix $(INC), $(HEADERS))
