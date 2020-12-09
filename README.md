@@ -55,4 +55,6 @@ make
 make vis - show features of the visualizer
 ./lem-in -v output < maps/[name_of_map] > output
 ```
+
+<p align="center"><img src="giphy.gif"></p>
   
